@@ -1,0 +1,485 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,200;1,400;1,500&display=swap');
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box ;
+    font-family:'Poppins', sans-serif;
+    cursor: pointer;
+}
+.header {
+   
+    width: 100%;
+    padding:30px 0px;
+    margin-top:0px;
+    display: flex ;
+    justify-content:space-around;
+    align-items: center;
+    background: linear-gradient(to left ,#17b176, #f42424 ) ;  
+
+}
+
+
+.logo0{
+    padding-left: 3%;
+}
+
+/* .logo1 {
+    margin-left: 0;
+
+} */
+.logo2 {
+    padding-right:0px;
+}
+
+.navbar-brand{
+    color:rgb(60, 54, 243);
+}
+
+.navbar-brand:hover {
+    color: rgb(12, 8, 126);
+}
+
+.banner h2 {
+    text-align: center;
+    margin-bottom: 76px;
+    font-size:32px;
+    color:#626a67;
+    font-weight: bold;
+}
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size:32px;
+    color:#626a67;
+}
+h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size:24px;
+    color: orange;
+    transition:0.4s;
+}
+.banner {
+    width: 100%;
+    background-image :url("https://github.com/hqteamobi/web_shop_ban_hang/blob/main/assets/banner.png?raw=true");
+    height: 463px;
+    margin-top:0px;
+    display: flex;
+    padding:0px 133px;
+    position :relative ; 
+}
+.box-left ,.box-right {
+    width: 50%;
+}
+.box-left h2 {
+    font-size: 45px;
+    margin-top:75px;
+    margin-bottom:30px;
+    color:#fff;
+}
+.box-left p {
+    color:#D0D0D0;
+    margin-bottom: 0;
+    font-size: 20px;
+    text-align: center;
+}
+.box-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.box-left button {
+    width: 191px;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background:#1d1a1a;
+    border:none;
+    outline:none;
+    color:#fff;
+    font-weight: bold;
+    border-radius: 20px;
+    transition:0.4s;
+}
+
+
+
+.box-left button:hover {
+    background:orange;
+}
+
+
+
+
+.box-right {
+    padding-left:200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-right img {
+    margin:0px 10px;
+    animation :animation 3s infinite linear; 
+}
+.box-right img:nth-child(1)
+{
+    animation-delay: 0.5s;
+}
+.box-right img:nth-child(2)
+{ 
+    animation-delay: 1s;
+}
+@keyframes animation {
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+    
+}
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.to-bottom {
+    position:absolute;
+    bottom:-40px;
+    left:50%;
+    transform:translateX(-50%);
+
+}
+
+.banner .to-bottom a img:hover{
+    padding:2px; 
+}
+h1 {
+    font-variant: inherit;
+    display: block;
+    text-shadow: #f6874b 2px 3px 4px;
+    font-size: 1000%;
+    text-align: center;
+}
+
+/* Custom CSS for container and cards */
+.container {
+    margin-top: 50px;
+}
+
+.card {
+    margin-bottom: 30px;
+    min-height: 70px;
+
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    text-align: left;
+    color: #666;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.container .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.container .card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.container .card .card-img-top {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.container .card .card-text {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+/*Carousel*/
+h2 {
+    text-align: center;
+    margin-bottom: 76px;
+    font-size:32px;
+    color:#626a67;
+    font-weight: bold;
+}
+
+#blogcr .carou-cap {
+    position: absolute;
+    top: 50%;  
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    color: #fff;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 15px
+}
+
+#blogcr .carou-cap h3{
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size:28px;
+    color:#fff;
+    font-weight: bold;
+}
+
+#blogcr .carou-cap p{
+    color:#fff ;
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.carousel-item img{
+    height:325px ;
+    object-fit: cover;
+}
+
+
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size:32px;
+    color:#626a67;
+}
+
+.post{
+    margin: auto; 
+    height: auto; 
+    margin-top: 5%;
+    margin-bottom: 4%;
+
+}
+
+.post p{
+    text-align: center;}
+
+
+.post a {
+    
+    text-align: center;
+    padding: 47%;
+}
+
+
+/*footer*/
+.footer {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+.footer h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size:32px;
+    color:#626a67;
+}
+
+.footer form {
+    align-items: center;
+}
+
+.footer .row {
+    padding-top:3%;
+}
+
+.footer .row p {
+    text-align: center;
+    color: #626a67;
+    font-size: larger;
+}
+.footer .menu a {
+    text-align: center;
+    color: #626a67;
+    font-size: larger;
+}
+.footer .menu a:hover {
+    color: #fff;
+}
+.footer input[type="text"] {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #626a67;
+    border-radius: 5px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom:20px ;
+    background: transparent;
+}
+.menu a{
+    margin: 5px;
+    align-items: center;
+    text-align: center;
+}
+.footer button {
+    width: 171px;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background:#626a67;
+    border:none;
+    outline:none;
+    color:#ccc;
+    font-weight: bold;
+    border-radius: 20px;
+    transition:0.4s;
+    display: block;
+}
+.footer button:hover {
+    background-color: #1d1a1a;
+    color: #626a67;
+}
+
+
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: auto;
+        padding: 20px;
+    }
+
+    .footer .col-xxl-7, .col-xxl-5 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+
+/* chatbox */
+#chatbot-circle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #009688;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+}
+
+
+#chatbot-circle:hover{
+    background-color: #04544c;
+
+}
+#chatbot-interface {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    overflow: auto;
+}
+
+#chatbot-messages {
+    padding: 10px;
+    height: 85%;
+    overflow: auto;
+}
+
+#chatbot-input {
+    width: 100%;
+    height: 15%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+@media only screen and (max-width: 768px) {
+    /* Kích thước màn hình là 768px hoặc nhỏ hơn */
+
+    .banner {
+        max-width: 100%;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px;
+    }
+    .box-left, .box-right {
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+    h2 {
+        font-size: 36px;
+        margin-top: 30px;
+    }
+    .box-left p {
+        font-size: 18px;
+        padding: 0 20px;
+    }
+    .box-right {
+        width: 50%;
+        padding-left: 0; 
+        padding-right: 0; 
+        margin-top: 25px; 
+    }
+    .box-right img {
+        width: 100%;
+        margin: 20px 5px 0px 25px;
+    
+    }
+/* 
+    .container li{
+        display: block;
+        background-color: #009688;
+    }
+   */
+
+    /*footer*/
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: auto;
+        padding: 20px;
+    }
+
+    .footer .col-xxl-7, .col-xxl-5 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+}

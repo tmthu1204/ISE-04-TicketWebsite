@@ -1,0 +1,4 @@
+b1 : tải Xampp(https://www.apachefriends.org/download.html)
+b2 : bỏ source code vào (..\xampp\htdocs)
+b3 : chạy local host trên chrome 
+* set up lại config nếu cần (port)
