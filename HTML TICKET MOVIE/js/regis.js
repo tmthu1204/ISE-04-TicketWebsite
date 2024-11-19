@@ -10,6 +10,8 @@ const emailErr = document.getElementById("emailErr");
 const passwordErr = document.getElementById("passwordErr");
 const repassErr = document.getElementById("repassErr");     
 
+//Lay du lieu tu localStorage
+const userLocal = JSON.parse(localStorage.getItem("users")) || [];
 /**
  * Validate địa chỉ email
  * @param {*} email : Chuỗi email người dùng nhập vào
@@ -66,8 +68,22 @@ formRegis.addEventListener("submit", function(e){
 
         //Get data from form and merge into user
         const user = {
-            
-        }
+            userId: Math.ceil(Math.random() *100000000000000),
+            userName: userNameE.value,
+            email: emailE.value,
+            password: passwordE.value,
+        };
+
+        //Push user vao userLocal
+        userLocal.push(user);
+        //Luu tr du lieu len local
+        localStorage.setItem("users", JSON.stringify(userLocal));
+
+        //Chuyen huong ve tran dang nhap
+        setTimeout(function(){
+            window.location.href = "login.html";
+        },1000);
+        
     }
 });
 

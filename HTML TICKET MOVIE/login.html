@@ -36,7 +36,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="./bst.html" style="color: #000000">Trang Chủ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" style="color: #000000">Phim</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" style="color: #000000">Đăng Nhập</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./login.html" style="color: #000000">Đăng Nhập</a></li>
                     <li class="nav-item"><a class="nav-link" href="./regis.html" style="color: #000000">Đăng Ký</a></li>
                 </ul>
                 <form class="d-flex ms-3">
@@ -70,6 +70,9 @@
                             id="password"
                             placeholder="Nhập mật khẩu"
                         />
+                        <div id="errorMess" style ="display: none" class="alert alert-danger" role="alert">
+                            Email hoặc mật khẩu không chính xác.
+                        </div>
                         <div id="passwordErr" style="color: red; display: none">Mật khẩu không được để trống</div>
                     </div>
                     <div>
@@ -98,6 +101,7 @@
             </div>
         </div>
     </footer>
+    <!--Script-->
     <script src="./js/login.js"></script>
 </body>
 
