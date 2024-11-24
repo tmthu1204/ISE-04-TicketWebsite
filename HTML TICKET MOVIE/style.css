@@ -19,10 +19,7 @@
     height: 40px;
 }
 
-.navbar-collapse.collapse.show {
-    border-radius: 10px; /* Optional: add some rounding to corners */
-    transition: background-color 0.3s ease;
-}
+
 
 .navbar .btn {
     white-space: nowrap;
