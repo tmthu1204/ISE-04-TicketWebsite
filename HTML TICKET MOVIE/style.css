@@ -5,19 +5,23 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.navbar {
-    transform-origin: top center; 
-}
 
 .navbar {
     height: 60px; /* Đặt chiều cao cố định cho navbar */
     line-height: 20px; /* Điều chỉnh line-height để căn giữa các nội dung bên trong */
     padding: 0; /* Loại bỏ padding mặc định nếu cần */
+    z-index: 1050; /* Higher than other content */
+    position: relative;
 }
 
 .navbar .d-flex {
     width: 350px; /* Điều chỉnh theo mong muốn */
     height: 40px;
+}
+
+.navbar-collapse.collapse.show {
+    border-radius: 10px; /* Optional: add some rounding to corners */
+    transition: background-color 0.3s ease;
 }
 
 .navbar .btn {
