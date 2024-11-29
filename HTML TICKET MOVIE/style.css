@@ -5,7 +5,70 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.movie-top {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+    font-size:15px;
+    margin-bottom: -10px;
+    margin-top: 10px;
+}
 
+.movie-content {
+    display: flex; /* Hiển thị các phần tử ngang */
+    flex-wrap: wrap; /* Cho phép các phần tử xuống dòng nếu không đủ chỗ */
+    justify-content: flex-start; 
+    align-items: flex-start;
+}
+.movie-top span {
+    font-size: 9px; 
+} 
+
+.movie-content-left{
+    width: 50%;
+    flex: 1;
+}
+
+.movie-content-right-big-img{
+    flex: 2; /* Phần thông tin chiếm 2 phần không gian, lớn hơn ảnh */
+    padding-left: 20px;
+    /* margin-top:-550px; */
+}
+.movie-content-left-big-img img {
+    width: 100%; /* Đảm bảo ảnh phù hợp với vùng chứa */
+    max-width: 350px; /* Giới hạn chiều rộng tối đa cho ảnh */
+    height: auto; /* Giữ tỉ lệ ảnh */
+}
+
+.movie-content-right-info-details span {
+    display: block; /* Đảm bảo mỗi <span> chiếm toàn bộ dòng */
+    margin-bottom: 10px; /* Thêm khoảng cách giữa các dòng */
+}
+
+.movie-content-right-info-details {
+    display: flex;
+    flex-direction: column; /* Xếp các mục theo cột (xuống dòng từng cặp) */
+    gap: 10px; /* Thêm khoảng cách giữa các cặp icon-txt */
+}
+
+.movie-content-right-info-details .info-item {
+    display: flex; /* Đặt icon và text trên cùng một dòng */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.movie-content-right-info-details .info-item i {
+    margin-right: 10px; /* Khoảng cách giữa icon và văn bản */
+    font-size: 20px; /* Điều chỉnh kích thước icon nếu cần */
+}
+
+.movie-content-right-info-details .info-item span {
+    font-size: 18px; /* Điều chỉnh kích thước chữ */
+    margin-top:-3px;
+}
+
+.movie-content-button{
+    margin-top:50px;
+}
 .navbar {
     height: 60px; /* Đặt chiều cao cố định cho navbar */
     line-height: 20px; /* Điều chỉnh line-height để căn giữa các nội dung bên trong */
@@ -18,8 +81,6 @@
     width: 350px; /* Điều chỉnh theo mong muốn */
     height: 40px;
 }
-
-
 
 .navbar .btn {
     white-space: nowrap;
