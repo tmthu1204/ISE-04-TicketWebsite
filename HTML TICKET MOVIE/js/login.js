@@ -53,7 +53,7 @@ formLogin.addEventListener("submit", function (e) {
     if(!findUser){
         errorMess.style.display = "block";
     }else{
-        window.location.href = "bst.html";
+        window.location.href = "Homepage.html";
 
         //Luu thong tin cua user dang nhap len local
         localStorage.setItem("userLogin", JSON.stringify(findUser));
