@@ -1,46 +1,92 @@
-// Remove import and use global functions
-document.getElementById("formRegis")?.addEventListener("submit", function (e) {
-    e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    const formRegis = document.getElementById("formRegis");
+    const userNameE = document.getElementById("userName");
+    const emailE = document.getElementById("email");
+    const passwordE = document.getElementById("password");
+    const repassE = document.getElementById("repass");
 
-    const userName = document.getElementById("userName")?.value || "";
-    const email = document.getElementById("email")?.value || "";
-    const password = document.getElementById("password")?.value || "";
-    const repass = document.getElementById("repass")?.value || "";
+    const userNameErr = document.getElementById("userNameErr");
+    const emailErr = document.getElementById("emailErr");
+    const passwordErr = document.getElementById("passwordErr");
+    const repassErr = document.getElementById("repassErr");
 
-    const errors = {
-        userNameErr: validateField(userName, "Tên đăng nhập"),
-        emailErr: validateField(email, "email"),
-        passwordErr: validateField(password, "mật khẩu"),
-        repassErr: password !== repass ? "Mật khẩu nhập lại không khớp" : "",
-    };
+    function validateEmail(email) {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    }
 
-    Object.entries(errors).forEach(([id, msg]) => {
-        showError(id, msg);
-    });
+    function showError(element, message) {
+        element.style.display = "block";
+        element.textContent = message;
+    }
 
-    if (Object.values(errors).every(msg => !msg)) {
-        try {
-            const users = JSON.parse(localStorage.getItem("users")) || [];
+    function hideError(element) {
+        element.style.display = "none";
+    }
+
+    formRegis.addEventListener("submit", function(e) {
+        e.preventDefault();
+        let isValid = true;
+
+        if (!userNameE.value) {
+            showError(userNameErr, "Tên đăng nhập không được để trống");
+            isValid = false;
+        } else {
+            hideError(userNameErr);
+        }
+
+        if (!emailE.value) {
+            showError(emailErr, "Email không được để trống");
+            isValid = false;
+        } else if (!validateEmail(emailE.value)) {
+            showError(emailErr, "Email không đúng định dạng");
+            isValid = false;
+        } else {
+            hideError(emailErr);
+        }
+
+        if (!passwordE.value) {
+            showError(passwordErr, "Mật khẩu không được để trống");
+            isValid = false;
+        } else {
+            hideError(passwordErr);
+        }
+
+        if (!repassE.value) {
+            showError(repassErr, "Vui lòng nhập lại mật khẩu");
+            isValid = false;
+        } else if (passwordE.value !== repassE.value) {
+            showError(repassErr, "Mật khẩu nhập lại không khớp");
+            isValid = false;
+        } else {
+            hideError(repassErr);
+        }
+
+        if (isValid) {
+            const userLocal = JSON.parse(localStorage.getItem("users")) || [];
             
             // Check if email already exists
-            if (users.some(user => user.email === email)) {
-                showError("emailErr", "Email đã được sử dụng");
+            if (userLocal.some(user => user.email === emailE.value)) {
+                showError(emailErr, "Email đã được sử dụng");
                 return;
             }
 
-            users.push({ 
-                userId: Date.now(), 
-                userName, 
-                email, 
-                password 
-            });
-            
-            localStorage.setItem("users", JSON.stringify(users));
+            const user = {
+                userId: Date.now(),
+                userName: userNameE.value,
+                email: emailE.value,
+                password: passwordE.value,
+            };
+
+            userLocal.push(user);
+            localStorage.setItem("users", JSON.stringify(userLocal));
+
             alert("Đăng ký tài khoản thành công!");
             window.location.href = "login.html";
-        } catch (error) {
-            console.error("Registration error:", error);
-            alert("Đã xảy ra lỗi. Vui lòng thử lại.");
         }
-    }
+    });
 });
+
