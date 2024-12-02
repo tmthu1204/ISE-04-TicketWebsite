@@ -4,6 +4,19 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
+.card{
+    margin-bottom:30px;
+    margin-top:10px;
+    background-color:#2c251d;
+}
+
+.payment_card{
+    background-color:#2c251d;
+    width:80%;
+    height:auto;
+    align-items: center;
+    margin-left: 150px;
+}
 
 .movie-top {
     display: flex;
@@ -26,29 +39,32 @@
 
 .movie-content-left{
     width: 50%;
-    flex: 1;
+    flex: 0.9;
 }
 
 .movie-content-right-big-img{
+    margin-top: 30px;
     flex: 2; /* Phần thông tin chiếm 2 phần không gian, lớn hơn ảnh */
-    padding-left: 20px;
-    /* margin-top:-550px; */
+    padding-left: -20px;
 }
+
 .movie-content-left-big-img img {
+    margin-top: 30px;
     width: 100%; /* Đảm bảo ảnh phù hợp với vùng chứa */
-    max-width: 350px; /* Giới hạn chiều rộng tối đa cho ảnh */
+    max-width: 370px; /* Giới hạn chiều rộng tối đa cho ảnh */
     height: auto; /* Giữ tỉ lệ ảnh */
+    margin-bottom: 40px;
 }
 
 .movie-content-right-info-details span {
     display: block; /* Đảm bảo mỗi <span> chiếm toàn bộ dòng */
-    margin-bottom: 10px; /* Thêm khoảng cách giữa các dòng */
+    margin-bottom: 15px; /* Thêm khoảng cách giữa các dòng */
 }
 
 .movie-content-right-info-details {
     display: flex;
     flex-direction: column; /* Xếp các mục theo cột (xuống dòng từng cặp) */
-    gap: 10px; /* Thêm khoảng cách giữa các cặp icon-txt */
+    gap: 5px; /* Thêm khoảng cách giữa các cặp icon-txt */
 }
 
 .movie-content-right-info-details .info-item {
@@ -57,18 +73,71 @@
 }
 
 .movie-content-right-info-details .info-item i {
-    margin-right: 10px; /* Khoảng cách giữa icon và văn bản */
+    margin-right: 8px; /* Khoảng cách giữa icon và văn bản */
     font-size: 20px; /* Điều chỉnh kích thước icon nếu cần */
+    margin-top: -10px; 
+    color:white 
 }
 
 .movie-content-right-info-details .info-item span {
-    font-size: 18px; /* Điều chỉnh kích thước chữ */
-    margin-top:-3px;
+    font-size: 15px; /* Điều chỉnh kích thước chữ */
+    margin-top: 2px;
+    color:white 
 }
 
 .movie-content-button{
-    margin-top:50px;
+    margin-top:20px;
 }
+/*Mô tả*/
+.movie-content-right-bottom-content-title{
+    border-bottom: 2px solid white;
+    color: white;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.movie-content-right-bottom-content{
+    padding-top: 10px;
+    text-align:left;
+    color: white;
+}
+
+.movie-content-right-bottom-content p{
+    font-size:12px;
+}
+
+.movie-content-right-bottom-content-title-item{
+    padding: 6px;
+    margin-right: 6px;
+    text-align:center;
+}
+
+.movie-content-right-bottom-content-title-item p{
+    margin-bottom:-3px;
+}
+/*Snack Style*/
+.square-container {
+    width: 100%;
+    height: 100px; /* Adjust as needed */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #8d8484;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Style for the square buttons */
+.square-btn {
+    width: 50px; /* Square size */
+    height: 50px; /* Square size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
 .navbar {
     height: 60px; /* Đặt chiều cao cố định cho navbar */
     line-height: 20px; /* Điều chỉnh line-height để căn giữa các nội dung bên trong */
@@ -307,3 +376,4 @@ footer {
 #singleMovieCarousel {
     width: 100%;
 }
+
