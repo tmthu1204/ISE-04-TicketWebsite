@@ -1,13 +1,13 @@
 // Check login status
-function checkLoginStatus() {
-    const userLogin = JSON.parse(localStorage.getItem("userLogin"));
-    if (!userLogin || !userLogin.isLoggedIn) {
-        alert("Vui lòng đăng nhập để đặt vé");
-        window.location.href = "./login.html";
-        return false;
-    }
-    return true;
-}
+// function checkLoginStatus() {
+//     const userLogin = JSON.parse(localStorage.getItem("userLogin"));
+//     if (!userLogin || !userLogin.isLoggedIn) {
+//         alert("Vui lòng đăng nhập để đặt vé");
+//         window.location.href = "./login.html";
+//         return false;
+//     }
+//     return true;
+// }
 
 // State management
 let selectedSeats = [];
