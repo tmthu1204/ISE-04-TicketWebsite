@@ -320,24 +320,12 @@ body {
     margin-left: 150px;
 }
 
-.movie-top {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Khoảng cách giữa các phần tử */
-    font-size:15px;
-    margin-bottom: -10px;
-    margin-top: 10px;
-}
-
 .movie-content {
     display: flex; /* Hiển thị các phần tử ngang */
     flex-wrap: wrap; /* Cho phép các phần tử xuống dòng nếu không đủ chỗ */
     justify-content: flex-start; 
     align-items: flex-start;
 }
-.movie-top span {
-    font-size: 9px; 
-} 
 
 .movie-content-left{
     width: 50%;
