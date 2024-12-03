@@ -377,3 +377,11 @@ footer {
     width: 100%;
 }
 
+.showtime-btn.selected {
+    background-color: #007bff; /* Màu nền xanh nổi bật */
+    color: white; /* Màu chữ trắng */
+    border-color: #0056b3; /* Màu đường viền xanh đậm */
+    transform: scale(1.1); /* Phóng to nhẹ để nổi bật */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển đổi mượt mà */
+}
+
