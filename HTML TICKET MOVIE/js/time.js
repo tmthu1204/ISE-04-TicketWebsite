@@ -6,17 +6,57 @@ document.addEventListener('DOMContentLoaded', function () {
     const selectedBranchElement = document.getElementById('selectedBranch');
     const showtimesContainer = document.getElementById('showtimes');
     const confirmShowtimeBtn = document.getElementById('confirmShowtime');
+    const randomDatesContainer = document.createElement('div'); // Container for random dates
     let selectedBranches = 0;
+    let selectedDate = null;
     let selectedShowtime = null;
+
+    // Generate random dates for the current month
+    function generateRandomDates() {
+        const today = new Date();
+        const currentYear = today.getFullYear();
+        const currentMonth = today.getMonth(); // Months are 0-indexed
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+        const randomDates = new Set();
+
+        while (randomDates.size < 3) { // Generate 10 random dates
+            const randomDay = Math.floor(Math.random() * daysInMonth) + 1;
+            randomDates.add(randomDay);
+        }
+
+        return Array.from(randomDates)
+            .map(day => new Date(currentYear, currentMonth, day))
+            .sort((a, b) => b - a); // Sort in descending order
+    }
+
+    // Display random dates
+    function displayRandomDates(dates) {
+        randomDatesContainer.innerHTML = '<h6 class="custom-instruction">Vui lòng chọn ngày và giờ để tiếp tục:</h6>';
+        dates.forEach(date => {
+            const day = date.getDate().toString().padStart(2, '0'); // Lấy ngày
+            const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Lấy tháng (0-indexed)
+            const formattedDate = `${day}/${month}`; // Định dạng ngày/tháng
+
+            const dateButton = document.createElement('button');
+            dateButton.className = 'btn btn-outline m-1 random-date-btn';
+            dateButton.textContent = formattedDate; // Hiển thị ngày/tháng
+            dateButton.addEventListener('click', function () {
+                document.querySelectorAll('.random-date-btn').forEach(btn => btn.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedDate = date; // Lưu ngày đầy đủ để sử dụng khi xác nhận
+                confirmShowtimeBtn.disabled = false;
+            });
+            randomDatesContainer.appendChild(dateButton);
+        });
+        showtimesContainer.parentElement.insertBefore(randomDatesContainer, showtimesContainer);
+    }
 
     branchCards.forEach(card => {
         card.addEventListener('click', function () {
             if (this.classList.contains('selected')) {
-                // Unselect the branch
                 this.classList.remove('selected');
                 selectedBranches = 0;
             } else {
-                // Select the new branch and unselect others
                 branchCards.forEach(c => c.classList.remove('selected'));
                 this.classList.add('selected');
                 selectedBranches = 1;
@@ -32,19 +72,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const branchName = selectedBranch.querySelector('.card-title').textContent;
             selectedBranchElement.textContent = `Chi nhánh: ${branchName}`;
 
-            // Thêm dòng chữ "Chọn khung giờ" ở đầu modal
-            const instruction = document.createElement('p');
-            instruction.textContent = "Chọn khung giờ:";
-            instruction.style.fontWeight = 'bold'; // Kiểu chữ đậm
-            instruction.style.color = 'black'; // Màu chữ đen
-            instruction.style.marginBottom = '10px'; // Thêm khoảng cách dưới nếu cần
+            const randomDates = generateRandomDates();
+            displayRandomDates(randomDates);
 
-            // Generate random showtimes (replace with actual data in a real application)
             const showtimes = generateRandomShowtimes();
-            showtimesContainer.innerHTML = ''; // Xóa nội dung cũ
-
-            // Đặt dòng chữ phía trên danh sách khung giờ
-            showtimesContainer.parentElement.insertBefore(instruction, showtimesContainer);
+            showtimesContainer.innerHTML = '';
 
             showtimes.forEach(time => {
                 const button = document.createElement('button');
@@ -52,16 +84,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 button.textContent = time;
 
                 button.addEventListener('click', function () {
-                    // Loại bỏ hiệu ứng đã chọn khỏi tất cả các nút
                     document.querySelectorAll('.showtime-btn').forEach(btn => btn.classList.remove('selected'));
-
-                    // Áp dụng hiệu ứng cho nút được chọn
                     this.classList.add('selected');
-
-                    // Ghi lại giờ chiếu đã chọn
                     selectedShowtime = time;
-
-                    // Bật nút "Xác nhận"
                     confirmShowtimeBtn.disabled = false;
                 });
 
@@ -72,21 +97,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    confirmShowtimeBtn.addEventListener('click', function() {
-        if (selectedShowtime) {
-            const selectedBranch = document.querySelector('.branch-card.selected .card-title').textContent;
-            // Redirect to seat selection page with branch and showtime information
-            window.location.href = `seat-selection.html?branch=${encodeURIComponent(selectedBranch)}&showtime=${encodeURIComponent(selectedShowtime)}`;
-        }
-    });
-
     confirmShowtimeBtn.addEventListener('click', function () {
-        if (selectedShowtime) {
+        if (selectedShowtime && selectedDate) {
             const selectedBranch = document.querySelector('.branch-card.selected .card-title').textContent;
-            alert(`Bạn đã chọn chi nhánh: ${selectedBranch}\nGiờ chiếu: ${selectedShowtime}`);
+
+            // Định dạng ngày cho thông báo
+            const day = selectedDate.getDate().toString().padStart(2, '0'); // Lấy ngày
+            const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0'); // Lấy tháng
+            const formattedDate = `${day}/${month}`; // Định dạng dd/MM
+
+            alert(`Bạn đã chọn chi nhánh: ${selectedBranch}\nNgày: ${formattedDate}\nGiờ chiếu: ${selectedShowtime}`);
             showtimeModal.hide();
         }
     });
+
 
     function generateRandomShowtimes() {
         const showtimes = [];
@@ -98,4 +122,29 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return showtimes;
     }
+
+    function generateRandomDates() {
+        const today = new Date();
+        const currentYear = today.getFullYear();
+        const currentMonth = today.getMonth(); // Months are 0-indexed
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+        const randomDates = new Set();
+
+        while (randomDates.size < 5) { // Generate 5 random dates
+            const randomDay = Math.floor(Math.random() * daysInMonth) + 1;
+            randomDates.add(randomDay);
+        }
+
+        return Array.from(randomDates)
+            .map(day => new Date(currentYear, currentMonth, day))
+            .sort((a, b) => a - b); // Sắp xếp theo thứ tự tăng dần
+    }
+
+    confirmShowtimeBtn.addEventListener('click', function () {
+        if (selectedShowtime) {
+            const selectedBranch = document.querySelector('.branch-card.selected .card-title').textContent;
+            // Redirect to seat selection page with branch and showtime information
+            window.location.href = `seat-selection.html?branch=${encodeURIComponent(selectedBranch)}&showtime=${encodeURIComponent(selectedShowtime)}`;
+        }
+    });
 });

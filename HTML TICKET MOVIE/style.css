@@ -674,3 +674,15 @@ footer {
     transition: all 0.3s ease; /* Hiệu ứng chuyển đổi mượt mà */
 }
 
+.random-date-btn.selected {
+    background-color: #000000; /* Màu nền xanh nổi bật */
+    color: white; /* Màu chữ trắng */
+    transform: scale(1.1); /* Phóng to nhẹ để nổi bật */
+    transition: all 0.3s ease; 
+    border-color:#0000 ;
+}
+
+.custom-instruction {
+    color: black;
+    font-weight: bold;
+}
