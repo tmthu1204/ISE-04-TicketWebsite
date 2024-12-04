@@ -43,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="admin-content-movie">
             <h1> Thêm phim</h1>
             <form action="" method="POST">
-                <input type="text" name="title" placeholder="Nhập tên phim">
-                <input type="text" name="description" placeholder="Mô tả">
+                <input type="text" required name="title" placeholder="Nhập tên phim">
+                <input type="text" required name="description" placeholder="Mô tả">
                 <input type="number" name="duration" placeholder="Thời lượng (phút)">
                 <input type="text" name="genre" placeholder="Thể loại">
                 <input type="date" name="release_date" placeholder="Ngày công chiếu">
