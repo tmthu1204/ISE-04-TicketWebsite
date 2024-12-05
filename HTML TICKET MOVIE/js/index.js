@@ -14,11 +14,9 @@ if (userLogin && userLogin.userName) {
     `;
 
     // Hide "Đăng Nhập" and "Đăng Ký" links
-    const loginLink = document.querySelector('.nav-link[href="login.html"]');
-    const registerLink = document.querySelector('.nav-link[href="regis.html"]');
+    const loginLink = document.querySelector('.nav-link[href="Login.html"]');
 
     if (loginLink) loginLink.style.display = "none";
-    if (registerLink) registerLink.style.display = "none";
 
     // Add event listener for the logout link
     const logoutLink = document.getElementById("logoutLink");
