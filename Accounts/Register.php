@@ -38,14 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check if email exists
-    if (empty($errors)) {
-        $db = new Database();
-        $query = "SELECT * FROM customer WHERE email = '$email'";
-        if ($db->select($query)) {
-            $errors[] = ["field" => "email", "message" => "Email đã tồn tại"];
-        }
+    $db = new Database();
+    $query = "SELECT * FROM customer WHERE email = '$email'";
+    if ($db->select($query)) {
+        $errors[] = ["field" => "email", "message" => "Email đã tồn tại"];
     }
-
+    
     // Nếu không có lỗi, chèn dữ liệu vào cơ sở dữ liệu
     if (empty($errors)) {
         $db = new Database();
