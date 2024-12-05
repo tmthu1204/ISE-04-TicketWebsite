@@ -38,19 +38,20 @@ class Database {
 
     //Insert data
     public function insert($query){
-        // $insert_row = $this->link->query($query) or die($this->link->error.__LINE__);
-        // if($insert_row) {
-        //     return $insert_row;
-        // } else {
-        //     return false;
-        // }
-        if ($this->link->query($query) === TRUE) {
-            return true;
+        $insert_row = $this->link->query($query) or die($this->link->error.__LINE__);
+        if($insert_row) {
+            return $insert_row;
         } else {
-            echo "Error: " . $query . "<br>" . $this->link->error;
             return false;
         }
     }
+    //     if ($this->link->query($query) === TRUE) {
+    //         return true;
+    //     } else {
+    //         echo "Error: " . $query . "<br>" . $this->link->error;
+    //         return false;
+    //     }
+    // }
     // public function insert($query) {
     //     $insert_row = $this->link->query($query); // Sử dụng $this->conn
     //     if ($insert_row) {

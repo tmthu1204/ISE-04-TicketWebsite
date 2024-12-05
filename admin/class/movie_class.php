@@ -20,9 +20,15 @@ class Movie{
                       " . ($release_date ? "'$release_date'" : "NULL") . "
                   )";
         
-        // Thực hiện câu lệnh SQL
         $result = $this->db->insert($query);
         return $result;
     }
+
+    public function show_movie(){
+        $query = "SELECT * FROM movie ORDER BY movieID DESC";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    
 }
 ?>
