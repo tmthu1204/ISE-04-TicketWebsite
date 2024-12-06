@@ -10,17 +10,24 @@
         <h1>TOP</h1>
     </header>
     <section class="admin-content">
-        <div class="admin-content-movie">
-            <h1> Thêm phim</h1>
-            <form action="" method="POST">
-                <input type="text" placeholder="Nhập tên phim">
-                <input type="text" placeholder="Mô tả">
-                <input type="url" name="trailerURL" placeholder="Trailer">
-                <input type="int" placeholder="thời lượng">
-                <input type="text" placeholder="Thể loại">
-                <input type="date" placeholder="Ngày công chiếu">
-                <button type="submit">ADD</button>
-            </form> 
+        <div class="admin-content-left">
+            <ul>
+                <li><a href="admin.php?controller=category">Danh sách thể loại</a></li>
+                <li><a href="admin.php?controller=category&action=add">Thêm thể loại</a></li>
+        </div>
+        <div class="admin-content-right">
+            <div class="admin-content-right-movie">
+                <h1> Thêm phim</h1>
+                <form action="" method="POST">
+                    <input type="text" placeholder="Nhập tên phim">
+                    <input type="text" placeholder="Mô tả">
+                    <input type="url" name="trailerURL" placeholder="Trailer">
+                    <input type="int" placeholder="thời lượng">
+                    <input type="text" placeholder="Thể loại">
+                    <input type="date" placeholder="Ngày công chiếu">
+                    <button type="submit">ADD</button>
+                </form> 
+            </div>
         </div>
     </section>
 </body>
