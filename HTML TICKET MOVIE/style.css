@@ -691,3 +691,27 @@ footer {
     color: black;
     font-weight: bold;
 }
+
+/*User info*/
+.card-info{
+    background-color:#2c251d;
+    padding: 15px; /* Khoảng cách bên trong thẻ */
+    border-radius: 10px; /* Bo góc */
+} 
+
+.nav-link {
+    color: black; 
+}
+
+.nav-link.active {
+    background-color: black; 
+}
+
+h1 {
+    margin-top: 100px; /* Tăng khoảng cách bên dưới tiêu đề */
+}
+
+#confirmBtn{
+    margin-bottom:100px;
+    margin-top:50px;
+}
