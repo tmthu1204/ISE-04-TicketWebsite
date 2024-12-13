@@ -725,3 +725,9 @@ h1 {
     display: block;
     margin: 0 auto;
 }
+
+.modal-content {
+    background: linear-gradient(45deg, #e8dccc, #373234); /* Gradient màu */
+    color: black; /* Màu chữ */
+    padding: 20px; /* Khoảng cách bên trong */
+}
