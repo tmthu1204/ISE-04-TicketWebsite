@@ -42,9 +42,8 @@
             </div>
         </div>
     </nav>
-
+    
     <body>
-
         <body>
             <div class="container">
                 <!-- Theater Name -->
@@ -436,12 +435,57 @@
                 </div>
 
                 <!-- Control Icons -->
+                <!-- Modal -->
+                <div class="modal fade" id="addMovieModal" tabindex="-1" aria-labelledby="addMovieModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header border-0">
+                                <h5 class="modal-title" id="addMovieModalLabel">Thêm một bộ phim</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="movieName" class="form-label">Tên phim:</label>
+                                    <input type="text" class="form-control bg-light" id="movieName" value="Sing 2"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="modal-footer border-0">
+                                <button type="button" class="btn btn-success">Lưu</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="addMovieModal" tabindex="-1" aria-labelledby="addMovieModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header border-0">
+                                <h5 class="modal-title" id="addMovieModalLabel">Thêm một bộ phim</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="movieName" class="form-label">Tên phim:</label>
+                                    <input type="text" class="form-control bg-light" id="movieName" value="Sing 2"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="modal-footer border-0">
+                                <button type="button" class="btn btn-success">Lưu</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Control Icons -->
                 <div class="d-flex gap-3 mt-4">
                     <button class="btn btn-link text-white mt-4">
-                        <i class="fa-solid fa-circle-plus fa-2x"></i>
-                    </button>
-                    <button class="btn btn-link text-white mt-4">
-                        <i class="fa-solid fa-trash fa-2x"></i>
+                        <i class="fa-solid fa-circle-plus fa-2x "data-bs-toggle="modal"
+                        data-bs-target="#addMovieModal"></i>
                     </button>
                 </div>
             </div>
