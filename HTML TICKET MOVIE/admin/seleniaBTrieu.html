@@ -114,7 +114,7 @@
                                     </h5>
                                     <div class="row gap-2">
                                         <button class="btn btn-link p-0" data-bs-toggle="modal"
-                                        data-bs-target="#addShowtimeModal">
+                                            data-bs-target="#addShowtimeModal">
                                             <i class="fa-solid fa-circle-plus"></i>
                                         </button>
                                         <button class="btn btn-link p-0">
@@ -126,8 +126,8 @@
                                         </button>
                                     </div>
                                 </div>
-                                <p style="font-size:20px; margin-bottom:-40px; margin-top: -70px;">Duration: 2h 10m</p>
-                                <p style="font-size: 20px;margin-top: 50px;">List of current showtime:</p>
+                                <p style="font-size:20px; margin-bottom:-40px; margin-top: -70px;">Thời lượng: 2h 10m</p>
+                                <p style="font-size: 20px;margin-top: 50px;">Suất chiếu hiện tại:</p>
                                 <div class="d-flex gap-2" style="margin-bottom:100px;">
                                     <button class="btn btn-secondary">8:30</button>
                                     <button class="btn btn-secondary">10:00</button>
@@ -142,10 +142,10 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header border-0">
-                                    <h5 class="modal-title" id="movieModalLabel">Information</h5>
+                                    <h5 class="modal-title" id="movieModalLabel">Thông tin</h5>
                                     <div class="ms-auto">
-                                        <button class="btn btn-success me-2">Save</button>
-                                        <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-success me-2">Lưu</button>
+                                        <button class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
                                     </div>
                                 </div>
                                 <div class="modal-body">
@@ -154,16 +154,16 @@
                                             <h6 class="mb-3 text-dark" style="font-size:35px;"><strong>Moana 2</strong>
                                             </h6>
                                             <div class="mb-2 text-dark">
-                                                <strong>Director:</strong>
+                                                <strong>Đạo diễndiễn:</strong>
                                                 <span>David G. Derrick Jr.</span>
                                             </div>
                                             <div class="mb-2 text-dark">
-                                                <strong>Language:</strong>
-                                                <span>English</span>
+                                                <strong>Ngôn ngữ:</strong>
+                                                <span>Tiếng Anh</span>
                                             </div>
                                             <div class="mb-2 text-dark">
-                                                <strong>Genre:</strong>
-                                                <span>Action, Adventure, Animation, Fantasy</span>
+                                                <strong>Thể loại:</strong>
+                                                <span>Hành động, Phiêu lưu, Hoạt hình, Kì ảo</span>
                                             </div>
                                             <div class="mb-4 text-dark">
                                                 <strong>Tag:</strong>
@@ -172,7 +172,7 @@
 
                                             <div class="showtimes-section">
                                                 <div class="d-flex align-items-center mb-3">
-                                                    <h6 class="mb-0 me-2 text-dark">Showtimes list</h6>
+                                                    <h6 class="mb-0 me-2 text-dark">Danh sách xuất chiếu</h6>
                                                     <div class="btn-group btn-group-sm">
                                                         <button class="btn btn-link p-0 me-2">
                                                             <i class="fa-solid fa-circle-plus"></i>
@@ -188,19 +188,19 @@
 
                                                 <div class="theater-times mb-3">
                                                     <div class="mb-2 text-dark">
-                                                        <strong>Theater A</strong>
+                                                        <strong>Rạp A</strong>
                                                         <div class="mt-1">
                                                             <span class="badge bg-secondary">8:30</span>
                                                         </div>
                                                     </div>
                                                     <div class="mb-2 text-dark">
-                                                        <strong>Theater B</strong>
+                                                        <strong>Rạp B</strong>
                                                         <div class="mt-1">
                                                             <span class="badge bg-secondary">10:00</span>
                                                         </div>
                                                     </div>
                                                     <div class="mb-2 text-dark">
-                                                        <strong>Theater C</strong>
+                                                        <strong>Rạp C</strong>
                                                         <div class="mt-1">
                                                             <span class="badge bg-secondary">13:00</span>
                                                         </div>
@@ -221,12 +221,14 @@
                         </div>
                     </div>
                     <!--Time Modal-->
-                    <div class="modal fade" id="addShowtimeModal" tabindex="-1" aria-labelledby="addShowtimeModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="addShowtimeModal" tabindex="-1" aria-labelledby="addShowtimeModalLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="addShowtimeModalLabel">Thêm suất chiếu</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form>
@@ -234,36 +236,40 @@
                                         <div class="mb-3">
                                             <label class="form-label">Bắt đầu</label>
                                             <div class="d-flex align-items-center gap-2">
-                                                <input type="text" class="form-control text-center" placeholder="HH" maxlength="2">
+                                                <input type="text" class="form-control text-center" placeholder="HH"
+                                                    maxlength="2">
                                                 <span>:</span>
-                                                <input type="text" class="form-control text-center" placeholder="MM" maxlength="2">
+                                                <input type="text" class="form-control text-center" placeholder="MM"
+                                                    maxlength="2">
                                             </div>
                                         </div>
-                
+
                                         <!-- End Time -->
                                         <div class="mb-3">
                                             <label class="form-label">Kết thúc (ước tính)</label>
                                             <div class="d-flex align-items-center gap-2">
-                                                <input type="text" class="form-control text-center" placeholder="HH" maxlength="2">
+                                                <input type="text" class="form-control text-center" placeholder="HH"
+                                                    maxlength="2">
                                                 <span>:</span>
-                                                <input type="text" class="form-control text-center" placeholder="MM" maxlength="2">
+                                                <input type="text" class="form-control text-center" placeholder="MM"
+                                                    maxlength="2">
                                             </div>
                                         </div>
-                
+
                                         <!-- Cinema Selection -->
                                         <div class="mb-3">
-                                            <label class="form-label">Cinema:</label>
+                                            <label class="form-label">Rạp:</label>
                                             <select class="form-select">
-                                                <option selected>Cinema A</option>
-                                                <option>Cinema B</option>
-                                                <option>Cinema C</option>
+                                                <option selected>Rạp A</option>
+                                                <option>Rạp B</option>
+                                                <option>Rạp C</option>
                                             </select>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer border-0">
-                                    <button type="button" class="btn btn-success">Save</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-success">Lưu</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
                                 </div>
                             </div>
                         </div>
@@ -278,20 +284,20 @@
                                             2</strong></h5>
                                     <div class="row gap-2">
                                         <button class="btn btn-link p-0" data-bs-toggle="modal"
-                                        data-bs-target="#addShowtimeModal">
+                                            data-bs-target="#addShowtimeModal">
                                             <i class="fa-solid fa-circle-plus"></i>
                                         </button>
                                         <button class="btn btn-link p-0">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                         <button class="btn btn-link p-0" data-bs-toggle="modal"
-                                        data-bs-target="#movieModal2">
+                                            data-bs-target="#movieModal2">
                                             <i class="fa-solid fa-pencil"></i>
                                         </button>
                                     </div>
                                 </div>
-                                <p style="font-size:20px; margin-bottom:-40px; margin-top: -70px;">Duration: 1h 40m</p>
-                                <p style="font-size: 20px;margin-top: 50px;">List of current showtime:</p>
+                                <p style="font-size:20px; margin-bottom:-40px; margin-top: -70px;">Thời lượnglượng: 1h 40m</p>
+                                <p style="font-size: 20px;margin-top: 50px;">Danh sách xuất chiếu:</p>
                                 <div class="d-flex gap-2" style="margin-bottom:100px;">
                                     <button class="btn btn-secondary">8:30</button>
                                     <button class="btn btn-secondary">12:00</button>
@@ -307,10 +313,10 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header border-0">
-                                <h5 class="modal-title" id="movieModalLabel">Information</h5>
+                                <h5 class="modal-title" id="movieModalLabel">Thông tin</h5>
                                 <div class="ms-auto">
-                                    <button class="btn btn-success me-2">Save</button>
-                                    <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-success me-2">Lưu</button>
+                                    <button class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
                                 </div>
                             </div>
                             <div class="modal-body">
@@ -319,16 +325,16 @@
                                         <h6 class="mb-3 text-dark" style="font-size:35px;"><strong>Multiverse 2</strong>
                                         </h6>
                                         <div class="mb-2 text-dark">
-                                            <strong>Director:</strong>
+                                            <strong>Đạo diễn:</strong>
                                             <span>David G. Derrick Jr.</span>
                                         </div>
                                         <div class="mb-2 text-dark">
-                                            <strong>Language:</strong>
-                                            <span>English</span>
+                                            <strong>Ngôn ngữ:</strong>
+                                            <span>Tiếng Anh</span>
                                         </div>
                                         <div class="mb-2 text-dark">
-                                            <strong>Genre:</strong>
-                                            <span>Action, Adventure, Animation, Fantasy</span>
+                                            <strong>Thể loại:</strong>
+                                            <span>Hành động, Phiêu lưu, Hoạt hình, Kì ảo</span>
                                         </div>
                                         <div class="mb-4 text-dark">
                                             <strong>Tag:</strong>
@@ -337,7 +343,7 @@
 
                                         <div class="showtimes-section">
                                             <div class="d-flex align-items-center mb-3">
-                                                <h6 class="mb-0 me-2 text-dark">Showtimes list</h6>
+                                                <h6 class="mb-0 me-2 text-dark">Danh sách xuất chiếu</h6>
                                                 <div class="btn-group btn-group-sm">
                                                     <button class="btn btn-link p-0 me-2">
                                                         <i class="fa-solid fa-circle-plus"></i>
@@ -353,19 +359,19 @@
 
                                             <div class="theater-times mb-3">
                                                 <div class="mb-2 text-dark">
-                                                    <strong>Theater A</strong>
+                                                    <strong>Rạp A</strong>
                                                     <div class="mt-1">
                                                         <span class="badge bg-secondary">8:30</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-2 text-dark">
-                                                    <strong>Theater B</strong>
+                                                    <strong>Rạp B</strong>
                                                     <div class="mt-1">
                                                         <span class="badge bg-secondary">10:00</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-2 text-dark">
-                                                    <strong>Theater C</strong>
+                                                    <strong>Rạp C</strong>
                                                     <div class="mt-1">
                                                         <span class="badge bg-secondary">13:00</span>
                                                     </div>
@@ -387,12 +393,14 @@
                 </div>
 
                 <!--Time Modal-->
-                <div class="modal fade" id="addShowtimeModal" tabindex="-1" aria-labelledby="addShowtimeModalLabel" aria-hidden="true">
+                <div class="modal fade" id="addShowtimeModal" tabindex="-1" aria-labelledby="addShowtimeModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog modal-sm">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="addShowtimeModalLabel">Thêm suất chiếu</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form>
@@ -400,36 +408,62 @@
                                     <div class="mb-3">
                                         <label class="form-label">Bắt đầu</label>
                                         <div class="d-flex align-items-center gap-2">
-                                            <input type="text" class="form-control text-center" placeholder="HH" maxlength="2">
+                                            <input type="text" class="form-control text-center" placeholder="HH"
+                                                maxlength="2">
                                             <span>:</span>
-                                            <input type="text" class="form-control text-center" placeholder="MM" maxlength="2">
+                                            <input type="text" class="form-control text-center" placeholder="MM"
+                                                maxlength="2">
                                         </div>
                                     </div>
-            
+
                                     <!-- End Time -->
                                     <div class="mb-3">
                                         <label class="form-label">Kết thúc (ước tính)</label>
                                         <div class="d-flex align-items-center gap-2">
-                                            <input type="text" class="form-control text-center" placeholder="HH" maxlength="2">
+                                            <input type="text" class="form-control text-center" placeholder="HH"
+                                                maxlength="2">
                                             <span>:</span>
-                                            <input type="text" class="form-control text-center" placeholder="MM" maxlength="2">
+                                            <input type="text" class="form-control text-center" placeholder="MM"
+                                                maxlength="2">
                                         </div>
                                     </div>
-            
+
                                     <!-- Cinema Selection -->
                                     <div class="mb-3">
-                                        <label class="form-label">Cinema:</label>
+                                        <label class="form-label">Rạp:</label>
                                         <select class="form-select">
-                                            <option selected>Cinema A</option>
-                                            <option>Cinema B</option>
-                                            <option>Cinema C</option>
+                                            <option selected>Rạp A</option>
+                                            <option>Rạp B</option>
+                                            <option>Rạp C</option>
                                         </select>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer border-0">
-                                <button type="button" class="btn btn-success">Save</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-success">Lưu</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="addMovieModal" tabindex="-1" aria-labelledby="addMovieModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header border-0">
+                                <h5 class="modal-title" id="addMovieModalLabel">Thêm một bộ phim</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="movieName" class="form-label">Tên phim:</label>
+                                    <input type="text" class="form-control bg-light" id="movieName" value="Sing 2"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="modal-footer border-0">
+                                <button type="button" class="btn btn-success">Lưu</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
                             </div>
                         </div>
                     </div>
@@ -438,7 +472,8 @@
                 <!-- Control Icons -->
                 <div class="d-flex gap-3 mt-4">
                     <button class="btn btn-link text-white mt-4">
-                        <i class="fa-solid fa-circle-plus fa-2x"></i>
+                        <i class="fa-solid fa-circle-plus fa-2x "data-bs-toggle="modal"
+                        data-bs-target="#addMovieModal"></i>
                     </button>
                     <button class="btn btn-link text-white mt-4">
                         <i class="fa-solid fa-trash fa-2x"></i>
