@@ -10,3 +10,4 @@ else {
     $delete_movie = $movie -> delete_movie($movieID);
     
 ?>
+

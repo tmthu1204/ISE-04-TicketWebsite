@@ -42,42 +42,28 @@ function get_movie($movieID) {
     }
 }
 
-// Check if movieID is set in URL
-if (isset($_GET["movieID"])) {
+// Handle GET request to fetch movie details
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    // Get movieID from query string
     $movieID = $_GET["movieID"];
-} else {
-    echo json_encode(['error' => 'Invalid movie ID']);
-    exit();
+    
+    // Fetch movie details from the database
+        $movie = get_movie($movieID);
+        if ($movie) {
+            $description = json_decode($movie['description'], true);
+            if ($description !== null) {
+                $movie['description'] = $description; // Attach decoded description back to movie data
+                
+                echo json_encode($movie); // Return movie data as JSON
+            } else {
+                echo json_encode(['error' => 'Cannot decode movie description']);
+            }
+        } else {
+            echo json_encode(['error' => 'Movie not found']);
+        }
 }
 
-// Fetch movie details from the database
-$get_movie = get_movie($movieID);
-if ($get_movie) {
-    $result = $get_movie;
-    // Decode the description field (it may be JSON encoded)
-    $description = json_decode($result['description'], true);
-
-    if ($description === null) {
-        echo json_encode(['error' => 'Cannot decode movie description!']);
-        exit();
-    }
-
-    // Return the movie data as JSON
-    $response = [
-        'title' => $result['title'],
-        'trailerURL' => $result['trailerURL'],
-        'duration' => $result['duration'],
-        'genre' => $result['genre'],
-        'releaseDate' => $result['releaseDate'],
-        'description' => $description
-    ];
-
-    // Return movie data as JSON
-    echo json_encode($response);
-} else {
-    echo json_encode(['error' => 'Movie not found']);
-}
-
+// Handle POST request to update movie details
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the form data
     $title = $_POST['title'] ?? '';
@@ -89,14 +75,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $country = $_POST['country'] ?? '';
     $language = $_POST['language'] ?? '';
     $intro = $_POST['intro'] ?? '';
+    $movieID = $_POST['movieID'] ?? null;
 
-    if ($poster) {
-        // Move the new poster to the 'images' folder
+    $currentMovie = get_movie($movieID);
+    $currentDescription = json_decode($currentMovie['description'], true);
+    $existingPoster = $currentDescription['image'] ?? null;
+
+    // Handle the poster image
+    if (isset($_FILES['poster']) && $_FILES['poster']['name']) {
+        // A new poster is uploaded
+        $poster = $_FILES['poster']['name'];
         move_uploaded_file($_FILES['poster']['tmp_name'], "images/" . $poster);
     } else {
-        // Retain current poster if no new poster is uploaded
-        $poster = $description['image'] ?? '';
+        // Use the existing poster or fallback to the hidden input if provided
+        $poster = $existingPoster;
     }
+
 
     // Update the movie record
     $response = update_movie($title, $trailerURL, $duration, $genre, $releaseDate, $poster, $country, $language, $intro, $movieID);

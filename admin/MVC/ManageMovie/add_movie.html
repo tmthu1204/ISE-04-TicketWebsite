@@ -1,0 +1,33 @@
+<form id="movieForm" enctype="multipart/form-data">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="poster">Poster Image</label>
+    <input type="file" id="poster" name="poster" accept="image/*">
+
+    <label for="trailerURL">Trailer URL</label>
+    <input type="url" id="trailerURL" name="trailerURL">
+
+    <label for="duration">Duration</label>
+    <input type="number" id="duration" name="duration">
+
+    <label for="genre">Genre</label>
+    <input type="text" id="genre" name="genre">
+
+    <label for="releaseDate">Release Date</label>
+    <input type="date" id="releaseDate" name="releaseDate">
+
+    <label for="country">Country</label>
+    <input type="text" id="country" name="country">
+
+    <label for="language">Language</label>
+    <input type="text" id="language" name="language">
+
+    <label for="intro">Intro</label>
+    <textarea id="intro" name="intro"></textarea>
+
+    <button type="submit" id="submitBtn">Submit</button>
+</form>
+
+<!-- Link to JavaScript -->
+<script src="add_movie.js"></script>

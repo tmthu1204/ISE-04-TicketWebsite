@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie</title>
+</head>
+<body>
+    <h1>Chỉnh sửa thông tin phim</h1>
+    <form id="editMovieForm" method="POST" enctype="multipart/form-data">
+        <label for="title">Tiêu đề:</label>
+        <input type="text" id="title" name="title" required><br>
+
+        <label for="trailerURL">URL Trailer:</label>
+        <input type="url" id="trailerURL" name="trailerURL"><br>
+
+        <label for="duration">Thời gian (phút):</label>
+        <input type="number" id="duration" name="duration"><br>
+
+        <label for="genre">Thể loại:</label>
+        <input type="text" id="genre" name="genre"><br>
+
+        <label for="releaseDate">Ngày phát hành:</label>
+        <input type="date" id="releaseDate" name="releaseDate"><br>
+
+        <label for="poster">Poster:</label>
+        <input type="file" id="poster" name="poster">    
+
+        <label for="country">Quốc gia:</label>
+        <input type="text" id="country" name="country"><br>
+
+        <label for="language">Ngôn ngữ:</label>
+        <input type="text" id="language" name="language"><br>
+
+        <label for="intro">Giới thiệu:</label>
+        <textarea id="intro" name="intro"></textarea><br>
+
+        <input type="hidden" id="movieID" name="movieID">
+        <button type="submit">Lưu thay đổi</button>
+    </form>
+
+    <script src="edit_movie.js"></script>
+</body>
+</html>
