@@ -1,5 +1,5 @@
 <?php
-require_once 'database.php';
+require_once '../database.php';
 
 $db = new Database();
 
@@ -10,9 +10,6 @@ function ShowTheater($db) {
     $theater = [];
     if ($result) {
         while ($row = $result->fetch_assoc()) {
-            // Chuyển đổi description JSON thành mảng
-            $description = json_decode($row['description'], true);
-            $row['description'] = $description;
             $theater[] = $row;
         }
     }

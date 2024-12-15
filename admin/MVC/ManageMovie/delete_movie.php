@@ -1,5 +1,5 @@
 <?php
-require_once 'database.php';
+require_once '../database.php';
 
 function delete_movie($db, $movieID){
     $query = "DELETE FROM movie WHERE movieID = '$movieID'";

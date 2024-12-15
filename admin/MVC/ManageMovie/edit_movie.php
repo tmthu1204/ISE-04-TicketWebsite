@@ -1,5 +1,5 @@
 <?php
-require_once 'database.php';
+require_once '../database.php';
 
 function update_movie($title, $trailerURL, $duration, $genre, $releaseDate, $poster, $country, $language, $intro, $movieID) {
     // Prepare JSON data for description

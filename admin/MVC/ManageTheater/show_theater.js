@@ -2,6 +2,7 @@
 fetch('show_theater.php')
     .then(response => response.json())
     .then(theaters => {
+        console.log('Response data:', theaters); // Kiểm tra dữ liệu phản hồi
         const theaterListElement = document.getElementById('theater-list');
         theaterListElement.innerHTML = ''; // Clear existing content
 
@@ -22,15 +23,18 @@ fetch('show_theater.php')
             const locationCell = document.createElement('td');
             locationCell.textContent = theater.location;
 
-            const numberOfRoomCell = document.createElement('td');
-            numberOfRoomCell.textContent = theater.numberOfRoom;
+            const numberOfRoomsCell = document.createElement('td');
+            numberOfRoomsCell.textContent = theater.numberOfRooms;
+
+            const actionCell = document.createElement('td');
+            actionCell.innerHTML = `<a href="edit_theater.html?theaterID=${theater.theaterID}">Edit</a>| <a href="delete_theater.html?theaterID=${theater.theaterID}">Delete</a>`;
 
             // Append cells to row
             row.appendChild(sttCell);
             row.appendChild(idCell);
             row.appendChild(nameCell);
             row.appendChild(locationCell);
-            row.appendChild(numberOfRoomCell);
+            row.appendChild(actionCell);
 
             // Append row to the table body
             theaterListElement.appendChild(row);

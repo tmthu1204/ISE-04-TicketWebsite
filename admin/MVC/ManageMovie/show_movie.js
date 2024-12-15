@@ -51,7 +51,6 @@ fetch('show_movie.php')
             releaseDateCell.textContent = movie.releaseDate || 'N/A';
 
             const actionCell = document.createElement('td');
-            // Add any action links (e.g., Edit, Delete) if needed
             actionCell.innerHTML = `<a href="edit_movie.html?movieID=${movie.movieID}">Edit</a>| <a href="delete_movie.html?movieID=${movie.movieID}">Delete</a>`;
 
             // Append cells to row
