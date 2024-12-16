@@ -731,3 +731,17 @@ h1 {
     color: black; /* Màu chữ */
     padding: 20px; /* Khoảng cách bên trong */
 }
+/*Manage snacks*/
+.menu-card {
+    background-color: white;
+    color: black;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+    position: relative; 
+    padding: 16px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    width: 200px;
+}
