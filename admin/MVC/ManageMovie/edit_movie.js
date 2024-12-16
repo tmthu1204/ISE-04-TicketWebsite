@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("language").value = data.description.language;
                     document.getElementById("intro").value = data.description.intro;
                     document.getElementById("movieID").value = movieID;
+                    document.getElementById("posterImage").value = data.description.image || ""; // Đảm bảo input posterImage được điền
                 }
             })
             .catch(error => {
@@ -33,10 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const formData = new FormData(form);
 
-        // Append the old poster image if no new image is selected
+        // Thêm hình ảnh poster cũ nếu không chọn hình ảnh mới
         if (!formData.has('poster') || formData.get('poster').name === "") {
             const currentPoster = document.getElementById("posterImage").value;
-            formData.append('posterImage', currentPoster);
+            if (currentPoster) {
+                formData.append('poster', currentPoster);  // Thêm poster hiện tại nếu không tải hình ảnh mới
+            }
         }
 
         fetch('edit_movie.php', {

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Room</title>
+    <style>
+        button.available {
+            background-color: green;
+            color: white;
+        }
+
+        button.unavailable {
+            background-color: red;
+            color: white;
+        }
+
+        #layout div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chỉnh sửa layout phòng</h1>
+    <label for="rows">Số hàng:</label>
+    <input type="number" id="rows" min="1">
+    <label for="cols">Số ghế mỗi hàng:</label>
+    <input type="number" id="cols" min="1">
+    <button id="generate">Generate Layout</button>
+    <button id="save">Save Layout</button>
+
+    <div id="layout"></div>
+
+    <script src="edit_room.js"></script>
+</body>
+</html>

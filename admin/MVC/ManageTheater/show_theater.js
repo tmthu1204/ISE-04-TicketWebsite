@@ -27,8 +27,10 @@ fetch('show_theater.php')
             numberOfRoomsCell.textContent = theater.numberOfRooms;
 
             const actionCell = document.createElement('td');
-            actionCell.innerHTML = `<a href="edit_theater.html?theaterID=${theater.theaterID}">Edit</a>| <a href="delete_theater.html?theaterID=${theater.theaterID}">Delete</a>`;
-
+            actionCell.innerHTML = `
+                <a href="edit_theater.html?theaterID=${theater.theaterID}">Edit</a> | 
+                <button class="delete-button" data-theaterID="${theater.theaterID}">Delete</button>
+            `;
             // Append cells to row
             row.appendChild(sttCell);
             row.appendChild(idCell);
@@ -38,6 +40,32 @@ fetch('show_theater.php')
 
             // Append row to the table body
             theaterListElement.appendChild(row);
+        });
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const theaterID = this.getAttribute('data-theaterID');
+                if (confirm(`Are you sure you want to delete theater ID ${theaterID}?`)) {
+                    fetch('delete_theater.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'theaterID=' + encodeURIComponent(theaterID)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            window.location.reload(); // Reload the page to update the theater list
+                        } else {
+                            alert('Error: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        alert('An error occurred: ' + error);
+                    });
+                }
+            });
         });
     })
     .catch(error => {
