@@ -88,12 +88,12 @@
                 <input type="number" id="cols" class="form-control" value="15" min="1">
             </div>
             <div class="col-md-6">
-                <button onclick="generateLayout()" class="btn btn-primary mt-4">Tạo bố trí ghế</button>
+                <button id="generate" class="btn btn-primary mt-4">Tạo bố trí ghế</button>
             </div>
         </div>
         <div id="seatLayout" class="row justify-content-center"></div>
         <div class="text-center mt-4">
-            <button onclick="saveLayout()" class="btn btn-success btn-lg px-5">Lưu</button>
+            <button id="save" class="btn btn-success btn-lg px-5">Lưu</button>
         </div>
     </div>
 
@@ -124,30 +124,44 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomID = urlParams.get('roomID');
+
+        const rowsInput = document.getElementById('rows');
+        const colsInput = document.getElementById('cols');
+        const generateBtn = document.getElementById('generate');
+        const saveBtn = document.getElementById('save');
+        const layoutDiv = document.getElementById('seatLayout');
+
         let seatLayout = [];
 
-        function generateLayout() {
-            const rows = parseInt(document.getElementById('rows').value);
-            const cols = parseInt(document.getElementById('cols').value);
-            seatLayout = Array(rows).fill().map(() => Array(cols).fill(0));
+        generateBtn.addEventListener('click', function () {
+            const rows = parseInt(rowsInput.value);
+            const cols = parseInt(colsInput.value);
+
+            seatLayout = Array.from({ length: rows }, () => Array(cols).fill("0"));
             renderLayout();
-        }
+        });
 
         function renderLayout() {
-            const layoutContainer = document.getElementById('seatLayout');
-            layoutContainer.innerHTML = '';
+            layoutDiv.innerHTML = '';
             const table = document.createElement('table');
             table.className = 'table table-bordered';
             const tbody = document.createElement('tbody');
 
-            seatLayout.forEach((row, rowIndex) => {
+            seatLayout.forEach((row, i) => {
                 const tr = document.createElement('tr');
-                row.forEach((seat, colIndex) => {
+                row.forEach((seat, j) => {
                     const td = document.createElement('td');
                     const button = document.createElement('button');
-                    button.className = `seat-btn ${seat === 0 ? 'seat-available' : 'seat-unavailable'}`;
-                    button.textContent = `${String.fromCharCode(65 + rowIndex)}${colIndex + 1}`;
-                    button.onclick = () => toggleSeat(rowIndex, colIndex);
+                    button.textContent = `${String.fromCharCode(65 + i)}${j + 1}`;
+                    button.className = `seat-btn ${seat === "0" ? 'seat-available' : 'seat-unavailable'}`;
+
+                    button.addEventListener('click', function () {
+                        seatLayout[i][j] = seatLayout[i][j] === "0" ? "-1" : "0";
+                        renderLayout();
+                    });
+
                     td.appendChild(button);
                     tr.appendChild(td);
                 });
@@ -155,22 +169,54 @@
             });
 
             table.appendChild(tbody);
-            layoutContainer.appendChild(table);
+            layoutDiv.appendChild(table);
         }
 
-        function toggleSeat(rowIndex, colIndex) {
-            seatLayout[rowIndex][colIndex] = seatLayout[rowIndex][colIndex] === 0 ? -1 : 0;
-            renderLayout();
+        window.addEventListener('load', function () {
+            if (roomID) {
+                fetchLayout(roomID);
+            }
+        });
+
+        function fetchLayout(roomID) {
+            fetch(`get_layout.php?roomID=${roomID}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success' && data.layout) {
+                        seatLayout = JSON.parse(data.layout);
+                        rowsInput.value = seatLayout.length;
+                        colsInput.value = seatLayout[0].length;
+                        renderLayout();
+                    }
+                })
+                .catch((error) => alert('Có lỗi xảy ra khi lấy layout: ' + error));
         }
 
-        function saveLayout() {
-            const jsonLayout = JSON.stringify(seatLayout);
-            console.log(jsonLayout);
-            alert('Bố trí ghế đã được lưu! Kiểm tra console để xem JSON.');
-        }
+        saveBtn.addEventListener('click', function () {
+            const layoutData = JSON.stringify(seatLayout);
+            if (!roomID || !seatLayout) {
+                alert('Thiếu roomID hoặc seatLayout');
+                return;
+            }
 
-        // Generate initial layout
-        generateLayout();
+            fetch('edit_room.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `roomID=${roomID}&seatLayout=${layoutData}`,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.status === 'success') {
+                        alert('Lưu layout thành công!');
+                        window.location.href = 'show_rooms.html';
+                    } else {
+                        alert('Lỗi khi lưu layout: ' + data.message);
+                    }
+                })
+                .catch((error) => alert('Có lỗi xảy ra: ' + error));
+        });
     </script>
 </body>
 
