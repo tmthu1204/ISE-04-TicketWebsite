@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa bố trí ghế ngồi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .seat-btn {
+            width: 40px;
+            height: 40px;
+            margin: 2px;
+            transition: all 0.3s ease;
+        }
+        .seat-btn:hover {
+            transform: scale(1.1);
+        }
+        .seat-btn:active {
+            transform: scale(0.9);
+        }
+        .seat-available {
+            background-color: #90EE90;
+        }
+        .seat-unavailable {
+            background-color: #FFB6C1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Chỉnh sửa bố trí ghế ngồi</h1>
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <label for="rows" class="form-label">Số hàng:</label>
+                <input type="number" id="rows" class="form-control" value="15" min="1">
+            </div>
+            <div class="col-md-3">
+                <label for="cols" class="form-label">Số cột:</label>
+                <input type="number" id="cols" class="form-control" value="15" min="1">
+            </div>
+            <div class="col-md-6">
+                <button onclick="generateLayout()" class="btn btn-primary mt-4">Tạo bố trí ghế</button>
+            </div>
+        </div>
+        <div id="seatLayout" class="row justify-content-center"></div>
+        <div class="text-center mt-4">
+            <button onclick="saveLayout()" class="btn btn-success btn-lg px-5">Lưu</button>
+        </div>
+    </div>
+
+    <script>
+        let seatLayout = [];
+
+        function generateLayout() {
+            const rows = parseInt(document.getElementById('rows').value);
+            const cols = parseInt(document.getElementById('cols').value);
+            seatLayout = Array(rows).fill().map(() => Array(cols).fill(0));
+            renderLayout();
+        }
+
+        function renderLayout() {
+            const layoutContainer = document.getElementById('seatLayout');
+            layoutContainer.innerHTML = '';
+            const table = document.createElement('table');
+            table.className = 'table table-bordered';
+            const tbody = document.createElement('tbody');
+
+            seatLayout.forEach((row, rowIndex) => {
+                const tr = document.createElement('tr');
+                row.forEach((seat, colIndex) => {
+                    const td = document.createElement('td');
+                    const button = document.createElement('button');
+                    button.className = `seat-btn btn ${seat === 0 ? 'seat-available' : 'seat-unavailable'}`;
+                    button.textContent = `${String.fromCharCode(65 + rowIndex)}${colIndex + 1}`;
+                    button.onclick = () => toggleSeat(rowIndex, colIndex);
+                    td.appendChild(button);
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+
+            table.appendChild(tbody);
+            layoutContainer.appendChild(table);
+        }
+
+        function toggleSeat(rowIndex, colIndex) {
+            seatLayout[rowIndex][colIndex] = seatLayout[rowIndex][colIndex] === 0 ? -1 : 0;
+            renderLayout();
+        }
+
+        function saveLayout() {
+            const jsonLayout = JSON.stringify(seatLayout);
+            console.log(jsonLayout);
+            alert('Bố trí ghế đã được lưu! Kiểm tra console để xem JSON.');
+        }
+
+        // Generate initial layout
+        generateLayout();
+    </script>
+</body>
+</html>
