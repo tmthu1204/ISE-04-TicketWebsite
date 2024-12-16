@@ -47,66 +47,8 @@
         <h1 class="text-center mb-4">Chỉnh sửa bố trí ghế ngồi</h1>
         <div class="row justify-content-center">
             <div class="col-auto">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
-                            <th>9</th>
-                            <th>10</th>
-                            <th>11</th>
-                            <th>12</th>
-                            <th>13</th>
-                            <th>14</th>
-                            <th>15</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>A</th>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A1">A1</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A2">A2</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A3">A3</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A4">A4</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A5">A5</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A6">A6</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A7">A7</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A8">A8</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A9">A9</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A10">A10</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A11">A11</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A12">A12</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A13">A13</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A14">A14</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="A15">A15</button></td>
-                        </tr>
-                        <!-- Repeat whole block for each row till O -->
-                        <tr>
-                            <th>O</th>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O1">O1</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O2">O2</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O3">O3</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O4">O4</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O5">O5</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O6">O6</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O7">O7</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O8">O8</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O9">O9</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O10">O10</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O11">O11</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O12">O12</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O13">O13</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O14">O14</button></td>
-                            <td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="O15">O15</button></td>
-                        </tr>
-                    </tbody>
+                <table class="table table-bordered" id="seatGrid">
+                    <!-- Table content will be dynamically generated -->
                 </table>
             </div>
         </div>
@@ -140,6 +82,31 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const rows = 15;
+            const cols = 15;
+            const rowLabels = 'ABCDEFGHIJKLMNO'.split('');
+            const seatGrid = document.getElementById('seatGrid');
+
+            // Generate table header
+            let headerRow = '<tr><th></th>';
+            for (let i = 1; i <= cols; i++) {
+                headerRow += `<th>${i}</th>`;
+            }
+            headerRow += '</tr>';
+            seatGrid.innerHTML = headerRow;
+
+            // Generate seat grid
+            for (let i = 0; i < rows; i++) {
+                let row = `<tr><th>${rowLabels[i]}</th>`;
+                for (let j = 1; j <= cols; j++) {
+                    const seatId = `${rowLabels[i]}${j}`;
+                    row += `<td><button class="btn btn-sm btn-outline-primary seat-btn" data-seat="${seatId}">${seatId}</button></td>`;
+                }
+                row += '</tr>';
+                seatGrid.innerHTML += row;
+            }
+
+            // Add event listeners to seat buttons
             const seatButtons = document.querySelectorAll('.seat-btn');
             seatButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -148,12 +115,56 @@
                 });
             });
 
+            // Save layout
             document.getElementById('saveLayout').addEventListener('click', function() {
                 const selectedSeats = Array.from(document.querySelectorAll('.seat-btn.btn-primary')).map(btn => btn.dataset.seat);
                 console.log('Selected seats:', selectedSeats);
-                // Back end here
-                alert('Bố trí ghế đã được lưu!');
+                // Send to BE
+                saveSeatLayout(selectedSeats);
             });
+
+            // Ssave seat layout
+            function saveSeatLayout(seats) {
+                // Sample api call
+                fetch('/api/save-seat-layout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ seats: seats }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Bố trí ghế đã được lưu thành công!');
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Có lỗi xảy ra khi lưu bố trí ghế. Vui lòng thử lại.');
+                });
+            }
+
+            // Load seat layout from DB
+            function loadSeatLayout() {
+                // Sample api call
+                fetch('/api/get-seat-layout')
+                .then(response => response.json())
+                .then(data => {
+                    data.seats.forEach(seatId => {
+                        const seatButton = document.querySelector(`.seat-btn[data-seat="${seatId}"]`);
+                        if (seatButton) {
+                            seatButton.classList.add('btn-primary');
+                            seatButton.classList.remove('btn-outline-primary');
+                        }
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Có lỗi xảy ra khi tải bố trí ghế. Vui lòng tải lại trang.');
+                });
+            }
+
+            // Load init layout
+            loadSeatLayout();
         });
     </script>
 </body>
