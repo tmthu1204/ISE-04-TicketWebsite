@@ -76,7 +76,7 @@ fetch('show_movie.php')
             const card = document.createElement('div');
             card.className = 'col';
             card.innerHTML = `
-                <div class="card movie-card h-100">
+                <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">${movie.title}</h5>
                         <p class="card-text">

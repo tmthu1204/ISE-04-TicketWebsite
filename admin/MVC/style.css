@@ -378,6 +378,11 @@ body {
 .movie-content-button{
     margin-top:20px;
 }
+
+.movie-trailer{
+    margin-top: 20px;
+    
+}
 /*Mô tả*/
 .movie-content-right-bottom-content-title{
     border-bottom: 2px solid white;
@@ -685,4 +690,58 @@ footer {
 .custom-instruction {
     color: black;
     font-weight: bold;
+}
+
+/*User info*/
+.card-info{
+    background-color:#2c251d;
+    padding: 15px; /* Khoảng cách bên trong thẻ */
+    border-radius: 10px; /* Bo góc */
+    margin-bottom:40px;
+} 
+
+.nav-link {
+    color: black; 
+}
+
+.nav-link.active {
+    background-color: black; 
+}
+
+h1 {
+    margin-top: 125px; /* Tăng khoảng cách bên dưới tiêu đề */
+}
+
+#confirmBtn{
+    margin-bottom:125px;
+    margin-top:50px;
+}
+
+.user-name{
+    margin-top: -50px;
+}
+
+#submitBtn {
+    display: block;
+    margin: 0 auto;
+}
+
+.modal-content {
+    background: linear-gradient(45deg, #e8dccc, #373234); /* Gradient màu */
+    color: black; /* Màu chữ */
+    padding: 20px; /* Khoảng cách bên trong */
+}
+/*Manage snacks*/
+.menu-card {
+    background-color: white;
+    color: black;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+    position: relative; 
+    padding: 16px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    width: 200px;
 }
