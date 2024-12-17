@@ -49,8 +49,12 @@ fetch('show_movie.php')
 
             const actionCell = document.createElement('td');
             actionCell.innerHTML = `
-                <a href="edit_movie.html?movieID=${movie.movieID}">Edit</a> | 
-                <button class="delete-button" data-movieID="${movie.movieID}">Delete</button>
+            <a href="edit_movie.html?movieID=${movie.movieID}" title="Edit">
+            <i class="fa-solid fa-pencil"></i>
+            </a> | 
+            <button class="delete-button" data-movieID="${movie.movieID}" title="Delete" style="background: none; border: none; cursor: pointer;">
+            <i class="fa-solid fa-trash"></i>
+            </button>
             `;
             // Append cells to row
             row.appendChild(sttCell);
@@ -71,12 +75,7 @@ fetch('show_movie.php')
 
         const deleteButtons = document.querySelectorAll('.delete-button');
         deleteButtons.forEach(button => {
-            button.style.backgroundColor = '#ff4d4d'; // Màu nền đỏ nhạt
-            button.style.color = 'white'; // Màu chữ trắng
-            button.style.border = 'none'; // Loại bỏ viền
-            button.style.padding = '3px 3px'; // Thêm khoảng cách
-            button.style.borderRadius = '5px'; // Bo góc
-            button.style.cursor = 'pointer'; // Thêm hiệu ứng chuột
+            button.style.color = 'red';
             button.addEventListener('click', function () {
                 const movieID = this.getAttribute('data-movieID');
                 if (confirm(`Are you sure you want to delete movie ID ${movieID}?`)) {
