@@ -1,14 +1,28 @@
-<!-- show_theater.html -->
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh sách phim</title>
-    <script src="ShowMovies.js" defer></script>
+    <title>Quản Lý Suất Chiếu</title>
+    <script src="showMovies.js" defer></script>
 </head>
 <body>
-    <h1>Danh sách phim</h1>
-    <div id="theater-list"></div>
+    <h1>Danh Sách Phim đang chiếu</h1>
+    <div id="movie-list">Đang tải danh sách phim ...</div>
+    <hr>
+    <h2>Thêm Phim</h2>
+    <button id="add-showtime-button">Thêm Phim Và Suất Chiếu</button>
+    <div id='add-showtime-form' style="display: none; position: absolute;">
+        <h3>Chọn Phim Và Nhập Thông Tin Suất Chiếu</h3>
+        <label for="movie-select">Chọn Phim:</label>
+        <select id="movie-select"></select>
+        <br><br>
+        <label for="start-time">Start Time:</label>
+        <input type="datetime-local" id="start-time">
+        <br><br>
+        <label for="room-select">Chọn Phòng:</label>
+        <select id="room-select"></select>
+        <br><br>
+        <button id="save-showtime-button">Lưu Suất Chiếu</button>
+    </div>
 </body>
 </html>

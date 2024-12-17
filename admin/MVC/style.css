@@ -745,3 +745,13 @@ h1 {
     border-radius: 8px; 
     width: 200px;
 }
+
+.add-showtime-form {
+    position: absolute;
+    z-index: 999; /* Đảm bảo form nằm trên các phần tử khác */
+    display: none; /* Mặc định ẩn */
+    background-color: white; /* Để dễ nhìn */
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}

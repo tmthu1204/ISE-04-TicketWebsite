@@ -13,8 +13,8 @@ fetch('show_movie.php')
             const sttCell = document.createElement('td');
             sttCell.textContent = index + 1;
 
-            const idCell = document.createElement('td');
-            idCell.textContent = movie.movieID;
+            // const idCell = document.createElement('td');
+            // idCell.textContent = movie.movieID;
 
             const titleCell = document.createElement('td');
             titleCell.textContent = movie.title;
@@ -51,11 +51,14 @@ fetch('show_movie.php')
             releaseDateCell.textContent = movie.releaseDate || 'N/A';
 
             const actionCell = document.createElement('td');
-            actionCell.innerHTML = `<a href="edit_movie.html?movieID=${movie.movieID}">Edit</a>| <a href="delete_movie.html?movieID=${movie.movieID}">Delete</a>`;
+            actionCell.innerHTML = `
+                <a href="edit_movie.html?movieID=${movie.movieID}">Edit</a> | 
+                <button class="delete-button" data-movieID="${movie.movieID}">Delete</button>
+            `;
 
             // Append cells to row
             row.appendChild(sttCell);
-            row.appendChild(idCell);
+            // row.appendChild(idCell);
             row.appendChild(titleCell);
             row.appendChild(imageCell);
             row.appendChild(countryCell);
@@ -70,7 +73,35 @@ fetch('show_movie.php')
             // Append row to the table body
             movieListElement.appendChild(row);
         });
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const movieID = this.getAttribute('data-movieID');
+                if (confirm(`Are you sure you want to delete movie ID ${movieID}?`)) {
+                    fetch('delete_movie.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'movieID=' + encodeURIComponent(movieID)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                window.location.reload(); // Reload the page to update the movie list
+                            } else {
+                                alert('Error: ' + data.message);
+                            }
+                        })
+                        .catch(error => {
+                            alert('An error occurred: ' + error);
+                        });
+                }
+            });
+
+        });
     })
+
     .catch(error => {
         console.error('Error fetching movie data:', error);
     });

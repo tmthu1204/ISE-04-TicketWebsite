@@ -5,7 +5,7 @@ $db = new Database();
 
 // Lấy phim đang chiếu (releaseDate <= ngày hiện tại)
 function ShowRoom($db, $theaterID) {
-    $sql = "SELECT * FROM room ORDER BY roomID ASC";
+    $sql = "SELECT * FROM room  WHERE theaterID = $theaterID ORDER BY roomID ASC";
     $result = $db->select($sql);
     $room = [];
     if ($result) {

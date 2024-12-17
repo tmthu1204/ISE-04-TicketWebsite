@@ -19,7 +19,7 @@ fetch(`show_rooms.php?theaterID=${theaterID}`)
 
             // Thông tin phòng (liên kết chỉnh sửa)
             const roomLink = document.createElement('a');
-            roomLink.href = `edit_room.html?roomID=${room.roomID}`;
+            roomLink.href = `edit_room.html?roomID=${room.roomID}&theaterID=${theaterID}`;
             roomLink.textContent = `Phòng ${index + 1}`;
             roomLink.style.textDecoration = 'none';
             roomLink.style.color = '#000';
