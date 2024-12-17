@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa đồ ăn nhẹ</title>
+</head>
+<body>
+    <h1>Chỉnh sửa thông tin đồ ăn nhẹ</h1>
+    <form id="editSnackForm" method="POST">
+        <label for="name">Tên đồ ăn:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="price">Giá:</label>
+        <input type="number" id="price" name="price" required><br>
+
+        <input type="hidden" id="snackID" name="snackID">
+        <button type="submit">Lưu thay đổi</button>
+    </form>
+
+    <script src="edit_snack.js"></script>
+</body>
+</html>

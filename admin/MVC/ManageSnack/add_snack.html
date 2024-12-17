@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Snack</title>
+</head>
+<body>
+    <h1>Thêm đồ ăn nhẹ</h1>
+    <form id="snackForm" enctype="multipart/form-data">
+        <label for="name">Tên đồ ăn:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="price">Giá:</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+
+        <button type="submit" id="submitBtn">Thêm</button>
+    </form>
+
+    <script src="add_snack.js"></script>
+</body>
+</html>
