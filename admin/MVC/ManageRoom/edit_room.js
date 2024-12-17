@@ -5,70 +5,69 @@ const rowsInput = document.getElementById('rows');
 const colsInput = document.getElementById('cols');
 const generateBtn = document.getElementById('generate');
 const saveBtn = document.getElementById('save');
-const layoutDiv = document.getElementById('layout');
+const layoutDiv = document.getElementById('seatLayout');
 
-let seatLayout = []; // Mảng lưu trạng thái ghế
+let seatLayout = [];
 
-// Hàm tạo mảng 2 chiều
 generateBtn.addEventListener('click', function () {
     const rows = parseInt(rowsInput.value);
     const cols = parseInt(colsInput.value);
 
-    seatLayout = Array.from({ length: rows }, () => Array(cols).fill("0")); // Mặc định tất cả ghế là 0
+    seatLayout = Array.from({ length: rows }, () => Array(cols).fill("0"));
     renderLayout();
 });
 
-// Hàm hiển thị layout ghế
 function renderLayout() {
-    layoutDiv.innerHTML = ''; // Xóa layout cũ
-    seatLayout.forEach((row, i) => {
-        const rowDiv = document.createElement('div');
-        row.forEach((seat, j) => {
-            const seatBtn = document.createElement('button');
-            seatBtn.textContent = seat;
-            seatBtn.className = seat === "0" ? 'available' : 'unavailable'; // Sử dụng chuỗi "0" và "-1"
+    layoutDiv.innerHTML = '';
+    const table = document.createElement('table');
+    table.className = 'table table-bordered';
+    const tbody = document.createElement('tbody');
 
-            // Xử lý khi bấm vào ghế
-            seatBtn.addEventListener('click', function () {
-                seatLayout[i][j] = seatLayout[i][j] === "0" ? "-1" : "0"; // Đổi trạng thái giữa "0" và "-1"
+    seatLayout.forEach((row, i) => {
+        const tr = document.createElement('tr');
+        row.forEach((seat, j) => {
+            const td = document.createElement('td');
+            const button = document.createElement('button');
+            button.textContent = `${String.fromCharCode(65 + i)}${j + 1}`;
+            button.className = `seat-btn ${seat === "0" ? 'seat-available' : 'seat-unavailable'}`;
+
+            button.addEventListener('click', function () {
+                seatLayout[i][j] = seatLayout[i][j] === "0" ? "-1" : "0";
                 renderLayout();
             });
 
-            rowDiv.appendChild(seatBtn);
+            td.appendChild(button);
+            tr.appendChild(td);
         });
-        layoutDiv.appendChild(rowDiv);
+        tbody.appendChild(tr);
     });
+
+    table.appendChild(tbody);
+    layoutDiv.appendChild(table);
 }
 
-// Hàm tải layout từ server khi trang được tải
 window.addEventListener('load', function () {
     if (roomID) {
         fetchLayout(roomID);
     }
 });
 
-// Fetch seat layout from server
 function fetchLayout(roomID) {
     fetch(`get_layout.php?roomID=${roomID}`)
-        .then(response => response.json()) // Parse JSON response
+        .then(response => response.json())
         .then(data => {
             if (data.status === 'success' && data.layout) {
-                // Nếu có layout, xử lý và hiển thị
-                seatLayout = JSON.parse(data.layout); // Assign the seat layout from the server
-                const rows = seatLayout.length;
-                const cols = seatLayout[0].length;
-                rowsInput.value = rows;  // Set the rows input value
-                colsInput.value = cols;  // Set the columns input value
-                renderLayout(); // Render the layout after data is fetched
-
+                seatLayout = JSON.parse(data.layout);
+                rowsInput.value = seatLayout.length;
+                colsInput.value = seatLayout[0].length;
+                renderLayout();
             }
         })
         .catch((error) => alert('Có lỗi xảy ra khi lấy layout: ' + error));
 }
 
-// Hàm lưu layout vào cơ sở dữ liệu
 saveBtn.addEventListener('click', function () {
-    const layoutData = JSON.stringify(seatLayout); // Chuyển đổi mảng thành chuỗi JSON
+    const layoutData = JSON.stringify(seatLayout);
     if (!roomID || !seatLayout) {
         alert('Thiếu roomID hoặc seatLayout');
         return;
@@ -84,7 +83,8 @@ saveBtn.addEventListener('click', function () {
         .then((response) => response.json())
         .then((data) => {
             if (data.status === 'success') {
-                window.location.href = 'show_rooms.html';   
+                alert('Lưu layout thành công!');
+                window.location.href = 'show_rooms.html';
             } else {
                 alert('Lỗi khi lưu layout: ' + data.message);
             }
