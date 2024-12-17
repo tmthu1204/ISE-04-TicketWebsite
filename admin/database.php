@@ -45,6 +45,7 @@ class Database {
             return false;
         }
     }
+}
 <<<<<<< HEAD
 
 =======

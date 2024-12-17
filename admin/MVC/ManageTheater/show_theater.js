@@ -14,9 +14,6 @@ fetch('show_theater.php')
             const sttCell = document.createElement('td');
             sttCell.textContent = index + 1;
 
-            const idCell = document.createElement('td');
-            idCell.textContent = theater.theaterID;
-
             const nameCell = document.createElement('td');
             nameCell.textContent = theater.name;
 
@@ -33,7 +30,6 @@ fetch('show_theater.php')
             `;
             // Append cells to row
             row.appendChild(sttCell);
-            row.appendChild(idCell);
             row.appendChild(nameCell);
             row.appendChild(locationCell);
             row.appendChild(actionCell);
@@ -43,6 +39,12 @@ fetch('show_theater.php')
         });
         const deleteButtons = document.querySelectorAll('.delete-button');
         deleteButtons.forEach(button => {
+            button.style.backgroundColor = '#ff4d4d'; // Màu nền đỏ nhạt
+            button.style.color = 'white'; // Màu chữ trắng
+            button.style.border = 'none'; // Loại bỏ viền
+            button.style.padding = '3px 3px'; // Thêm khoảng cách
+            button.style.borderRadius = '5px'; // Bo góc
+            button.style.cursor = 'pointer'; // Thêm hiệu ứng chuột
             button.addEventListener('click', function() {
                 const theaterID = this.getAttribute('data-theaterID');
                 if (confirm(`Are you sure you want to delete theater ID ${theaterID}?`)) {

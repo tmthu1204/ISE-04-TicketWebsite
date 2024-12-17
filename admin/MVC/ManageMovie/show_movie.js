@@ -13,9 +13,6 @@ fetch('show_movie.php')
             const sttCell = document.createElement('td');
             sttCell.textContent = index + 1;
 
-            const idCell = document.createElement('td');
-            idCell.textContent = movie.movieID;
-
             const titleCell = document.createElement('td');
             titleCell.textContent = movie.title;
 
@@ -57,7 +54,6 @@ fetch('show_movie.php')
             `;
             // Append cells to row
             row.appendChild(sttCell);
-            row.appendChild(idCell);
             row.appendChild(titleCell);
             row.appendChild(imageCell);
             row.appendChild(countryCell);
