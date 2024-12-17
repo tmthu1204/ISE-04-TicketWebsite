@@ -691,3 +691,23 @@ footer {
     color: black;
     font-weight: bold;
 }
+.modal-content {
+    background: linear-gradient(45deg, #e8dccc, #373234); /* Gradient màu */
+    color: black; /* Màu chữ */
+    padding: 20px; /* Khoảng cách bên trong */
+}
+
+.edit-card{
+    background-color: #e8dccc;
+    border: none;
+    width: 500px;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 0.7rem;
+    position: relative;
+    overflow: hidden;
+    height: 540px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
