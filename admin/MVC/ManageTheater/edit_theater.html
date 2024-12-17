@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Theater</title>
+</head>
+<body>
+    <h1>Chỉnh sửa thông tin rạp</h1>
+    <form id="editTheaterForm" method="POST">
+        <label for="name">Tên rạp:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="location">Địa điểm:</label>
+        <input type="text" id="location" name="location" ><br>
+
+        <input type="hidden" id="theaterID" name="theaterID">
+        <button type="submit">Lưu thay đổi</button>
+    </form>
+
+    <script src="edit_theater.js"></script>
+</body>
+</html>

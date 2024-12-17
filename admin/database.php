@@ -45,7 +45,11 @@ class Database {
             return false;
         }
     }
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> BE_ThuyQuynh
     //Update data
     public function update($query){
         $update_row = $this->link->query($query) or die($this->link->error.__LINE__);

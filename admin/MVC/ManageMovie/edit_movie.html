@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Trang Bán Vé Xem Phim</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="../fontawesome-free-6.7.1-web/fontawesome-free-6.7.1-web/css/all.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(45deg, #e8dccc, #373234); margin-bottom:-60px;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../images/png-clipart-red-river-theatres-cinema-film-logo-reel-miscellaneous-angle-removebg-preview.png"
+                    alt="Cinema Logo" style="height: 60px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav"
+                style="background: linear-gradient(45deg, #e8dccc, #373234); min-height: 60px;">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item text-center">
+                        <a class="nav-link" style="color: #000000">Xin chào Admin - Tùng</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="login-admin.html" style="color: #000000">Đăng xuất</a>
+                    </li>
+                </ul>
+                <form class="d-flex ms-3">
+                    <input class="form-control me-2" type="search" placeholder="Nhập tên phim" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Tìm kiếm</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Chỉnh sửa thông tin phim</h1>
+    <div class="movie-card">
+        <form id="editMovieForm" method="POST" enctype="multipart/form-data">
+            <label for="title" style="text-align: center; display: block; margin-bottom: 10px;">Tiêu đề:</label>
+            <input type="text" id="title" name="title" required style="display: block; margin: 10px auto; text-align: center;"><br>
+        
+            <label for="trailerURL" style="text-align: center; display: block; margin-bottom: 10px;">URL Trailer:</label>
+            <input type="url" id="trailerURL" name="trailerURL" style="display: block; margin: 10px auto; text-align: center;"><br>
+        
+            <label for="duration" style="text-align: center; display: block; margin-bottom: 10px;">Thời gian (phút):</label>
+            <input type="number" id="duration" name="duration" style="display: block; margin: 10px auto; text-align: center;"><br>
+        
+            <label for="genre" style="text-align: center; display: block; margin-bottom: 10px;">Thể loại:</label>
+            <input type="text" id="genre" name="genre" style="display: block; margin: 10px auto; text-align: center;"><br>
+        
+            <label for="releaseDate" style="text-align: center; display: block; margin-bottom: 10px;">Ngày phát hành:</label>
+            <input type="date" id="releaseDate" name="releaseDate" style="display: block; margin: 10px auto; text-align: center;"><br>
+        
+            <label for="poster" style="text-align: center; display: block; margin-bottom: 10px;">Poster:</label>
+            <input type="file" id="poster" name="poster" style="display: block; margin: 10px auto;"><br>
+            <input type="hidden" id="posterImage" name="poster" value="">
+        
+            <label for="country" style="text-align: center; display: block; margin-bottom: 10px;">Quốc gia:</label>
+            <input type="text" id="country" name="country" style="display: block; margin: 10px auto; text-align: center;"><br>
+        
+            <label for="language" style="text-align: center; display: block; margin-bottom: 10px;">Ngôn ngữ:</label>
+            <input type="text" id="language" name="language" style="display: block; margin: 10px auto; text-align: center;"><br>
+        
+            <label for="intro" style="text-align: center; display: block; margin-bottom: 10px;">Giới thiệu:</label>
+            <textarea id="intro" name="intro" style="display: block; margin: 10px auto; text-align: center;"></textarea><br>
+        
+            <input type="hidden" id="movieID" name="movieID">
+            <button type="submit" style="display: block; margin: 20px auto;">Lưu thay đổi</button>
+        </form>
+    </div>
+    <!--Footer-->
+    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:70px;">
+        <div class="footer-top">
+            <li><a href=""></a>Liên hệ</li>
+            <li><a href=""></a>Tuyển dụng</li>
+            <li><a href=""></a>Giới thiệu</li>
+            <li>
+                <a href="" class="fab fa-facebook-f"></a>
+                <a href="" class="fab fa-twitter"></a>
+                <a href="" class="fab fa-youtube"></a>
+            </li>
+        </div>
+        <div class="footer-center">
+            <p>Công ty Cổ Phần Minh An <br>
+                Địa chỉ đăng ký: 182 Chu Văn An, phường 10, Quận Bình Thành, TP.Hồ Chí Minh, Việt Nam - 0233 199
+                873<br>
+                Liên hệ đặt vé: <b>0233 199 873</b>
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        ©Selenia All rights reserved
+    </div>
+    <script src="edit_movie.js"></script>
+</body>
+</html>
