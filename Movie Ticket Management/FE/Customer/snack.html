@@ -1,169 +1,108 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Trang Bán Vé Xem Phim</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<link rel="stylesheet" href="../fontawesome-free-6.7.1-web/fontawesome-free-6.7.1-web/css/all.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-		crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="../../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Bán Vé Xem Phim</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../fontawesome-free-6.7.1-web/fontawesome-free-6.7.1-web/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../style.css">
 </head>
+
 <body>
     <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(45deg, #e8dccc, #373234);">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="../images/png-clipart-red-river-theatres-cinema-film-logo-reel-miscellaneous-angle-removebg-preview.png"
-             alt="Cinema Logo" style="height: 60px;">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav" style="background: linear-gradient(45deg, #e8dccc, #373234); min-height: 60px;">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item text-center">
-            <a class="nav-link" href="Homepage-user.html" style="color: #000000">Trang Chủ</a>
-          </li>
-          <li class="nav-item text-center">
-            <a class="nav-link" href="MovieTab-user.html" style="color: #000000">Phim</a>
-          </li>
-          <li class="nav-item text-center">
-            <div id="userInfo" style="color: #000000; text-align: center; margin-left: 0.5px; margin-right: 0.5px"></div>
-          </li>
-          <!-- Profile Dropdown -->
-          <li class="nav-item dropdown text-center">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #000000;">
-                <i class="fa-solid fa-user" style="font-size:18px;" ></i> 
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(45deg, #e8dccc, #373234);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../images/png-clipart-red-river-theatres-cinema-film-logo-reel-miscellaneous-angle-removebg-preview.png"
+                    alt="Cinema Logo" style="height: 60px;">
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: linear-gradient(45deg, #e8dccc, #373234);">
-              <li><a class="dropdown-item" href="profile.html" style="color: #000000;">Thông tin</a></li>
-              <li><a class="dropdown-item" href="purchase_history.html" style="color: #000000;">Lịch sử mua vé</a></li>
-              <!-- Đăng xuất -->
-			  <li><a class="dropdown-item" href="javascript:void(0);" id="logoutButton" style="color: #000000;">Đăng xuất</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form class="d-flex ms-3">
-          <input class="form-control me-2" type="search" placeholder="Nhập tên phim" aria-label="Search">
-          <button class="btn btn-outline-light" type="submit">Tìm kiếm</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-    <!--Main content-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav" style="background: linear-gradient(45deg, #e8dccc, #373234); min-height: 60px;">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="Homepage-user.html" style="color: #000000">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="MovieTab-user.html" style="color: #000000">Phim</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div id="userInfo" style="color: #000000; text-align: center; margin-left: 0.5px; margin-right: 0.5px"></div>
+                    </li>
+                    <!-- Profile Dropdown -->
+                    <li class="nav-item dropdown text-center">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #000000;">
+                            <i class="fa-solid fa-user" style="font-size:18px;"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: linear-gradient(45deg, #e8dccc, #373234);">
+                            <li><a class="dropdown-item" href="profile.html" style="color: #000000;">Thông tin</a></li>
+                            <li><a class="dropdown-item" href="purchase_history.html" style="color: #000000;">Lịch sử mua vé</a></li>
+                            <!-- Đăng xuất -->
+                            <li><a class="dropdown-item" href="javascript:void(0);" id="logoutButton" style="color: #000000;">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex ms-3">
+                    <input class="form-control me-2" type="search" placeholder="Nhập tên phim" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Tìm kiếm</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
     <div class="container mt-3">
         <div class="card text-white">
             <div class="card-header" style="text-align:center; border-bottom: 2px solid white;">
                 <h2 class="card-title fs-1 mb-2">CHỌN BẮP NƯỚC</h2>
             </div>
-            <div class="card-body">
-                <!-- Drinks -->
-                <div class="d-flex justify-content-between align-items-center mb-4 square-container">
-                    <div class="d-flex align-items-center">
-                        <span class="fs-4 me-3">🥤</span>
-                        <div>
-                            <h3 class="h4 mb-0">Nước uống</h3>
-                            <p class="text-muted small mb-0">1 nước uống lớn tự chọn (Coca / 7up / Mirinda)</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-outline-light btn-lg square-btn" onclick="decreaseQuantity('drink')">-</button>
-                        <span class="mx-3 fs-4" id="drink-quantity">1</span>
-                        <button class="btn btn-outline-light btn-lg square-btn" onclick="increaseQuantity('drink')">+</button>
-                    </div>
-                </div>
-    
-                <!-- Snacks -->
-                <div class="d-flex justify-content-between align-items-center mb-4 square-container">
-                    <div class="d-flex align-items-center">
-                        <span class="fs-4 me-3">🍿</span>
-                        <div>
-                            <h3 class="h4 mb-0">Đồ ăn</h3>
-                            <p class="text-muted small mb-0">1 bắp lớn tự chọn (Nguyên bản / Socola / Caramel)</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-outline-light btn-lg square-btn" onclick="decreaseQuantity('snack')">-</button>
-                        <span class="mx-3 fs-4" id="snack-quantity">0</span>
-                        <button class="btn btn-outline-light btn-lg square-btn" onclick="increaseQuantity('snack')">+</button>
-                    </div>
-                </div>
-    
-                <!-- Combo 1 -->
-                <div class="d-flex justify-content-between align-items-center mb-4 square-container">
-                    <div class="d-flex align-items-center">
-                        <span class="fs-4 me-3">🍿</span>
-                        <div>
-                            <h3 class="h4 mb-0">Combo 1 bắp + 1 nước</h3>
-                            <p class="text-muted small mb-0">1 bắp lớn tự chọn và 1 nước uống lớn tự chọn</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-outline-light btn-lg square-btn" onclick="decreaseQuantity('combo1')">-</button>
-                        <span class="mx-3 fs-4" id="combo1-quantity">0</span>
-                        <button class="btn btn-outline-light btn-lg square-btn" onclick="increaseQuantity('combo1')">+</button>
-                    </div>
-                </div>
-    
-                <!-- Combo 2 -->
-                <div class="d-flex justify-content-between align-items-center mb-4 square-container">
-                    <div class="d-flex align-items-center">
-                        <div class="position-relative me-3">
-                            <span class="fs-4">🍿</span>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                x2
-                            </span>
-                        </div>
-                        <div>
-                            <h3 class="h4 mb-0">Combo 2 bắp + 2 nước</h3>
-                            <p class="text-muted small mb-0">2 bắp lớn tự chọn và 2 nước uống lớn tự chọn</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-outline-light btn-lg square-btn" onclick="decreaseQuantity('combo2')">-</button>
-                        <span class="mx-3 fs-4" id="combo2-quantity">0</span>
-                        <button class="btn btn-outline-light btn-lg square-btn" onclick="increaseQuantity('combo2')">+</button>
-                    </div>
-                </div>
-    
-                <!-- Action Buttons -->
-                <div class="d-flex justify-content-center gap-4 mt-6">
-                    <button class="btn btn-danger btn-lg">Thanh toán</button>
-                    <button class="btn btn-outline-light btn-lg">Bỏ qua</button>
-                </div>
+            <div id="snackList" class="container mt-4">
+                <!-- Snack items will be dynamically added here -->
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <h3 id="totalPrice" class="fs-3">Tổng tiền: 0 VND</h3>
+            </div>
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-center gap-4 mt-6">
+                <button class="btn btn-danger btn-lg" id="checkoutButton" disabled>Thanh toán</button>
+                <button class="btn btn-outline-light btn-lg" onclick="handlePass()">Bỏ qua</button>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
+    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234)">
+        <div class="footer-top">
+            <li><a href="">Liên hệ</a></li>
+            <li><a href="">Tuyển dụng</a></li>
+            <li><a href="">Giới thiệu</a></li>
+            <li>
+                <a href="" class="fab fa-facebook-f"></a>
+                <a href="" class="fab fa-twitter"></a>
+                <a href="" class="fab fa-youtube"></a>
+            </li>
+        </div>
+        <div class="footer-center">
+            <p>Công ty Cổ Phần Minh An <br>
+                Địa chỉ đăng ký: 182 Chu Văn An, phường 10, Quận Bình Thành, TP.Hồ Chí Minh, Việt Nam - 0233 199 873<br>
+                Liên hệ đặt vé: <b>0233 199 873</b>
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        ©Selenia All rights reserved
+    </div>
 
-    <!--Footer-->
-	<div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234)">
-		<div class="footer-top">
-			<li><a href=""></a>Liên hệ</li>
-			<li><a href=""></a>Tuyển dụng</li>
-			<li><a href=""></a>Giới thiệu</li>
-			<li>
-				<a href="" class ="fab fa-facebook-f"></a>
-				<a href="" class="fab fa-twitter"></a>
-				<a href="" class="fab fa-youtube"></a>
-			</li>
-		</div>
-		<div class="footer-center">
-			<p>Công ty Cổ Phần Minh An <br>
-				Địa chỉ đăng ký: 182 Chu Văn An, phường 10, Quận Bình Thành, TP.Hồ Chí Minh, Việt Nam - 0233 199 873<br>
-				Liên hệ đặt vé: <b>0233 199 873</b>
-			</p>
-		</div>
-	</div>
-	<div class ="footer-bottom">
-		©Selenia All rights reserved
-	</div>
+    <script src="../js/Customer/snack.js"></script>
+    <script src="../js/Common/logout.js"></script>
+    <script src="../js/Common/checkLoggedIn.js"></script>
 </body>
-<script src="../js/Customer/snack.js"></script>
-<script src="../js/Common/logout.js"></script>
-<script src="../js/Common/checkLoggedIn.js"></script>
+
 </html>

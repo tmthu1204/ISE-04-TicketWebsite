@@ -33,14 +33,14 @@ async function loadMovieDetails() {
                 // Check if the user is logged in
                 const loggedIn = await isUserLoggedIn(); // Using the imported function
 
-                // Redirect to the correct page based on login status
-                const purchaseButton = document.querySelector('.movie-content-button a');
+                // Set the purchase link based on the login status
+                const purchaseButton = document.getElementById('purchase-link');
                 if (loggedIn.loggedIn) {
                     // Redirect to choose-theatre-user.html if logged in
-                    purchaseButton.href = `../Customer/choose-theatre-user.html?movieID=${movieID}`;
+                    purchaseButton.href = `../../FE/Customer/choose-theatre-user.html?movieID=${movieID}`;
                 } else {
                     // Redirect to choose-theatre.html if not logged in
-                    purchaseButton.href = `../Common/choose-theatre.html?movieID=${movieID}`;
+                    purchaseButton.href = `../../FE/Common/choose-theatre.html?movieID=${movieID}`;
                 }
             }
         } catch (error) {

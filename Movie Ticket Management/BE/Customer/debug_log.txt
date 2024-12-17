@@ -1,0 +1,246 @@
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+{"transactionID":"7","seats":"R3C5, R3C6"}
+{"transactionID":"8","seats":"R4C5, R4C6"}
+{"transactionID":"13","seats":"R3C7"}
+[]
+[]
+[]
+{"transactionID":"14","seats":["R4C5","R4C6"]}
+[]
+{"transactionID":"15","seats":["R5C6","R5C7"]}
+[]
+{"transactionID":"16","seats":"[\"R4C5\",\"R4C6\"]"}
+{"transactionID":"17","seats":"R3C5,R3C6"}
+{"transactionID":"18","seats":["R4C7"]}
+{"transactionID":"19","seats":["R4C6"]}
+POST Data: []
+POST Data: {"transactionID":"20","seats":["R4C5","R4C6"],"snacks":"[]"}
+Seats data: 
+Snacks data: null
+Seats data: 
+Snacks data: null
+Selected Seats: null
+Selected Snacks: null
+Selected Seats: ["R4C5","R4C6"]
+Selected Snacks: "[]"
+Selected Seats: ["R4C6","R4C7"]
+Selected Snacks: "[]"
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: {"transactionID":"24","seats":["R4C3","R4C5"],"snacks":"[]"}
+Selected Seats: ["R4C3","R4C5"]
+Selected Snacks: []
+POST Data: {"transactionID":"25","seats":["R4C5","R4C6"],"snacks":"[]"}
+Selected Seats: ["R4C5","R4C6"]
+Selected Snacks: null
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: {"transactionID":"27","seats":["R3C6","R4C5"],"snacks":"[]"}
+Selected Seats: ["R3C6","R4C5"]
+Selected Snacks: []
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: {"transactionID":"28","seats":["R4C4","R4C5"],"snacks":"[]"}
+Selected Seats: ["R4C4","R4C5"]
+Selected Snacks: []
+POST Data: {"transactionID":"28","seats":"[\"R4C4\",\"R4C5\"]","snacks":"{\"1\":1}"}
+Selected Seats: "[\"R4C4\",\"R4C5\"]"
+Selected Snacks: {"1":1}
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: {"transactionID":"29","seats":["R4C5","R4C6"],"snacks":"[]"}
+Selected Seats: ["R4C5","R4C6"]
+Selected Snacks: []
+POST Data: {"transactionID":"29","seats":"[\"R4C5\",\"R4C6\"]","snacks":"{\"1\":1,\"2\":1}"}
+Selected Seats: "[\"R4C5\",\"R4C6\"]"
+Selected Snacks: {"1":1,"2":1}
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: {"transactionID":"30","seats":["R4C5","R5C7"],"snacks":"[]"}
+Selected Seats: ["R4C5","R5C7"]
+Selected Snacks: []
+POST Data: {"transactionID":"30","seats":"[\"R4C5\",\"R5C7\"]","snacks":"{\"1\":2,\"3\":1}"}
+Selected Seats: "[\"R4C5\",\"R5C7\"]"
+Selected Snacks: {"1":2,"3":1}
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: {"transactionID":"31","seats":["R4C5","R5C6"],"snacks":"[]"}
+Selected Seats: ["R4C5","R5C6"]
+Selected Snacks: []
+POST Data: {"transactionID":"31","seats":"[\"R4C5\",\"R5C6\"]","snacks":"{\"1\":3}"}
+Selected Seats: "[\"R4C5\",\"R5C6\"]"
+Selected Snacks: {"1":3}
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: {"transactionID":"32","seats":["R4C5","R4C6","R4C7"],"snacks":"[]"}
+Selected Seats: ["R4C5","R4C6","R4C7"]
+Selected Snacks: []
+POST Data: {"transactionID":"32","seats":"[\"R4C5\",\"R4C6\",\"R4C7\"]","snacks":"{\"1\":1,\"2\":1,\"3\":1,\"4\":1}"}
+Selected Seats: "[\"R4C5\",\"R4C6\",\"R4C7\"]"
+Selected Snacks: {"1":1,"2":1,"3":1,"4":1}
+POST Data: {"transactionID":"32","seats":"[\"R4C5\",\"R4C6\",\"R4C7\"]","snacks":"{\"1\":1,\"2\":1,\"3\":1,\"4\":1}"}
+Selected Seats: "[\"R4C5\",\"R4C6\",\"R4C7\"]"
+Selected Snacks: {"1":1,"2":1,"3":1,"4":1}
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: {"transactionID":"33","seats":["R1C1","R6C10"],"snacks":"[]"}
+Selected Seats: ["R1C1","R6C10"]
+Selected Snacks: []
+POST Data: {"transactionID":"33","seats":"[\"R1C1\",\"R6C10\"]","snacks":"{\"1\":1,\"2\":1,\"3\":1,\"4\":1}"}
+Selected Seats: "[\"R1C1\",\"R6C10\"]"
+Selected Snacks: {"1":1,"2":1,"3":1,"4":1}
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: {"transactionID":"34","seats":["R4C5","R4C6"],"snacks":"[]"}
+Selected Seats: ["R4C5","R4C6"]
+Selected Snacks: []
+POST Data: {"transactionID":"34","seats":"[\"R4C5\",\"R4C6\"]","snacks":"{\"1\":1,\"2\":1,\"3\":1,\"4\":2}"}
+Selected Seats: "[\"R4C5\",\"R4C6\"]"
+Selected Snacks: {"1":1,"2":1,"3":1,"4":2}
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+Ticket Amount: null
+POST Data: {"transactionID":"35","seats":["R4C5","R4C6"],"ticketAmount":"200000","snacks":"[]"}
+Selected Seats: ["R4C5","R4C6"]
+Selected Snacks: []
+Ticket Amount: "200000"
+POST Data: {"transactionID":"35","seats":"[\"R4C5\",\"R4C6\"]","snacks":"{\"1\":1,\"3\":1}"}
+Selected Seats: "[\"R4C5\",\"R4C6\"]"
+Selected Snacks: {"1":1,"3":1}
+Ticket Amount: null
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+Ticket Amount: 
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+Ticket Amount: 
+POST Data: {"transactionID":"36","seats":["R4C4","R5C4"],"ticketAmount":"200000","snacks":"[]"}
+Selected Seats: ["R4C4","R5C4"]
+Selected Snacks: []
+Ticket Amount: 200000
+POST Data: {"transactionID":"36","seats":"[\"R4C4\",\"R5C4\"]","snacks":"{\"1\":1,\"4\":1}"}
+Selected Seats: "[\"R4C4\",\"R5C4\"]"
+Selected Snacks: {"1":1,"4":1}
+Ticket Amount: 
+POST Data: {"transactionID":"37","seats":["R3C5","R4C6","R5C5","R5C7"],"ticketAmount":"400000","snacks":"[]"}
+Selected Seats: ["R3C5","R4C6","R5C5","R5C7"]
+Selected Snacks: []
+Ticket Amount: 400000
+POST Data: {"transactionID":"38","seats":["R4C5","R4C6"],"ticketAmount":"200000","snacks":"[]"}
+Selected Seats: ["R4C5","R4C6"]
+Selected Snacks: []
+Ticket Amount: 200000
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+Ticket Amount: 
+POST Data: {"transactionID":"39","seats":["R4C5"],"ticketAmount":"100000","snacks":"[]"}
+Selected Seats: ["R4C5"]
+Selected Snacks: []
+Ticket Amount: 100000
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+POST Data: {"transactionID":"40","seats":["R4C4","R4C5"],"ticketAmount":"200000","snacks":"[]"}
+Selected Seats: ["R4C4","R4C5"]
+Selected Snacks: []
+POST Data: {"transactionID":"40","seats":"[\"R4C4\",\"R4C5\"]","snacks":"{\"1\":1}"}
+Selected Seats: "[\"R4C4\",\"R4C5\"]"
+Selected Snacks: {"1":1}
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+Ticket Amount: 
+POST Data: {"transactionID":"41","seats":["R4C5","R4C6"],"ticketAmount":"200000","snacks":"[]"}
+Selected Seats: ["R4C5","R4C6"]
+Selected Snacks: []
+Ticket Amount: 200000
+POST Data: {"transactionID":"41","seats":"[\"R4C5\",\"R4C6\"]","snacks":"{\"1\":1,\"2\":1}"}
+Selected Seats: "[\"R4C5\",\"R4C6\"]"
+Selected Snacks: {"1":1,"2":1}
+Ticket Amount: 
+POST Data: {"transactionID":"42","seats":["R3C5","R3C6"],"ticketAmount":"200000","snacks":"[]"}
+Selected Seats: ["R3C5","R3C6"]
+Selected Snacks: []
+Ticket Amount: 200000
+POST Data: {"transactionID":"42","seats":"[\"R3C5\",\"R3C6\"]","snacks":"{\"1\":1,\"2\":1}"}
+Selected Seats: "[\"R3C5\",\"R3C6\"]"
+Selected Snacks: {"1":1,"2":1}
+Ticket Amount: 
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+Ticket Amount: 
+POST Data: {"transactionID":"43","seats":["R4C4","R4C5"],"ticketAmount":"200000","snacks":"[]"}
+Selected Seats: ["R4C4","R4C5"]
+Selected Snacks: []
+Ticket Amount: 200000
+POST Data: {"transactionID":"44","seats":["R5C4"],"ticketAmount":"100000","snacks":"[]"}
+Selected Seats: ["R5C4"]
+Selected Snacks: []
+Ticket Amount: 100000
+POST Data: {"transactionID":"44","seats":"[\"R5C4\"]","snacks":"{\"1\":1}"}
+Selected Seats: "[\"R5C4\"]"
+Selected Snacks: {"1":1}
+Ticket Amount: 
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+Ticket Amount: 
+POST Data: {"transactionID":"45","seats":["R4C7"],"ticketAmount":"100000","snacks":"[]"}
+Selected Seats: ["R4C7"]
+Selected Snacks: []
+Ticket Amount: 100000
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+Ticket Amount: 0
+POST Data: []
+Selected Seats: null
+Selected Snacks: null
+Ticket Amount: 0
+POST Data: {"transactionID":"46","seats":["R3C7","R4C6"],"ticketAmount":"200000","snacks":"[]"}
+Selected Seats: ["R3C7","R4C6"]
+Selected Snacks: []
+Ticket Amount: 200000
+POST Data: {"transactionID":"46","seats":"[\"R3C7\",\"R4C6\"]","snacks":"{\"1\":1}","ticketAmount":"200000"}
+Selected Seats: "[\"R3C7\",\"R4C6\"]"
+Selected Snacks: {"1":1}
+Ticket Amount: 200000
