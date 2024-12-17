@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="admin-content-right">
+    <!-- <div class="admin-content-right">
         <div class="admin-content-right-movie-list">
             <h1>Danh sách phim</h1>
             <table>
@@ -27,13 +27,43 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="movie-list">
+                <tbody id="movie-list"> -->
                     <!-- Dynamic movie rows will be inserted here -->
-                </tbody>
+                <!-- </tbody>
             </table>
             <a href="add_movie.html" class="btn">Thêm Phim</a>
         </div>
-    </div>
+    </div> -->
+    <!-- Movie Cards Container -->
+    <div class="row g-4 mt-4">
+        <!-- Moana 2 Card -->
+        <div class="col-md-4">
+            <div class="card movie-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <!-- Text Content -->
+                        <div class="flex-grow-1">
+                            <h5 class="card-title text-dark"style="font-size:15px; margin-top:-10px;"><strong>STT</strong></h5>
+                            <p style="font-size:15px; margin-top:-5px;"><strong>ID</strong></p>
+                            <p style="font-size:15px; margin-top:-10px;"><strong>Title</strong> </p>
+                            <p style="font-size:15px; margin-top:-10px;"><strong>Image</strong> </p>
+                            <p style="font-size:15px; margin-top:-10px;"><strong>Country</strong> </p>
+                            <p style="font-size:15px; margin-top:-10px;"><strong>Language</strong></p>
+                            <p style="font-size:15px; margin-top:-10px;"><strong>Intro</strong></p>
+                            <p style="font-size:15px; margin-top:-10px;"><strong>Trailer</strong></p>
+                            <p style="font-size:15px; margin-top:-10px;"><strong>Duration</strong></p>
+                            <p style="font-size:15px; margin-top:-10px;"><strong>Genre</strong></p>
+                            <p style="font-size:15px; margin-top:-10px;"><strong>Release Date</strong></p>
+                            <p style="font-size:15px; margin-top:-10px;"><strong>Action</strong></p>
+                        </div>
+                        <!-- Image -->
+                        <button class="btn btn-link text-blue position-absolute" style="top: 200px; right: 10px;">
+                            <i class="fa-solid fa-trash fa"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <script src="show_movie.js"></script>
 </body>
 </html>
