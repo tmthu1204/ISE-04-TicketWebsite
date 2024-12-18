@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const price = parseFloat(priceField.value);
 
         // Kiểm tra nếu giá trị không hợp lệ
-        if (isNaN(price) || price <= 0) {
+        if (isNaN(price) || price < 0) {
             alert("Giá phải là một số dương.");
             return;
         }
