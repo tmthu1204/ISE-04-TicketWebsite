@@ -9,11 +9,11 @@ fetch('show_snack.php')
         // Loop through the snacks and create a table row for each
         snacks.forEach((snack, index) => {
             const row = document.createElement('tr');
-            
+
             // Create table cells
             const sttCell = document.createElement('td');
             sttCell.textContent = index + 1;
-            
+
             const nameCell = document.createElement('td');
             nameCell.textContent = snack.name;
 
@@ -22,9 +22,14 @@ fetch('show_snack.php')
 
             const actionCell = document.createElement('td');
             actionCell.innerHTML = `
-                <a href="edit_snack.html?snackID=${snack.snackID}">Edit</a> | 
-                <button class="delete-button" data-snackID="${snack.snackID}">Delete</button>
+            <a href="edit_snack.html?snackID=${snack.snackID}" title="Edit">
+            <i class="fa-solid fa-pencil"></i>
+            </a> | 
+            <button class="delete-button" data-snackID="${snack.snackID}" title="Delete" style="background: none; border: none; cursor: pointer; color:red">
+            <i class="fa-solid fa-trash"></i>
+            </button>
             `;
+
 
             // Append cells to row
             row.appendChild(sttCell);
@@ -39,7 +44,7 @@ fetch('show_snack.php')
         // Add event listeners to delete buttons
         const deleteButtons = document.querySelectorAll('.delete-button');
         deleteButtons.forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const snackID = this.getAttribute('data-snackID');
                 if (confirm(`Are you sure you want to delete snack ID ${snackID}?`)) {
                     fetch('delete_snack.php', {
@@ -49,17 +54,17 @@ fetch('show_snack.php')
                         },
                         body: 'snackID=' + encodeURIComponent(snackID)
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            window.location.reload(); // Reload the page to update the snack list
-                        } else {
-                            alert('Error: ' + data.message);
-                        }
-                    })
-                    .catch(error => {
-                        alert('An error occurred: ' + error);
-                    });
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                window.location.reload(); // Reload the page to update the snack list
+                            } else {
+                                alert('Error: ' + data.message);
+                            }
+                        })
+                        .catch(error => {
+                            alert('An error occurred: ' + error);
+                        });
                 }
             });
         });
