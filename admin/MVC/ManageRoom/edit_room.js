@@ -1,5 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const roomID = urlParams.get('roomID');
+const theaterID = urlParams.get('theaterID');
 
 const rowsInput = document.getElementById('rows');
 const colsInput = document.getElementById('cols');
@@ -83,8 +84,8 @@ saveBtn.addEventListener('click', function () {
         .then((response) => response.json())
         .then((data) => {
             if (data.status === 'success') {
-                alert('Lưu layout thành công!');
-                window.location.href = 'show_rooms.html';
+                alert('Lưu layout thành công!');    
+                window.location.href = `show_rooms.html?theaterID=${theaterID}`;
             } else {
                 alert('Lỗi khi lưu layout: ' + data.message);
             }

@@ -60,29 +60,30 @@ body {
 }
 
 .seat {
-    width: 30px;
-    height: 30px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 40px;
     cursor: pointer;
-    font-size: 12px;
-    color: #fff;
-    transition: all 0.3s ease;
+    border-radius: 5px;
 }
 
 .seat.available {
     background-color: #28a745;
+    color: #fff;
+}
+
+.seat.selected {
+    background-color: #ffc107;
+    color: #fff;
 }
 
 .seat.unavailable {
     background-color: #6c757d;
+    color: #fff;
     cursor: not-allowed;
-}
-
-.seat.selected {
-    background-color: #dc3545;
 }
 
 .seat:hover:not(.unavailable) {

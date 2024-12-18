@@ -65,78 +65,66 @@
 
   <section class="movie">
     <div class="container">
-      <div class="card">
-        <div class="movie-content">
-          <div class="movie-content-left">
-            <div class="movie-content-left-big-img">
-              <img src="../images/cu-li.webp" alt="">
-            </div>
-          </div>
-          <div class="movie-content-right-big-img">
-            <div class="movie-content-right-movie-name" style="color:white">
-              <h1>CU LI KHÔNG BAO GIỜ KHÓC (T16)</h1>
-            </div>
-            <div class="movie-content-right-info-details">
-              <div class="info-item">
-                <i class="fa-solid fa-tag"></i>
-                <span class="txt">Tình cảm, Gia đình</span>
-              </div>
-              <div class="info-item">
-                <i class="fa-solid fa-clock"></i>
-                <span class="txt">92'</span>
-              </div>
-              <div class="info-item">
-                <i class="fa-solid fa-earth-americas"></i>
-                <span class="txt">Việt Nam</span>
-              </div>
-              <div class="info-item">
-                <i class="fa-solid fa-comment"></i>
-                <span class="txt">Phụ đề</span>
-              </div>
-              <div class="info-item">
-                <i class="fa-solid fa-user-check"></i>
-                <span class="txt">T16: Phim dành cho khán giả từ đủ 16 tuổi trở lên (16+)</span>
-              </div>
-            </div>
-            <div class="movie-content-button">
-              <a href="choose_theatre-user.html" class="btn btn-danger btn-sm"><i class="fa-solid fa-ticket"></i>Mua vé</a>
-            </div>
-            <div class="movie-trailer">
-              <a href="./trailer.html" class="btn btn-primary btn-sm">
-                <i class="fa-solid fa-play"></i> Xem trailer
-              </a>
-            </div>
-            <div class="movie-content-right-bottom">
-              <div class="movie-content-right-bottom-content-big">
-                <div class="movie-content-right-bottom-content-title row">
-                  <div class="movie-content-right-bottom-content-title-item">
-                    <p>Mô tả</p>
-                  </div>
+        <div class="card">
+            <div class="movie-content">
+                <div class="movie-content-left">
+                    <div class="movie-content-left-big-img">
+                        <img id="movie-thumbnail" src="" alt="Movie Thumbnail">
+                    </div>
                 </div>
-                <div class="movie-content-right-bottom-content">
-                  <div class="movie-content-right-bottom-content-mota">
-                    Đạo diễn: Phạm Ngọc Lân <br>
-                    Diễn viên: NSND Minh Châu, Hoàng Hà, Hà Phương, Xuân An <br>
-                    Khởi chiếu: Thứ Tư, 13/11/2024 <br>
-                  </div>
-                  <div class="movie-content-right-bottom-content-noidungphim">
-                    Sau đám tang người chồng cũ ở nước ngoài, bà Nguyện quay lại Hà Nội với một bình tro và một con cu
-                    li nhỏ - loài linh trưởng đặc hữu của bán đảo Đông Dương. Về tới nơi, bà phát hiện ra cô cháu gái
-                    mang
-                    bầu đang vội vã chuẩn bị đám cưới. Lo sợ cô đi theo vết xe đổ của đời mình, bà kịch liệt phản đối.
-                    Bộ phim Cu Li Không Bao Giờ Khóc khéo léo pha trộn đời sống hiện tại và những dư âm phức tạp của
-                    lịch sử Việt Nam bằng cách đan
-                    xen hoài niệm về quá khứ của người dì lớn tuổi và dự cảm về tương lai đầy bất định của cặp đôi
-                    trẻ.<br>
-                  </div>
+                <div class ="movie-content-right-big-img">
+                    <div class="movie-content-right-movie-name" style="color:white">
+                        <h1 id="movie-title"></h1>
+                    </div>
+                    <div class="movie-content-right-info-details">
+                        <div class="info-item">
+                            <i class="fa-solid fa-tag"></i>
+                            <span class="txt" id="movie-genre"></span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span class="txt" id="movie-duration"></span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-earth-americas"></i>
+                            <span class="txt" id="movie-country"></span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-comment"></i>
+                            <span class="txt" id="movie-language"></span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-calendar"></i>
+                            <span class="txt" id="movie-release-date"></span>
+                        </div>
+                    </div>
+                    <div class="movie-content-button">
+                        <a href="#" id="purchase-link" class="btn btn-danger btn-sm"><i class="fa-solid fa-ticket"></i>Mua vé</a>
+                    </div>
+                    <div class="info-item">
+                        <a id="movie-trailer" href="" target="_blank" class="btn btn-primary btn-sm">
+                            <i class="fa-solid fa-play"></i> Xem trailer
+                        </a>
+                    </div>
+                    <div class="movie-content-right-bottom">
+                        <div class="movie-content-right-bottom-content-big">
+                            <div class="movie-content-right-bottom-content-title row">
+                                <div class="movie-content-right-bottom-content-title-item">
+                                        <p>Mô tả</p>
+                                </div>
+                            </div>
+                            <div class="movie-content-right-bottom-content">
+                                <div class="movie-content-right-bottom-content-noidungphim">
+                                    <span class="txt" id="movie-description"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
   <!--Footer-->
   <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234)">
@@ -163,3 +151,4 @@
 </body>
 <script src="../js/Common/logout.js"></script>
 <script src="../js/Common/checkLoggedIn.js"></script>
+<script src="../js/Common/movie-details.js"></script>

@@ -2,7 +2,7 @@ async function isUserLoggedIn() {
     try {
         const response = await fetch('../../BE/Common/check_login.php', {
             method: 'GET',
-            credentials: 'include', // Bao gồm cookies cho session
+            credentials: 'include', // Important: Ensure cookies are included with the request
         });
 
         if (!response.ok) {
@@ -13,8 +13,9 @@ async function isUserLoggedIn() {
         const result = await response.json();
         return {
             loggedIn: result.loggedIn,
-            role: result.role,       // 'admin' or 'customer'
-            user: result.user,       // { username, email } or null
+            role: result.role,
+            user: result.user,
+            customerID: result.customerID,
         };
     } catch (error) {
         console.error("Error checking login status:", error);
