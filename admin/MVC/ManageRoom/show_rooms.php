@@ -4,8 +4,8 @@ require_once '../database.php';
 $db = new Database();
 
 // Lấy phim đang chiếu (releaseDate <= ngày hiện tại)
-function ShowRoom($db) {
-    $sql = "SELECT * FROM room ORDER BY roomID ASC";
+function ShowRoom($db, $theaterID) {
+    $sql = "SELECT * FROM room  WHERE theaterID = $theaterID ORDER BY roomID ASC";
     $result = $db->select($sql);
     $room = [];
     if ($result) {
@@ -16,7 +16,16 @@ function ShowRoom($db) {
     return $room;
 }
 
-$response = ShowRoom($db);
+$theaterID = isset($_GET['theaterID']) ? $_GET['theaterID'] : null;
+
+// Nếu không có theaterID, trả về lỗi
+if (!$theaterID) {
+    http_response_code(400); // Mã lỗi Bad Request
+    echo json_encode(['error' => 'Missing theaterID parameter']);
+    exit();
+}
+
+$response = ShowRoom($db, $theaterID);
 
 // Set content type to JSON
 header('Content-Type: application/json');
