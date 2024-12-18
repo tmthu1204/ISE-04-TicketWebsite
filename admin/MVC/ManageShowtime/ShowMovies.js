@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const theaterID = params.get('theaterID');
@@ -26,39 +25,65 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(movies => {
                 movieListDiv.innerHTML = ''; // Xóa nội dung cũ
-    
+
                 if (movies.length === 0) {
                     movieListDiv.textContent = 'Chưa có phim nào được tạo suất chiếu.';
                     return;
                 }
-    
-                // Duyệt qua từng phim
+
+                // Thêm CSS Flexbox cho phần chứa các thẻ card
+                movieListDiv.style.display = 'flex';
+                movieListDiv.style.flexWrap = 'wrap';
+                movieListDiv.style.justifyContent = 'space-around';
+                movieListDiv.style.gap = '15px';  // Khoảng cách giữa các thẻ card
+
+                // Duyệt qua từng phim và tạo thẻ card cho mỗi phim
                 movies.forEach(movie => {
                     const movieDiv = document.createElement('div');
                     movieDiv.classList.add('movie-item'); // Thêm class cho mỗi phim để dễ dàng tùy chỉnh CSS
-    
+
+                    // Cài đặt CSS cho thẻ div của phim
+                    movieDiv.style.border = '1px solid #ddd';
+                    movieDiv.style.padding = '10px';
+                    movieDiv.style.margin = '10px';
+                    movieDiv.style.borderRadius = '8px';
+                    movieDiv.style.backgroundColor = '#a69b8c';
+                    movieDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                    movieDiv.style.width = '300px';  // Kích thước thẻ nhỏ lại
+                    movieDiv.style.textAlign = 'center';
+
                     // Hiển thị tên phim
                     const movieName = document.createElement('h3');
                     movieName.textContent = `${movie.name}`;
+                    movieName.style.fontSize = '18px';
+                    movieName.style.color = '#333';
                     movieDiv.appendChild(movieName);
-    
+
                     // Gọi API để lấy suất chiếu cho từng phim
                     fetch(`get_showtime.php?movieID=${movie.movieID}&theaterID=${theaterID}`)
                         .then(response => response.json())
                         .then(showtimes => {
                             const showtimesList = document.createElement('ul');
-                            
+
                             if (showtimes.length > 0) {
                                 showtimes.forEach(showtime => {
                                     const showtimeItem = document.createElement('li');
                                     showtimeItem.textContent = `${showtime.startTime}`;
-    
+                                    showtimeItem.style.padding = '5px 0';
+
                                     // Thêm nút xóa
                                     const deleteButton = document.createElement('button');
                                     deleteButton.textContent = 'Xóa';
+                                    deleteButton.style.marginLeft = '5px';
+                                    deleteButton.style.backgroundColor = '#f44336';
+                                    deleteButton.style.color = 'white';
+                                    deleteButton.style.border = 'none';
+                                    deleteButton.style.padding = '5px 10px';
+                                    deleteButton.style.borderRadius = '5px';
+                                    deleteButton.style.cursor = 'pointer';
                                     deleteButton.onclick = () => deleteShowtime(showtime.showtimeID);
                                     showtimeItem.appendChild(deleteButton);
-    
+
                                     showtimesList.appendChild(showtimeItem);
                                 });
                             } else {
@@ -66,37 +91,44 @@ document.addEventListener('DOMContentLoaded', () => {
                                 noShowtimeItem.textContent = 'Chưa có suất chiếu nào.';
                                 showtimesList.appendChild(noShowtimeItem);
                             }
-    
+
                             movieDiv.appendChild(showtimesList);
                         })
                         .catch(error => {
                             console.error('Có lỗi khi lấy suất chiếu:', error);
                         });
-    
                     // Thêm nút tạo suất chiếu mới
                     const addShowtimeButton = document.createElement('button');
                     addShowtimeButton.textContent = 'Thêm Suất Chiếu';
+                    addShowtimeButton.style.backgroundColor = '#3cb371'; // Nền màu xanh dương
+                    addShowtimeButton.style.color = '#fff'; // Màu chữ trắng
+                    addShowtimeButton.style.border = 'none'; // Loại bỏ viền
+                    addShowtimeButton.style.padding = '5px 10px'; // Tăng kích thước nút
+                    addShowtimeButton.style.borderRadius = '5px'; // Bo tròn góc nút
+                    addShowtimeButton.style.cursor = 'pointer'; // Hiển thị con trỏ khi hover
+                    addShowtimeButton.style.fontSize = '16px'; // Tăng kích thước chữ
                     addShowtimeButton.onclick = () => {
                         startTimeInput.value = ''; // Reset lại thời gian
                         loadRooms(); // Tải lại danh sách phòng
                         movieSelect.value = movie.movieID; // Chọn phim hiện tại
                         addShowtimeForm.style.display = 'block'; // Hiện form thêm suất chiếu
+                        const addShowtimeModal = new bootstrap.Modal(document.getElementById('addShowtimeModal'));
+                        addShowtimeModal.show(); // Hiện modal
                     };
                     movieDiv.appendChild(addShowtimeButton);
-    
+
                     // Thêm div phim vào danh sách phim
                     movieListDiv.appendChild(movieDiv);
                 });
             })
             .catch(error => alert('Có lỗi khi tải danh sách phim theo theater: ' + error));
     }
-    
+
     // Tải danh sách phim từ database để thêm
     function loadAllMovies() {
         fetch('../ManageMovie/show_movie.php')
             .then(response => response.json())
             .then(movies => {
-                //console.log(movies);
                 movieSelect.innerHTML = '';
                 movies.forEach(movie => {
                     const option = document.createElement('option');
@@ -117,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 rooms.forEach((room, index) => {
                     const option = document.createElement('option');
                     option.value = room.roomID;
-                    option.textContent = 'room' + (index+1);
+                    option.textContent = 'room' + (index + 1);
                     roomSelect.appendChild(option);
                 });
             })
@@ -142,10 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
         })
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
                 if (result.success) {
                     addShowtimeForm.style.display = 'none';
-                    window.location.reload()
+                    window.location.reload();
                 } else {
                     alert('Có lỗi khi thêm suất chiếu: ' + result.message);
                 }

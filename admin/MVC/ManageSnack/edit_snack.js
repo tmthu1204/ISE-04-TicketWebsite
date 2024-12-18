@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    window.location.href = "show_snack.html"; // Redirect to a snack listing page
+                    window.location.href = "add_snack.html"; // Redirect to a snack listing page
                 } else {
                     alert("Cập nhật thông tin đồ ăn nhẹ thất bại: " + data.message);
                 }

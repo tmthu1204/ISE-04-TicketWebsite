@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    window.location.href = 'show_snack.html';  
+                    window.location.href = 'add_snack.html';  
                 } else {
                     alert("Lỗi khi thêm đồ ăn: " + data.message);
                 }

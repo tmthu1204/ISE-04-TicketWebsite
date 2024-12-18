@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -19,4 +19,129 @@
 
     <script src="add_snack.js"></script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Bán Vé Xem Phim</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../fontawesome-free-6.7.1-web/fontawesome-free-6.7.1-web/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+     <!-- Navbar -->
+     <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(45deg, #e8dccc, #373234);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../images/png-clipart-red-river-theatres-cinema-film-logo-reel-miscellaneous-angle-removebg-preview.png"
+                    alt="Cinema Logo" style="height: 60px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav"
+                style="background: linear-gradient(45deg, #e8dccc, #373234); min-height: 60px;">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item text-center">
+                        <a class="nav-link" style="color: #000000">Xin chào Admin - Tùng</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="login-admin.html" style="color: #000000">Đăng xuất</a>
+                    </li>
+                </ul>
+                <form class="d-flex ms-3">
+                    <input class="form-control me-2" type="search" placeholder="Nhập tên phim" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Tìm kiếm</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Add Snack Modal -->
+    <div class="modal fade" id="addSnackModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm Đồ Ăn Nhẹ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="snackForm" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Tên Đồ Ăn</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Giá</label>
+                            <input type="number" class="form-control" id="price" name="price" step="0.01" min="0" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="admin-content-right">
+        <div class="admin-content-right-movie-list">
+            <h1 style="text-align: center; color: white; margin-top:20px;">Danh sách phim</h1>
+            <table
+                style="width: 80%; margin: auto; border-collapse: collapse; text-align: center; background-color: #333; color: white; border: 1px solid #ddd;">
+                <thead>
+                    <tr style="background-color: #444; color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">Số thứ tự</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Tên đồ ăn</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Giá</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="snack-list">
+                    <!-- Dynamic movie rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Control Icons -->
+    <div class="d-flex gap-3 mt-4">
+        <button class="btn btn-link text-white mt-5" style="margin-left:740px; margin-bottom:50px;">
+            <i class="fa-solid fa-circle-plus fa-2x " data-bs-toggle="modal" data-bs-target="#addSnackModal"></i>
+        </button>
+    </div>
+    <!--Footer-->
+    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:70px;">
+        <div class="footer-top">
+            <li><a href=""></a>Liên hệ</li>
+            <li><a href=""></a>Tuyển dụng</li>
+            <li><a href=""></a>Giới thiệu</li>
+            <li>
+                <a href="" class="fab fa-facebook-f"></a>
+                <a href="" class="fab fa-twitter"></a>
+                <a href="" class="fab fa-youtube"></a>
+            </li>
+        </div>
+        <div class="footer-center">
+            <p>Công ty Cổ Phần Minh An <br>
+                Địa chỉ đăng ký: 182 Chu Văn An, phường 10, Quận Bình Thành, TP.Hồ Chí Minh, Việt Nam - 0233 199
+                873<br>
+                Liên hệ đặt vé: <b>0233 199 873</b>
+            </p>
+        </div>
+    </div>
+</body>
+<!-- Link to JavaScript -->
+<script src="add_snack.js"></script>
+<script src="show_snack.js"></script>
+</body>
+<div class="footer-bottom">
+    ©Selenia All rights reserved
+</div>
+
 </html>
