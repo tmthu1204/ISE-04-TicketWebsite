@@ -26,6 +26,16 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
+        const priceField = document.getElementById("price");
+        const price = parseFloat(priceField.value);
+
+        // Kiểm tra nếu giá trị không hợp lệ
+        if (isNaN(price) || price <= 0) {
+            alert("Giá phải là một số dương.");
+            return;
+        }
+
+
         const formData = new FormData(form);
 
         fetch("edit_snack.php", {
