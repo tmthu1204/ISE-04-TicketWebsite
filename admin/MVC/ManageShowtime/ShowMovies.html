@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản Lý Suất Chiếu</title>
+    <script src="showMovies.js" defer></script>
+</head>
+<body>
+    <h1>Danh Sách Phim đang chiếu</h1>
+    <div id="movie-list">Đang tải danh sách phim ...</div>
+    <hr>
+    <h2>Thêm Phim</h2>
+    <button id="add-showtime-button">Thêm Phim Và Suất Chiếu</button>
+    <div id='add-showtime-form' style="display: none; position: absolute;">
+        <h3>Chọn Phim Và Nhập Thông Tin Suất Chiếu</h3>
+        <label for="movie-select">Chọn Phim:</label>
+        <select id="movie-select"></select>
+        <br><br>
+        <label for="start-time">Start Time:</label>
+        <input type="datetime-local" id="start-time">
+        <br><br>
+        <label for="room-select">Chọn Phòng:</label>
+        <select id="room-select"></select>
+        <br><br>
+        <button id="save-showtime-button">Lưu Suất Chiếu</button>
+    </div>
+</body>
+</html>

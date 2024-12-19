@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Phim</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="admin-content-right">
+        <div class="admin-content-right-movie-list">
+            <h1>Danh sách rạp</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody id="theater-list">
+                    <!-- Dynamic movie rows will be inserted here -->
+                </tbody>
+            </table>
+            <a href="add_theater.html" class="btn">Thêm rạp</a>
+        </div>
+    </div>
+    <script src="show_theater.js"></script>
+</body>
+</html>
