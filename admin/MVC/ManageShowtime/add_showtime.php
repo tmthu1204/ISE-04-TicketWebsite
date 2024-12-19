@@ -26,15 +26,12 @@ if ($seatResult) {
     // Lấy seatLayout từ kết quả truy vấn
     $seatLayout = $seatResult->fetch_assoc()['seatLayout'];
     
-    // Tạo availableSeats dựa trên seatLayout
     $isAvailable = $seatLayout;
 
-// Tính toán số ghế trống (availableSeats), tức là số 0 trong isAvailable
-$availableSeats = substr_count($isAvailable, '"0"');
 
 // Chèn dữ liệu vào bảng showtime
-$queryShowtime = "INSERT INTO showtime (movieID, theaterID, roomID, startTime, availableSeats) 
-                  VALUES ($movieID, $theaterID, $roomID, '$startTime', $availableSeats)";
+$queryShowtime = "INSERT INTO showtime (movieID, theaterID, roomID, startTime) 
+                  VALUES ($movieID, $theaterID, $roomID, '$startTime')";
 
 if ($db->insert($queryShowtime)) {
     // Lấy showtimeID vừa được chèn
