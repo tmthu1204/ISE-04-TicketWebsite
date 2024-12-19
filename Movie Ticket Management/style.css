@@ -76,15 +76,21 @@ body {
 }
 
 .seat.selected {
-    background-color: #ffc107;
+    background-color: #ffe207;
     color: #fff;
 }
 
-.seat.unavailable {
-    background-color: #6c757d;
-    color: #fff;
+.seat.reserved {
+    background-color: rgb(255, 55, 0); /* Reserved by another user */
+    color: #ffffff;
     cursor: not-allowed;
 }
+
+.seat.unavailable {
+    background-color: grey; /* Permanently unavailable */
+    cursor: not-allowed;
+}
+
 
 .seat:hover:not(.unavailable) {
     transform: scale(1.1);

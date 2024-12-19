@@ -70,7 +70,19 @@ if (json_last_error() !== JSON_ERROR_NONE) {
     exit;
 }
 
-// Pass data to frontend
+// Process seat statuses
+foreach ($isAvailable as $rowIndex => $row) {
+    foreach ($row as $colIndex => $seatStatus) {
+        // Mark reserved seats (1) separately from unavailable seats (-1)
+        if ($seatStatus === "1") {
+            $isAvailable[$rowIndex][$colIndex] = "1"; // Reserved
+        } elseif ($seatStatus === "-1") {
+            $isAvailable[$rowIndex][$colIndex] = "-1"; // Permanently unavailable
+        }
+    }
+}
+
+// Send data to frontend
 header('Content-Type: application/json');
 echo json_encode([
     'seats' => $isAvailable,
@@ -78,4 +90,6 @@ echo json_encode([
     'movieTitle' => $movie['title'],
     'movieReleaseDate' => $movie['releaseDate']
 ]);
+
+
 ?>

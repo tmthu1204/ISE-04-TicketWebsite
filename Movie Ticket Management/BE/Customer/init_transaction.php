@@ -19,19 +19,26 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'customer') {
 // Get the customer ID from session
 $customerID = $_SESSION['user']['id'];
 
-// First insert: Store the customer ID in the database (without transactionID, it will auto-generate)
-$sql = "INSERT INTO transaction (customerID) VALUES (?)";
+// Get the showtimeID from the GET parameter
+if (!isset($_GET['showtimeID'])) {
+    header('Content-Type: application/json');
+    echo json_encode(["error" => "Missing showtime ID"]);
+    exit;
+}
+$showtimeID = intval($_GET['showtimeID']);
+
+// Insert customerID and showtimeID into the transaction table
+$sql = "INSERT INTO transaction (customerID, showtimeID) VALUES (?, ?)";
 $stmt = $db->link->prepare($sql);
 
 // Check if the preparation of the statement failed
 if ($stmt === false) {
-    // If there's an error in preparing the statement, show the error
     header('Content-Type: application/json');
     echo json_encode(["error" => "Failed to prepare SQL statement: " . $db->link->error]);
     exit;
 }
 
-$stmt->bind_param("i", $customerID);
+$stmt->bind_param("ii", $customerID, $showtimeID);
 
 // Execute the statement
 if ($stmt->execute()) {

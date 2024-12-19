@@ -9,12 +9,14 @@ $db = new Database();
 $movieID = $_GET['movieID'];
 $theaterID = $_GET['theaterID'];
 
+$currentDate = date('Y-m-d');
+
 // Query to fetch available dates
 $sql = "SELECT DISTINCT DATE(startTime) as availableDate 
         FROM showtime 
-        WHERE movieID = ? AND theaterID = ? AND availableSeats > 0";
+        WHERE movieID = ? AND theaterID = ? AND DATE(startTime) >= ?";
 $stmt = $db->link->prepare($sql);
-$stmt->bind_param("ii", $movieID, $theaterID);
+$stmt->bind_param("iis", $movieID, $theaterID, $currentDate);
 $stmt->execute();
 $result = $stmt->get_result();
 

@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error('Error initializing transaction:', error));
     }
+    
 
     /** Load seat data */
     function loadSeatData(showtimeID) {
@@ -91,22 +92,74 @@ document.addEventListener("DOMContentLoaded", function () {
     /** Get seat status class */
     function getSeatClass(seatStatus) {
         switch (seatStatus) {
-            case "0": return 'available';
-            case "1": return 'selected';
-            case "-1": return 'unavailable';
-            default: return 'unavailable';
+            case "0": return 'available'; // Available for selection
+            case "1": return 'reserved'; // Selected by another user
+            case "-1": return 'unavailable'; // Permanently unavailable
+            default: return 'unavailable'; // Fallback for unknown states
         }
     }
+    
 
-    /** Add event listeners for seat selection */
+    /** Add event listeners for seat selection and deselection */
     function addSeatSelectionListeners() {
         document.querySelectorAll('.seat.available').forEach(seat => {
+            if (!seat.classList.contains('reserved') && !seat.classList.contains('unavailable')){
             seat.addEventListener('click', function () {
-                this.classList.toggle('selected');
+                const row = parseInt(this.getAttribute('data-seat-row'));
+                const col = parseInt(this.getAttribute('data-seat-col'));
+
+                // Toggle seat selection
+                const isSelected = this.classList.toggle('selected');
+                const seatStatus = isSelected ? "1" : "0"; // "1" for selected, "0" for deselected
+
+                // Update the seat status on the server
+                updateSeatStatus(row, col, seatStatus);
+
+                // Update the selected seats and price
                 updateSelectedSeats();
             });
+            }
         });
     }
+
+    /** Update seat status on the server */
+    function updateSeatStatus(row, col, status) {
+        const showtimeID = sessionStorage.getItem('showtimeID') || urlParams.get('showtimeID');
+        console.log('Retrieved showtimeID:', showtimeID);
+
+        if (!showtimeID) {
+            alert('Invalid showtime ID.');
+            return;
+        }
+
+
+        fetch('../../BE/Customer/update_seat.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                showtimeID,
+                row,
+                col,
+                status
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    alert(`Failed to update seat status: ${data.error}`);
+                } else {
+                    console.log(
+                        `Seat [Row ${row + 1}, Col ${col + 1}] updated to ${status === "1" ? "selected" : "available"}`
+                    );
+                }
+            })
+            .catch(error => {
+                console.error('Error updating seat status:', error);
+                alert('Error updating seat status.');
+            });
+    }
+
+
 
     /** Update selected seats */
     function updateSelectedSeats() {
@@ -131,7 +184,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('confirmButton').disabled = selectedSeatsCount === 0;
     }
 
-    /** Handle "Tiếp tục" button click */
     /** Handle "Tiếp tục" button click */
     function handleContinueClick() {
         const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats')) || [];
@@ -188,6 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error('Error:', error);
                 alert('An error occurred while updating seat selection. ' + error.message);
             });
+
     }
     
 
