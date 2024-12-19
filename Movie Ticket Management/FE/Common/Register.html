@@ -93,6 +93,16 @@
                     </div>
                     <div>
                         <button type="button" id="registerBtn" style="width: 100%" class="btn btn-danger">Đăng ký</button>
+                <!-- OTP Section -->
+                    <div id="otpSection" style="display: none;">
+                        <div class="mb-3">
+                            <label for="otp" class="form-label" style="color:white">Mã OTP</label>
+                            <input type="text" class="form-control" id="otp" name="otp" placeholder="Nhập mã OTP">
+                            <div id="otpErr" class="text-danger"></div>
+                        </div>
+                        <div>
+                            <button type="button" id="verifyOtpBtn" class="btn btn-success" style="width: 100%">Xác minh OTP</button>
+                        </div>
                     </div>
                     <p class="text-center mt-2" style="color:white">
                         Bạn đã có tài khoản? <a href="login.html">Đăng nhập</a>
