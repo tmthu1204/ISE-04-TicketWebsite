@@ -25,8 +25,7 @@ document.getElementById("registerBtn").addEventListener("click", function () {
         .then((data) => {
             console.log(JSON.stringify(data)); // Log data for debugging
             if (data.success) {
-                // If registration is successful, show OTP section
-                document.getElementById("otpSection").style.display = "block"; 
+                // If registration is successful
                 alert(data.message); // Show success message
             } else {
                 // Show error messages for invalid fields

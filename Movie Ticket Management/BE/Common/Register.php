@@ -1,5 +1,6 @@
 <?php
 session_start();
+header('Content-Type: application/json');
 include 'config.php';
 include 'database.php';
 

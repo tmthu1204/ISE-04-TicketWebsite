@@ -3,12 +3,6 @@
 require_once "config.php";
 require_once "database.php";
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
 
 // Start session
 session_start();
@@ -22,97 +16,6 @@ $response = [
     "errors" => []
 ];
 
-// function sendPassword($email, $password) {
-//     $mail = new PHPMailer(true);
-
-//     try {
-//         $mail->isSMTP();
-//         $mail->Host = 'smtp.gmail.com';
-//         $mail->SMTPAuth = true;
-//         $mail->Username = 'chuquynh2004@gmail.com'; // Gmail của bạn
-//         $mail->Password = 'oltukhsmikrcyiej'; // Mật khẩu ứng dụng
-//         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-//         $mail->Port = 587;
-
-//         $mail->setFrom('chuquynh2004@gmail.com', 'TicketWebsite');
-//         $mail->addAddress($email);
-
-//         $mail->isHTML(true);
-//         $mail->Subject = 'Your Account Password';
-//         $mail->Body = "Your account password is: <strong>$password</strong>";
-
-//         $mail->send();
-//         return true;
-//     } catch (Exception $e) {
-//         error_log("Failed to send password email: " . $mail->ErrorInfo);
-//         return false;
-//     }
-// }
-
-// $email = isset($_POST['action']) ? trim($_POST['action']) : '';
-// if ('action' === "sendpass") {
-//     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
-
-//     if (empty($email)) {
-//         $response["errors"][] = [
-//             "field" => "email",
-//             "message" => "Email không được để trống."
-//         ];
-//     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//         $response["errors"][] = [
-//             "field" => "email",
-//             "message" => "Email không hợp lệ."
-//         ];
-//     } else {
-//         // Check if the email exists in admin table
-//         $adminQuery = "SELECT password FROM admin WHERE email = '{$db->link->real_escape_string($email)}'";
-//         $adminResult = $db->select($adminQuery);
-
-//         if ($adminResult) {
-//             $admin = $adminResult->fetch_assoc();
-//             $password = $admin['password'];
-
-//             if (sendPassword($email, $password)) {
-//                 $response["success"] = true;
-//                 $response["message"] = "Mật khẩu đã được gửi đến email của bạn.";
-//             } else {
-//                 $response["errors"][] = [
-//                     "field" => "general",
-//                     "message" => "Không thể gửi email. Vui lòng thử lại sau."
-//                 ];
-//             }
-//         } else {
-//             // Check if the email exists in customer table
-//             $customerQuery = "SELECT password FROM customer WHERE email = '{$db->link->real_escape_string($email)}'";
-//             $customerResult = $db->select($customerQuery);
-
-//             if ($customerResult) {
-//                 $customer = $customerResult->fetch_assoc();
-//                 $password = $customer['password'];
-
-//                 if (sendPassword($email, $password)) {
-//                     $response["success"] = true;
-//                     $response["message"] = "Mật khẩu đã được gửi đến email của bạn.";
-//                 } else {
-//                     $response["errors"][] = [
-//                         "field" => "general",
-//                         "message" => "Không thể gửi email. Vui lòng thử lại sau."
-//                     ];
-//                 }
-//             } else {
-//                 $response["errors"][] = [
-//                     "field" => "email",
-//                     "message" => "Email không tồn tại trong hệ thống."
-//                 ];
-//             }
-//         }
-//     }
-
-//     // Return response as JSON
-//     header('Content-Type: application/json');
-//     echo json_encode($response);
-//     exit;
-// }
 
 // Retrieve and sanitize input
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';
