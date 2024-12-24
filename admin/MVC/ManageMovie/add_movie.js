@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             // Xử lý dữ liệu từ server
             if (data.status === 'success') {
-                window.location.href = 'show_movie.html';
+                window.location.href = 'add_movie.html';
             } else {
                 alert('Error: ' + data.message); // Hiển thị thông báo lỗi từ server
             }

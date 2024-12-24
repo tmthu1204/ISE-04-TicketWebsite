@@ -73,94 +73,120 @@
         </div>
     </nav>
     <div class="text-center mb-4">
-        <span class="badge text-ligt" style="font-size:35px; margin-top:80px">Điều chỉnh phim</span>
+        <span class="badge text-ligt" style="font-size:35px; margin-top:40px">Quản lý phim</span>
     </div>
-        <!-- Modal -->
-        <!-- Add Movie Modal -->
-        <div class="modal fade" id="addMovieModal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Thêm Phim Mới</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="movieForm" enctype="multipart/form-data">
-                            <div class="mb-3">
-                                <label for="title" class="form-label">Tên Phim</label>
-                                <input type="text" class="form-control" id="title" name="title" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="poster" class="form-label">Poster</label>
-                                <input type="file" class="form-control" id="poster" name="poster" accept="image/*">
-                            </div>
-                            <div class="mb-3">
-                                <label for="trailerURL" class="form-label">Trailer URL</label>
-                                <input type="url" class="form-control" id="trailerURL" name="trailerURL">
-                            </div>
-                            <div class="mb-3">
-                                <label for="duration" class="form-label">Thời Lượng</label>
-                                <input type="number" class="form-control" id="duration" name="duration">
-                            </div>
-                            <div class="mb-3">
-                                <label for="genre" class="form-label">Thể Loại</label>
-                                <input type="text" class="form-control" id="genre" name="genre">
-                            </div>
-                            <div class="mb-3">
-                                <label for="releaseDate" class="form-label">Ngày Phát Hành</label>
-                                <input type="date" class="form-control" id="releaseDate" name="releaseDate">
-                            </div>
-                            <div class="mb-3">
-                                <label for="country" class="form-label">Quốc Gia</label>
-                                <input type="text" class="form-control" id="country" name="country">
-                            </div>
-                            <div class="mb-3">
-                                <label for="language" class="form-label">Ngôn Ngữ</label>
-                                <input type="text" class="form-control" id="language" name="language">
-                            </div>
-                            <div class="mb-3">
-                                <label for="intro" class="form-label">Giới Thiệu</label>
-                                <textarea class="form-control" id="intro" name="intro"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Thêm</button>
-                        </form>
-                    </div>
+    <!-- Modal -->
+    <!-- Add Movie Modal -->
+    <div class="modal fade" id="addMovieModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm Phim Mới</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="movieForm" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Tên Phim</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="poster" class="form-label">Poster</label>
+                            <input type="file" class="form-control" id="poster" name="poster" accept="image/*">
+                        </div>
+                        <div class="mb-3">
+                            <label for="trailerURL" class="form-label">Trailer URL</label>
+                            <input type="url" class="form-control" id="trailerURL" name="trailerURL">
+                        </div>
+                        <div class="mb-3">
+                            <label for="duration" class="form-label">Thời Lượng</label>
+                            <input type="number" class="form-control" id="duration" name="duration">
+                        </div>
+                        <div class="mb-3">
+                            <label for="genre" class="form-label">Thể Loại</label>
+                            <input type="text" class="form-control" id="genre" name="genre">
+                        </div>
+                        <div class="mb-3">
+                            <label for="releaseDate" class="form-label">Ngày Phát Hành</label>
+                            <input type="date" class="form-control" id="releaseDate" name="releaseDate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Quốc Gia</label>
+                            <input type="text" class="form-control" id="country" name="country">
+                        </div>
+                        <div class="mb-3">
+                            <label for="language" class="form-label">Ngôn Ngữ</label>
+                            <input type="text" class="form-control" id="language" name="language">
+                        </div>
+                        <div class="mb-3">
+                            <label for="intro" class="form-label">Giới Thiệu</label>
+                            <textarea class="form-control" id="intro" name="intro"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- Control Icons -->
-        <div class="d-flex gap-3 mt-4">
-            <button class="btn btn-link text-white mt-5" style="margin-left:50px">
-                <i class="fa-solid fa-circle-plus fa-2x " data-bs-toggle="modal" data-bs-target="#addMovieModal"></i>
-            </button>
+    </div>
+    <div class="admin-content-right">
+        <div class="admin-content-right-movie-list">
+            <h1 style="text-align: center; color: white; margin-top:20px;">Danh sách phim</h1>
+            <table
+                style="width: 80%; margin: auto; border-collapse: collapse; text-align: center; background-color: #333; color: white; border: 1px solid #ddd;">
+                <thead>
+                    <tr style="background-color: #444; color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">Số thứ tự</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Tên phim</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Poster</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Nước</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Ngôn ngữ</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Giới thiệu</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Trailer</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Thời lượng</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Thể loại</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Ngày công chiếu</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="movie-list">
+                    <!-- Dynamic movie rows will be inserted here -->
+                </tbody>
+            </table>
         </div>
     </div>
+    <!-- Control Icons -->
+    <div class="d-flex gap-3 mt-4">
+        <button class="btn btn-link text-white mt-5" style="margin-left:740px; margin-bottom:30px;">
+            <i class="fa-solid fa-circle-plus fa-2x " data-bs-toggle="modal" data-bs-target="#addMovieModal"></i>
+        </button>
+    </div>
+    </div>
+    <!--Footer-->
+    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:70px;">
+        <div class="footer-top">
+            <li><a href=""></a>Liên hệ</li>
+            <li><a href=""></a>Tuyển dụng</li>
+            <li><a href=""></a>Giới thiệu</li>
+            <li>
+                <a href="" class="fab fa-facebook-f"></a>
+                <a href="" class="fab fa-twitter"></a>
+                <a href="" class="fab fa-youtube"></a>
+            </li>
+        </div>
+        <div class="footer-center">
+            <p>Công ty Cổ Phần Minh An <br>
+                Địa chỉ đăng ký: 182 Chu Văn An, phường 10, Quận Bình Thành, TP.Hồ Chí Minh, Việt Nam - 0233 199
+                873<br>
+                Liên hệ đặt vé: <b>0233 199 873</b>
+            </p>
+        </div>
+    </div>
+    <!-- Link to JavaScript -->
+    <script src="add_movie.js"></script>
+    <script src="show_movie.js"></script>
 </body>
-<!--Footer-->
-<div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:70px;">
-    <div class="footer-top">
-        <li><a href=""></a>Liên hệ</li>
-        <li><a href=""></a>Tuyển dụng</li>
-        <li><a href=""></a>Giới thiệu</li>
-        <li>
-            <a href="" class="fab fa-facebook-f"></a>
-            <a href="" class="fab fa-twitter"></a>
-            <a href="" class="fab fa-youtube"></a>
-        </li>
-    </div>
-    <div class="footer-center">
-        <p>Công ty Cổ Phần Minh An <br>
-            Địa chỉ đăng ký: 182 Chu Văn An, phường 10, Quận Bình Thành, TP.Hồ Chí Minh, Việt Nam - 0233 199
-            873<br>
-            Liên hệ đặt vé: <b>0233 199 873</b>
-        </p>
-    </div>
-</div>
 <div class="footer-bottom">
     ©Selenia All rights reserved
 </div>
 
 </html>
-
-<!-- Link to JavaScript -->
-<script src="add_movie.js"></script>

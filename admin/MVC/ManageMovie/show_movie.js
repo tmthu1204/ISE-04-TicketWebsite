@@ -52,10 +52,13 @@ fetch('show_movie.php')
 
             const actionCell = document.createElement('td');
             actionCell.innerHTML = `
-                <a href="edit_movie.html?movieID=${movie.movieID}">Edit</a> | 
-                <button class="delete-button" data-movieID="${movie.movieID}">Delete</button>
+            <a href="edit_movie.html?movieID=${movie.movieID}" title="Edit">
+            <i class="fa-solid fa-pencil"></i>
+            </a> | 
+            <button class="delete-button" data-movieID="${movie.movieID}" title="Delete" style="background: none; border: none; cursor: pointer;color:red">
+            <i class="fa-solid fa-trash"></i>
+            </button>
             `;
-
             // Append cells to row
             row.appendChild(sttCell);
             // row.appendChild(idCell);

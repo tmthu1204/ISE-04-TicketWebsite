@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             // Xử lý dữ liệu từ server
             if (data.status === 'success') {
-                window.location.href = 'show_theater.html'; // Chuyển hướng đến trang hiển thị các rạp chiếu
+                window.location.href = 'add_theater.html'; // Chuyển hướng đến trang hiển thị các rạp chiếu
             } else {
                 alert('Error: ' + data.message); // Hiển thị thông báo lỗi từ server
             }

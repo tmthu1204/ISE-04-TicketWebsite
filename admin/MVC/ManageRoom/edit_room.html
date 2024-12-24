@@ -9,41 +9,6 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../fontawesome-free-6.7.1-web/fontawesome-free-6.7.1-web/css/all.css">
     <link rel="stylesheet" href="../style.css">
-    <style>
-        .seat-btn {
-            width: 50px;
-            height: 50px;
-            margin: 3px;
-            transition: all 0.3s ease;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .seat-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .seat-btn:active {
-            transform: scale(0.95);
-        }
-        .seat-available {
-            background-color: #90EE90;
-            color: #006400;
-        }
-        .seat-unavailable {
-            background-color: #FFB6C1;
-            color: #8B0000;
-        }
-        #seatLayout {
-            max-width: 100%;
-            overflow-x: auto;
-        }
-    </style>
 </head>
 
 <body>
@@ -88,7 +53,7 @@
                 <input type="number" id="cols" class="form-control" value="15" min="1">
             </div>
             <div class="col-md-6">
-                <button id="generate" class="btn btn-primary mt-4">Tạo bố trí ghế</button>
+                <button id="generate" class="btn btn-primary" style="margin-top:32px;">Tạo bố trí ghế</button>
             </div>
         </div>
         <div id="seatLayout" class="row justify-content-center"></div>
