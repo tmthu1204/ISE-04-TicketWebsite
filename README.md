@@ -35,7 +35,4 @@ Nếu bạn gặp vấn đề về cổng (port) khi chạy XAMPP, làm theo cá
 5. Lưu file và khởi động lại Apache.
 6. Truy cập lại ứng dụng với địa chỉ mới, ví dụ: [http://localhost:8080/ISE-06-TicketWebsite](http://localhost:8080/ISE-06-TicketWebsite)
 
-## Sử dụng
-- **Đăng nhập**: Sử dụng tài khoản quản trị viên để quản lý sự kiện và vé.
-- **Đăng ký sự kiện**: Tạo và quản lý các sự kiện mới.
-- **Mua vé**: Người dùng có thể chọn sự kiện và mua vé trực tuyến.
+## License: MIT
