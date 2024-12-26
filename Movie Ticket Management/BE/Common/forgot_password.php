@@ -68,19 +68,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
     if (empty($email)) {
         echo json_encode( ["field" => "email", "message" => "Email không được để trống"]);
     } elseif (!validateEmail($email)) {
-        echo json_encode( ["field" => "email", "message" => "Email không hợp lệ"]);
+        echo json_encode( ["field" => "email", "message" => "Email không hợp lệ"]);       
     } else {
-        // Check if the email exists in the admin table
-        $adminQuery = "SELECT * FROM admin WHERE email = '{$db->link->real_escape_string($email)}'";
-        $adminResult = $db->select($adminQuery);
+        // Check if the email exists in the customer table
+        $customerQuery = "SELECT * FROM customer WHERE email = '{$db->link->real_escape_string($email)}'";
+        $customerResult = $db->select($customerQuery);
 
-        if ($adminResult) {
-            $admin = $adminResult->fetch_assoc();
+        if ($customerResult) {
+            $customer = $customerResult->fetch_assoc();
             $tempPassword = generateTemporaryPassword();
             $hashedPassword = hashPassword($tempPassword);
 
             // Update the password in the database
-            $updateQuery = "UPDATE admin SET password = '{$hashedPassword}' WHERE adminID = {$admin['adminID']}";
+            $updateQuery = "UPDATE customer SET password = '{$hashedPassword}' WHERE customerID = {$customer['customerID']}";
             if ($db->update($updateQuery)) {
                 if (sendPassword($email, $tempPassword)) {
                     echo json_encode(['success' => true, 'message' => 'Mật khẩu tạm thời đã được gửi đến email của bạn']);
@@ -91,33 +91,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
                 echo json_encode(["field" => "general", "message" => "Không thể cập nhật mật khẩu."]);
             }
         } else {
-            // Check if the email exists in the customer table
-            $customerQuery = "SELECT * FROM customer WHERE email = '{$db->link->real_escape_string($email)}'";
-            $customerResult = $db->select($customerQuery);
-
-            if ($customerResult) {
-                $customer = $customerResult->fetch_assoc();
-                $tempPassword = generateTemporaryPassword();
-                $hashedPassword = hashPassword($tempPassword);
-
-                // Update the password in the database
-                $updateQuery = "UPDATE customer SET password = '{$hashedPassword}' WHERE customerID = {$customer['customerID']}";
-                if ($db->update($updateQuery)) {
-                    if (sendPassword($email, $tempPassword)) {
-                        echo json_encode(['success' => true, 'message' => 'Mật khẩu tạm thời đã được gửi đến email của bạn']);
-                    } else {
-                        echo json_encode(["field" => "general", "message" => "Không thể gửi email. Vui lòng thử lại sau."]);
-                    }
-                } else {
-                    echo json_encode(["field" => "general", "message" => "Không thể cập nhật mật khẩu."]);
-                }
-            } else {
-                echo json_encode(["field" => "email", "message" => "Email không tồn tại trong hệ thống."]);
-            }
+            echo json_encode(["field" => "email", "message" => "Email không tồn tại trong hệ thống."]);
         }
     }
-
+    
     // Return response as JSON
     header('Content-Type: application/json');
 }
+
 ?>

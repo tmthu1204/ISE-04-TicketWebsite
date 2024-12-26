@@ -51,7 +51,7 @@ if (empty($response["errors"])) {
         $admin = $adminResult->fetch_assoc();
 
         // Verify password for admin
-        if (password_verify($password, $admin['password'])) { // Use password_verify
+        if (md5($password) == $admin['password']) { // Use md5 to compare
             // Admin authentication successful
             $response["success"] = true;
             $response["role"] = "admin";
