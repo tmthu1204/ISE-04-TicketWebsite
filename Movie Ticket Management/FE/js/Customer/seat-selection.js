@@ -13,29 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Initialize transaction and load seat data
-    initializeTransaction(showtimeID);
     loadSeatData(showtimeID);
 
     // Event listener for the "Tiếp tục" button
     const continueButton = document.getElementById('confirmButton');
     if (continueButton) {
         continueButton.addEventListener('click', handleContinueClick);
-    }
-
-    /** Initialize transaction */
-    function initializeTransaction(showtimeID) {
-        fetch(`../../BE/Customer/init_transaction.php?showtimeID=${showtimeID}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.transactionID) {
-                    sessionStorage.setItem('transactionID', data.transactionID);
-                    console.log('Initialized Transaction ID:', data.transactionID);
-                } else {
-                    alert('Could not initialize transaction.');
-                }
-            })
-            .catch(error => console.error('Error initializing transaction:', error));
     }
     
 
@@ -192,60 +175,20 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
     
-        const transactionID = sessionStorage.getItem('transactionID');
-        if (!transactionID) {
-            alert('Transaction ID not found.');
-            return;
-        }
+        const ticketAmount = selectedSeats.length * 100000; // Price per seat
+        const selectedSnacks = []; // Update to include actual snack selections
+        const snackAmount = selectedSnacks.reduce((total, snack) => total + snack.price * snack.quantity, 0);
     
-        console.log('Sending Transaction ID:', transactionID);
-        console.log('Sending Selected Seats:', selectedSeats);
+        // Store the data in sessionStorage for use in payment.html
+        sessionStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
+        sessionStorage.setItem('selectedSnacks', JSON.stringify(selectedSnacks));
+        sessionStorage.setItem('ticketAmount', ticketAmount);
+        sessionStorage.setItem('snackAmount', snackAmount);
     
-        // Calculate the total ticket amount
-        const pricePerSeat = 100000; // Assuming the price per seat is constant
-        const ticketAmount = selectedSeats.length * pricePerSeat;
-    
-        // Prepare parameters for the POST request
-        const params = new URLSearchParams();
-        params.append('transactionID', transactionID);
-    
-        // Pass selectedSeats as an array, not a string
-        selectedSeats.forEach(seat => params.append('seats[]', seat));
-    
-        // Append ticketAmount to the params
-        params.append('ticketAmount', ticketAmount);
-    
-        // If snacks are selected, append them here (use empty array if none selected)
-        const selectedSnacks = [];  // Update this to get actual snack selections
-        params.append('snacks', JSON.stringify(selectedSnacks));
-    
-        fetch('../../BE/Customer/update_transaction.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: params
-        })
-            .then(response => {
-                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    const selectedSeatsParam = encodeURIComponent(selectedSeats.join(','));
-                    window.location.href = `snack.html?selectedSeats=${selectedSeatsParam}&transactionID=${transactionID}`;
-                } else {
-                    alert('Error updating seats: ' + data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while updating seat selection. ' + error.message);
-            });
-
+        // Redirect to payment.html
+        window.location.href = `payment.html?showtimeID=${showtimeID}`;
     }
-    
 
-    
-    
 
     /** Format date and time */
     function formatDateTime(dateTime) {

@@ -1,56 +1,33 @@
 <?php
-// Start the session at the top
-session_start();
+// init_transaction.php
+include 'database_connection.php'; // Include your DB connection script
 
-// Include configuration and database files
-require_once '../Common/config.php';
-require_once '../Common/database.php';
+$data = json_decode(file_get_contents("php://input"), true);
 
-// Initialize Database instance
-$db = new Database();
+$customerID = $data['customerID'];
+$selectedSeats = $data['selectedSeats'];
+$selectedSnacks = $data['selectedSnacks'];
+$ticketAmount = $data['ticketAmount'];
+$snackAmount = $data['snackAmount'];
+$showtimeID = $data['showtimeID'];
+$paymentInfo = $data['paymentInfo'];
 
-// Check if customer is logged in
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'customer') {
-    header('Content-Type: application/json');
-    echo json_encode(["error" => "Customer not logged in"]);
+// Validate data
+if (!$customerID || !$showtimeID || !$paymentInfo) {
+    echo json_encode(['success' => false, 'error' => 'Missing required data.']);
     exit;
 }
 
-// Get the customer ID from session
-$customerID = $_SESSION['user']['id'];
+// Insert transaction into the database
+$sql = "INSERT INTO transaction (customerID, showtimeID, seatsBooked, snack, ticketAmount, snackAmount, paymentInfo) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-// Get the showtimeID from the GET parameter
-if (!isset($_GET['showtimeID'])) {
-    header('Content-Type: application/json');
-    echo json_encode(["error" => "Missing showtime ID"]);
-    exit;
-}
-$showtimeID = intval($_GET['showtimeID']);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ssssdds", $customerID, $showtimeID, json_encode($selectedSeats), json_encode($selectedSnacks), $ticketAmount, $snackAmount, $paymentInfo);
 
-// Insert customerID and showtimeID into the transaction table
-$sql = "INSERT INTO transaction (customerID, showtimeID) VALUES (?, ?)";
-$stmt = $db->link->prepare($sql);
-
-// Check if the preparation of the statement failed
-if ($stmt === false) {
-    header('Content-Type: application/json');
-    echo json_encode(["error" => "Failed to prepare SQL statement: " . $db->link->error]);
-    exit;
-}
-
-$stmt->bind_param("ii", $customerID, $showtimeID);
-
-// Execute the statement
 if ($stmt->execute()) {
-    // Get the last inserted transactionID (AUTO_INCREMENT)
-    $transactionID = $db->link->insert_id;
-
-    // Success: Return the transaction ID
-    header('Content-Type: application/json');
-    echo json_encode(['transactionID' => $transactionID]);
+    echo json_encode(['success' => true]);
 } else {
-    // Failure: Return the error
-    header('Content-Type: application/json');
-    echo json_encode(["error" => "Failed to execute SQL statement: " . $stmt->error]);
+    echo json_encode(['success' => false, 'error' => $stmt->error]);
 }
 ?>
