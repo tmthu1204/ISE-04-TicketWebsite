@@ -23,13 +23,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result) {
         $user = $result->fetch_assoc();
+        $hashedPassword = $user['password'];
 
-        if ($currentPassword!=$user['password']){
+        if (!password_verify($currentPassword, $hashedPassword)) {
             echo json_encode(['success' => false, 'message' => 'Mật khẩu hiện tại không đúng!']);
             exit;
         }
 
-        $updateQuery = "UPDATE customer SET password = '$newPassword' WHERE customerID = $userId";
+        $newHashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+
+
+        $updateQuery = "UPDATE customer SET password = '$newHashedPassword' WHERE customerID = $userId";
 
         if ($db->update($updateQuery)) {
             echo json_encode(['success' => true]);

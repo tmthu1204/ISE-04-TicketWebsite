@@ -51,7 +51,7 @@ if (empty($response["errors"])) {
         $admin = $adminResult->fetch_assoc();
 
         // Verify password for admin
-        if ($password === $admin['password']) { // Compare plain text passwords
+        if (password_verify($password, $admin['password'])) { // Use password_verify
             // Admin authentication successful
             $response["success"] = true;
             $response["role"] = "admin";
@@ -77,7 +77,7 @@ if (empty($response["errors"])) {
             $customer = $customerResult->fetch_assoc();
 
             // Verify password for customer
-            if ($password === $customer['password']) { // Compare plain text passwords
+            if (password_verify($password, $customer['password'])) { // Use password_verify
                 // Customer authentication successful
                 $response["success"] = true;
                 $response["role"] = "customer";

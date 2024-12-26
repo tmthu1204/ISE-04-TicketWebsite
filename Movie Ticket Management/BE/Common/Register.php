@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($errors)) {
             // Lưu thông tin vào session
             $_SESSION['username'] = $username;
-            $_SESSION['password'] = $password;
+            $_SESSION['password'] = password_hash($password, PASSWORD_BCRYPT); // Băm mật khẩu
     
             if (sendOTP($email)) {
                 echo json_encode(['success' => true, 'message' => 'OTP đã được gửi đến email của bạn']);
@@ -94,10 +94,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     } elseif ($action === "verify") {
         $username = $_SESSION['username'];
-        $password = $_SESSION['password'];
+        $hashedPassword = $_SESSION['password'];
         if ((string)$otp === (string)$_SESSION['otp'] && $email === $_SESSION['otp_email']) {
             // Insert username, email, and password into the database without hashing
-            if ($db->insert("INSERT INTO customer (username, email, password) VALUES ('$username', '$email', '$password')")) {
+            if ($db->insert("INSERT INTO customer (username, email, password) VALUES ('$username', '$email', '$hashedPassword')")) {
                 unset($_SESSION['otp'], $_SESSION['otp_email'], $_SESSION['username'], $_SESSION['password']);
                 echo json_encode(['success' => true, 'message' => 'Đăng ký thành công. Vui lòng đăng nhập.']);
                 exit();
