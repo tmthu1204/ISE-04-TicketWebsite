@@ -13,8 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Initialize transaction and load seat data
-    initializeTransaction(showtimeID);
     loadSeatData(showtimeID);
 
     // Event listener for the "Tiếp tục" button
@@ -22,21 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (continueButton) {
         continueButton.addEventListener('click', handleContinueClick);
     }
-
-    /** Initialize transaction */
-    function initializeTransaction(showtimeID) {
-        fetch(`../../BE/Customer/init_transaction.php?showtimeID=${showtimeID}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.transactionID) {
-                    sessionStorage.setItem('transactionID', data.transactionID);
-                    console.log('Initialized Transaction ID:', data.transactionID);
-                } else {
-                    alert('Could not initialize transaction.');
-                }
-            })
-            .catch(error => console.error('Error initializing transaction:', error));
-    }
+    
 
     /** Load seat data */
     function loadSeatData(showtimeID) {
@@ -91,22 +75,74 @@ document.addEventListener("DOMContentLoaded", function () {
     /** Get seat status class */
     function getSeatClass(seatStatus) {
         switch (seatStatus) {
-            case "0": return 'available';
-            case "1": return 'selected';
-            case "-1": return 'unavailable';
-            default: return 'unavailable';
+            case "0": return 'available'; // Available for selection
+            case "1": return 'reserved'; // Selected by another user
+            case "-1": return 'unavailable'; // Permanently unavailable
+            default: return 'unavailable'; // Fallback for unknown states
         }
     }
+    
 
-    /** Add event listeners for seat selection */
+    /** Add event listeners for seat selection and deselection */
     function addSeatSelectionListeners() {
         document.querySelectorAll('.seat.available').forEach(seat => {
+            if (!seat.classList.contains('reserved') && !seat.classList.contains('unavailable')){
             seat.addEventListener('click', function () {
-                this.classList.toggle('selected');
+                const row = parseInt(this.getAttribute('data-seat-row'));
+                const col = parseInt(this.getAttribute('data-seat-col'));
+
+                // Toggle seat selection
+                const isSelected = this.classList.toggle('selected');
+                const seatStatus = isSelected ? "1" : "0"; // "1" for selected, "0" for deselected
+
+                // Update the seat status on the server
+                updateSeatStatus(row, col, seatStatus);
+
+                // Update the selected seats and price
                 updateSelectedSeats();
             });
+            }
         });
     }
+
+    /** Update seat status on the server */
+    function updateSeatStatus(row, col, status) {
+        const showtimeID = sessionStorage.getItem('showtimeID') || urlParams.get('showtimeID');
+        console.log('Retrieved showtimeID:', showtimeID);
+
+        if (!showtimeID) {
+            alert('Invalid showtime ID.');
+            return;
+        }
+
+
+        fetch('../../BE/Customer/update_seat.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                showtimeID,
+                row,
+                col,
+                status
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    alert(`Failed to update seat status: ${data.error}`);
+                } else {
+                    console.log(
+                        `Seat [Row ${row + 1}, Col ${col + 1}] updated to ${status === "1" ? "selected" : "available"}`
+                    );
+                }
+            })
+            .catch(error => {
+                console.error('Error updating seat status:', error);
+                alert('Error updating seat status.');
+            });
+    }
+
+
 
     /** Update selected seats */
     function updateSelectedSeats() {
@@ -132,7 +168,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /** Handle "Tiếp tục" button click */
-    /** Handle "Tiếp tục" button click */
     function handleContinueClick() {
         const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats')) || [];
         if (selectedSeats.length === 0) {
@@ -140,59 +175,20 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
     
-        const transactionID = sessionStorage.getItem('transactionID');
-        if (!transactionID) {
-            alert('Transaction ID not found.');
-            return;
-        }
+        const ticketAmount = selectedSeats.length * 100000; // Price per seat
+        const selectedSnacks = []; // Update to include actual snack selections
+        const snackAmount = selectedSnacks.reduce((total, snack) => total + snack.price * snack.quantity, 0);
     
-        console.log('Sending Transaction ID:', transactionID);
-        console.log('Sending Selected Seats:', selectedSeats);
+        // Store the data in sessionStorage for use in payment.html
+        sessionStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
+        sessionStorage.setItem('selectedSnacks', JSON.stringify(selectedSnacks));
+        sessionStorage.setItem('ticketAmount', ticketAmount);
+        sessionStorage.setItem('snackAmount', snackAmount);
     
-        // Calculate the total ticket amount
-        const pricePerSeat = 100000; // Assuming the price per seat is constant
-        const ticketAmount = selectedSeats.length * pricePerSeat;
-    
-        // Prepare parameters for the POST request
-        const params = new URLSearchParams();
-        params.append('transactionID', transactionID);
-    
-        // Pass selectedSeats as an array, not a string
-        selectedSeats.forEach(seat => params.append('seats[]', seat));
-    
-        // Append ticketAmount to the params
-        params.append('ticketAmount', ticketAmount);
-    
-        // If snacks are selected, append them here (use empty array if none selected)
-        const selectedSnacks = [];  // Update this to get actual snack selections
-        params.append('snacks', JSON.stringify(selectedSnacks));
-    
-        fetch('../../BE/Customer/update_transaction.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: params
-        })
-            .then(response => {
-                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    const selectedSeatsParam = encodeURIComponent(selectedSeats.join(','));
-                    window.location.href = `snack.html?selectedSeats=${selectedSeatsParam}&transactionID=${transactionID}`;
-                } else {
-                    alert('Error updating seats: ' + data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while updating seat selection. ' + error.message);
-            });
+        // Redirect to payment.html
+        window.location.href = `payment.html?showtimeID=${showtimeID}`;
     }
-    
 
-    
-    
 
     /** Format date and time */
     function formatDateTime(dateTime) {

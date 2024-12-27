@@ -18,7 +18,7 @@ if ($movieID === 0) {
 $sql = "SELECT DISTINCT t.theaterID, t.name, t.location 
         FROM theater t
         INNER JOIN showtime s ON t.theaterID = s.theaterID
-        WHERE s.movieID = ? AND s.availableSeats > 0";
+        WHERE s.movieID = ?";
 $stmt = $db->link->prepare($sql);
 $stmt->bind_param("i", $movieID);
 $stmt->execute();

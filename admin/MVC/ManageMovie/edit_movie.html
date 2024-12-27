@@ -19,8 +19,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark"
         style="background: linear-gradient(45deg, #e8dccc, #373234); margin-bottom:-60px;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="../images/png-clipart-red-river-theatres-cinema-film-logo-reel-miscellaneous-angle-removebg-preview.png"
+            <a class="navbar-brand" href="../admin-dashboard.html">
+                <img src="/Movie Ticket Management/FE/Customer/images/png-clipart-red-river-theatres-cinema-film-logo-reel-miscellaneous-angle-removebg-preview.png"
                     alt="Cinema Logo" style="height: 60px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -45,39 +45,66 @@
     </nav>
 
     <h1 style="text-align: center; color: white;margin-top:110px;">Chỉnh sửa phim</h1>
-    <div class="edit-card">
-        <form id="editMovieForm" method="POST" enctype="multipart/form-data" style="text-align: center;">
-            <label for="title" style="margin-top:30px;margin-bottom:20px; color:black; font-size:16px;"><strong>Tiêu đề:</strong></label>
-            <input type="text" id="title" name="title" required style="font-size:16px;"><br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="edit-card">
+                    <form id="editMovieForm" method="POST" enctype="multipart/form-data">
+                        <div class="mb-1">
+                            <label for="title" class="form-label" style="font-size:15px;color:#000000">Tên phim:</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
 
-            <label for="trailerURL" style="margin-bottom:20px;color:black;font-size:16px;"><strong>URL Trailer:</strong></label>
-            <input type="url" id="trailerURL" name="trailerURL" style="font-size:16px;"><br>
+                        <div class="mb-1">
+                            <label for="poster" class="form-label" style="font-size:15px;color:#000000">Poster:</label>
+                            <input type="file" class="form-control" id="poster" name="poster" required>
+                            <input type="hidden" id="posterImage" name="poster" value="">
+                        </div>
 
-            <label for="duration" style="margin-bottom:20px;color:black; font-size:16px;"><strong>Thời gian (phút):</strong></label>
-            <input type="number" id="duration" name="duration" style="font-size:16px;"><br>
+                        <div class="mb-1">
+                            <label for="trailerURL" class="form-label" style="font-size:15px;color:#000000">URL Trailer:</label>
+                            <input type="url" class="form-control" id="trailerURL" name="trailerURL" required>
+                        </div>
 
-            <label for="genre" style="margin-bottom:20px;color:black; font-size:16px;"><strong>Thể loại:</strong></label>
-            <input type="text" id="genre" name="genre" style="font-size:16px;"><br>
+                        <div class="mb-1">
+                            <label for="duration" class="form-label" style="font-size:15px;color:#000000">Thời lượng:</label>
+                            <input type="number" class="form-control" id="duration" name="duration" required>
+                        </div>
 
-            <label for="releaseDate" style="margin-bottom:20px;color:black; font-size:16px;"><strong>Ngày phát hành:</strong></label>
-            <input type="date" id="releaseDate" name="releaseDate" style="font-size:16px;"><br>
+                        <div class="mb-1">
+                            <label for="genre" class="form-label" style="font-size:15px;color:#000000">Thể loại:</label>
+                            <input type="text" class="form-control" id="genre" name="genre" required>
+                        </div>
 
-            <label for="poster" style="margin-bottom:20px;color:black; font-size:16px;"><strong>Poster:</strong></label>
-            <input type="file" id="poster" name="poster" style="font-size:16px;"><br>
-            <input type="hidden" id="posterImage" name="poster" value="">
+                        <div class="mb-1">
+                            <label for="releaseDate" class="form-label" style="font-size:15px;color:#000000">Ngày phát hành:</label>
+                            <input type="date" class="form-control" id="releaseDate" name="releaseDate" required>
+                        </div>
 
-            <label for="country" style="margin-bottom:20px;color:black; font-size:16px;"><strong>Quốc gia:</strong></label>
-            <input type="text" id="country" name="country" style="font-size:16px;"><br>
+                        <div class="mb-1">
+                            <label for="country" class="form-label" style="font-size:15px;color:#000000">Quốc gia:</label>
+                            <input type="text" class="form-control" id="country" name="country" required>
+                        </div>
 
-            <label for="language" style="margin-bottom:20px;color:black; font-size:16px;"><strong>Ngôn ngữ:</strong></label>
-            <input type="text" id="language" name="language"style="font-size:16px;"><br>
+                        <div class="mb-1">
+                            <label for="language" class="form-label" style="font-size:15px; color:#000000">Ngôn ngữ:</label>
+                            <input type="text" class="form-control" id="language" name="language" required>
+                        </div>
 
-            <label for="intro" style="margin-bottom:20px;color:black; font-size:16px;"><strong>Giới thiệu:</strong></label>
-            <textarea id="intro" name="intro"></textarea style="font-size:16px;"><br>
+                        <div class="mb-1">
+                            <label for="intro" class="form-label" style="font-size:15px;color:#000000">Giới thiệu:</label>
+                            <textarea class="form-control" id="intro" name="intro" rows="4" required></textarea>
+                        </div>
 
-            <input type="hidden" id="movieID" name="movieID">
-            <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
-        </form>
+                        <input type="hidden" id="movieID" name="movieID">
+
+                        <div class="text-center">
+                            <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <!--Footer-->
     <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:70px;">

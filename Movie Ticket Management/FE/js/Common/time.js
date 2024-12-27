@@ -96,8 +96,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 const year = new Date().getFullYear();  // Current year
     
                 // Format the date to YYYY-MM-DD
-                selectedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-                console.log("Formatted date:", selectedDate);
+                if (month === '01' && day < 12) {
+                    selectedDate = `${year + 1}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`; // Correct year calculation
+                } else {
+                    selectedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;  // Standard year formatting
+                }
+
+                console.log("Formatted date for backend:", selectedDate);
                 
                 // Fetch and display available showtimes for the selected date
                 fetchShowtimesForSelectedDate(selectedDate);
@@ -115,79 +120,53 @@ document.addEventListener("DOMContentLoaded", () => {
         return `${day}/${month}`;
     }
 
-    function formatDateForBackend(date) {
-        const dateObj = new Date(date);
-        const year = dateObj.getFullYear();
-        const month = String(dateObj.getMonth() + 1).padStart(2, '0');  // Month is 0-indexed
-        const day = String(dateObj.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    }
-
-    // Fetch and display showtimes for the selected date
     // Fetch and display showtimes for the selected date
     function fetchShowtimesForSelectedDate(date) {
-        const formattedDate = formatDateForBackend(date); // Format date for backend (YYYY-MM-DD)
-
-        // Log the request URL to verify if it's correct
-        console.log(`Fetching showtimes for: movieID=${movieID}, theaterID=${selectedTheaterID}, selectedDate=${formattedDate}`);
-
-        // Fetch showtimes based on movieID, theaterID, and selected date
-        fetch(`../../BE/Common/get_showtimes.php?movieID=${movieID}&theaterID=${selectedTheaterID}&selectedDate=${formattedDate}`)
-            .then(response => response.json())
+        console.log(`Fetching showtimes for: movieID=${movieID}, theaterID=${selectedTheaterID}, selectedDate=${selectedDate}`);
+    
+        fetch(`../../BE/Common/get_showtimes.php?movieID=${movieID}&theaterID=${selectedTheaterID}&selectedDate=${selectedDate}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(showtimes => {
-                // Log the showtimes to see what is being returned
                 console.log('Fetched showtimes:', showtimes);
-                
+    
                 if (showtimes.error) {
                     showtimesContainer.innerHTML = `<p class="text-danger">${showtimes.error}</p>`;
+                } else if (showtimes.length === 0) {
+                    showtimesContainer.innerHTML = `<p class="text-warning">No showtimes available for this date.</p>`;
                 } else {
-                    // Check if showtimes is an empty array
-                    if (showtimes.length === 0) {
-                        showtimesContainer.innerHTML = `<p class="text-warning">No showtimes available for this date.</p>`;
-                    } else {
-                        // Sort the showtimes in increasing order
-                        const sortedShowtimes = showtimes.sort((a, b) => {
-                            const timeA = new Date(a.startTime);
-                            const timeB = new Date(b.startTime);
-                            return timeA - timeB;
-                        });
-
-                        // Generate showtime buttons for each available showtime
-                        const showtimesHTML = sortedShowtimes.map(showtime => {
-                            const formattedTime = new Date(showtime.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });  // Format time to "HH:mm"
-                            const availableSeats = showtime.availableSeats;
-                            return `
-                                <button class="btn btn-outline-success m-2 showtime-btn" data-showtime-id="${showtime.showtimeID}" data-available-seats="${availableSeats}">
-                                    ${formattedTime} - ${availableSeats} seats available
-                                </button>
-                            `;
-                        }).join("");  // Join all the showtime buttons into one string
-
-                        // Inject showtimes into the container
-                        showtimesContainer.innerHTML = showtimesHTML;
-                    }
+                    const sortedShowtimes = showtimes.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+                    const showtimesHTML = sortedShowtimes.map(showtime => {
+                        const formattedTime = new Date(showtime.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        const availableSeats = showtime.availableSeats !== null ? showtime.availableSeats : 0;  // Handle null value
+                        return `
+                            <button class="btn btn-outline-success m-2 showtime-btn" data-showtime-id="${showtime.showtimeID}" data-available-seats="${availableSeats}">
+                                ${formattedTime} - ${availableSeats} seats available
+                            </button>
+                        `;
+                    }).join("");
+    
+                    showtimesContainer.innerHTML = showtimesHTML;
                 }
             })
             .catch(error => {
                 console.error("Error fetching showtimes:", error);
                 showtimesContainer.innerHTML = `<p class="text-danger">Unable to load showtimes. Please try again later.</p>`;
             });
-        }
+    }
 
     // Event: Showtime selected
-    showtimesContainer.addEventListener("click", async event => {
+    showtimesContainer.addEventListener("click", event => {
         if (event.target.classList.contains("showtime-btn")) {
-            // Check if user is logged in
-            const loginStatus = await isUserLoggedIn();
-            
-            if (loginStatus.loggedIn) {
-                // If user is logged in, proceed to seat-selection-user.html
-                window.location.href = `../Customer/seat-selection-user.html?showtimeID=${event.target.dataset.showtimeId}`;
-            } else {
-                // If user is not logged in, alert and redirect to login page
-                alert("Bạn cần đăng nhập trước khi chọn ghế!");
-                window.location.href = "../../FE/Common/login.html";
-            }
+            const showtimeID = event.target.dataset.showtimeId;
+            const availableSeats = event.target.dataset.availableSeats;
+
+            // Redirect to seat-selection-user.html with parameters
+            window.location.href = `seat-selection-user.html?showtimeID=${showtimeID}&theaterID=${selectedTheaterID}&movieID=${movieID}&selectedDate=${selectedDate}&availableSeats=${availableSeats}`;
         }
     });
 });
