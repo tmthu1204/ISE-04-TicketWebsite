@@ -11,12 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../style.css">
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(45deg, #e8dccc, #373234);">
+    <nav class="navbar navbar-expand-lg navbar-dark"
+        style="background: linear-gradient(45deg, #e8dccc, #373234); margin-bottom:-60px;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="../images/png-clipart-red-river-theatres-cinema-film-logo-reel-miscellaneous-angle-removebg-preview.png"
@@ -42,15 +43,22 @@
             </div>
         </div>
     </nav>
+    <h1 style="text-align: center; color: white;margin-top:110px;">Chỉnh sửa rạp</h1>
+    <div class="edit-card" style="height:200px; margin-bottom: 350px;">
+        <form id="editTheaterForm" method="POST" style="text-align: center;">
+            <label for="name" style="margin-top:30px;margin-bottom:20px; color:black; font-size:16px;"><strong>Tên
+                    rạp:</strong></label>
+            <input type="text" id="name" name="name" required style="font-size:16px;"><br>
 
-    <!-- Danh sách rạp -->
-    <div class="container mt-4">
-        <h1 class="text-center mb-4" style="margin-top:80px">Danh sách rạp</h1>
-        <div id="theater-list" class="row justify-content-center"></div>
+            <label for="location" style="margin-bottom:20px;color:black;font-size:16px;"><strong>Địa
+                    chỉ:</strong></label>
+            <input type="text" id="location" name="location" style="font-size:16px;"><br>
+            <input type="hidden" id="theaterID" name="theaterID">
+            <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
+        </form>
     </div>
-
     <!--Footer-->
-    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:170px;">
+    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:70px;">
         <div class="footer-top">
             <li><a href=""></a>Liên hệ</li>
             <li><a href=""></a>Tuyển dụng</li>
@@ -69,12 +77,10 @@
             </p>
         </div>
     </div>
-
     <div class="footer-bottom">
         ©Selenia All rights reserved
     </div>
-    
-    <script src="ListTheater.js" defer></script>
+    <script src="../js/Admin/edit_theater.js"></script>
 </body>
 
 </html>

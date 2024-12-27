@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../style.css">
 </head>
 
 <body>
@@ -45,12 +45,13 @@
 
     <!-- Danh sách rạp -->
     <div class="container mt-4">
-        <h1 class="text-center mb-4" style="margin-top:80px">Danh sách rạp</h1>
-        <div id="theater-list" class="row justify-content-center"></div>
+        <h1 class="text-center mb-4" style="margin-top:100px">Danh sách phòng</h1>
+        <div id="room-list"></div>
+        <button class="btn btn-primary" id="add-room" style="display: flex; justify-content: center; align-items: center; margin:0 auto">Thêm phòng</button>
     </div>
 
     <!--Footer-->
-    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:170px;">
+    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:430px;">
         <div class="footer-top">
             <li><a href=""></a>Liên hệ</li>
             <li><a href=""></a>Tuyển dụng</li>
@@ -73,8 +74,8 @@
     <div class="footer-bottom">
         ©Selenia All rights reserved
     </div>
-    
-    <script src="ListTheater.js" defer></script>
+
+    <script src="../js/Admin/show_rooms.js" defer></script>
 </body>
 
 </html>

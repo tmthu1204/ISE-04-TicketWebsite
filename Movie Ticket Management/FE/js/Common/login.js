@@ -19,7 +19,7 @@ document.getElementById('formLogin').addEventListener('submit', async function (
 
     if (result.success) {
         if (result.role === "admin") {
-            window.location.href = '../Admin/payment.html';
+            window.location.href = '../Admin/dashboard.html';
         } else if (result.role === "customer") {
             window.location.href = '../Customer/Homepage-user.html';
         }
