@@ -691,67 +691,58 @@ footer {
     color: black;
     font-weight: bold;
 }
-
-/*User info*/
-.card-info{
-    background-color:#2c251d;
-    padding: 15px; /* Khoảng cách bên trong thẻ */
-    border-radius: 10px; /* Bo góc */
-    margin-bottom:40px;
-} 
-
-.nav-link {
-    color: black; 
-}
-
-.nav-link.active {
-    background-color: black; 
-}
-
-h1 {
-    margin-top: 125px; /* Tăng khoảng cách bên dưới tiêu đề */
-}
-
-#confirmBtn{
-    margin-bottom:125px;
-    margin-top:50px;
-}
-
-.user-name{
-    margin-top: -50px;
-}
-
-#submitBtn {
-    display: block;
-    margin: 0 auto;
-}
-
 .modal-content {
     background: linear-gradient(45deg, #e8dccc, #373234); /* Gradient màu */
     color: black; /* Màu chữ */
     padding: 20px; /* Khoảng cách bên trong */
 }
-/*Manage snacks*/
-.menu-card {
-    background-color: white;
-    color: black;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin: 5px 0;
-    position: relative; 
-    padding: 16px; 
-    border: 1px solid #ddd; 
-    border-radius: 8px; 
-    width: 200px;
-}
 
-.add-showtime-form {
-    position: absolute;
-    z-index: 999; /* Đảm bảo form nằm trên các phần tử khác */
-    display: none; /* Mặc định ẩn */
-    background-color: white; /* Để dễ nhìn */
+.edit-card{
+    background: linear-gradient(45deg, #e8dccc, #373234);
+    border: none;
+    width: 500px;
+    margin: 10px auto;
     padding: 10px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.7rem;
+    position: relative;
+    overflow: hidden;
+    height: 540px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 15px;
+}
+/*Seat layout*/
+.seat-btn {
+    width: 50px;
+    height: 50px;
+    margin: 3px;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.seat-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.seat-btn:active {
+    transform: scale(0.95);
+}
+.seat-available {
+    background-color: #90EE90;
+    color: #006400;
+}
+.seat-unavailable {
+    background-color: #FFB6C1;
+    color: #8B0000;
+}
+#seatLayout {
+    max-width: 100%;
+    overflow-x: auto;
 }

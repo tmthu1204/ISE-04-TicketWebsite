@@ -22,7 +22,7 @@ fetch(`show_rooms.php?theaterID=${theaterID}`)
             roomLink.href = `edit_room.html?roomID=${room.roomID}&theaterID=${theaterID}`;
             roomLink.textContent = `Phòng ${index + 1}`;
             roomLink.style.textDecoration = 'none';
-            roomLink.style.color = '#000';
+            roomLink.style.color = '#FFF';
             roomLink.style.flexGrow = '1';
 
             // Nút Delete
@@ -32,8 +32,10 @@ fetch(`show_rooms.php?theaterID=${theaterID}`)
             deleteButton.style.padding = '5px 10px';
             deleteButton.style.backgroundColor = 'red';
             deleteButton.style.color = 'white';
-            deleteButton.style.border = 'none';
+            deleteButton.style.border = 'none'; 
+            deleteButton.style.borderRadius = '10px'; 
             deleteButton.style.cursor = 'pointer';
+           
 
             // Xử lý sự kiện xóa
             deleteButton.addEventListener('click', function () {

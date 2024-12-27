@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    window.location.href = "show_theater.html"; // Redirect to a theater listing page
+                    window.location.href = "add_theater.html"; // Redirect to a theater listing page
                 } else {
                     alert("Cập nhật thông tin rạp thất bại: " + data.message);
                 }

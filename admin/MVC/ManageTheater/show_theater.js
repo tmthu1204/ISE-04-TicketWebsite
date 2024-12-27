@@ -9,13 +9,10 @@ fetch('show_theater.php')
         // Loop through the theaters and create a table row for each
         theaters.forEach((theater, index) => {
             const row = document.createElement('tr');
-            
+
             // Create table cells
             const sttCell = document.createElement('td');
             sttCell.textContent = index + 1;
-
-            const idCell = document.createElement('td');
-            idCell.textContent = theater.theaterID;
 
             const nameCell = document.createElement('td');
             nameCell.textContent = theater.name;
@@ -28,12 +25,17 @@ fetch('show_theater.php')
 
             const actionCell = document.createElement('td');
             actionCell.innerHTML = `
-                <a href="edit_theater.html?theaterID=${theater.theaterID}">Edit</a> | 
-                <button class="delete-button" data-theaterID="${theater.theaterID}">Delete</button>
-            `;
+            <a href="edit_theater.html?theaterID=${theater.theaterID}" title="Edit">
+            <i class="fa-solid fa-pencil"></i>
+            </a> | 
+            <button class="delete-button" data-theaterID="${theater.theaterID}" title="Delete" style="background: none; border: none; cursor: pointer;">
+            <i class="fa-solid fa-trash"></i>
+            </button>
+            `;  
+
+
             // Append cells to row
             row.appendChild(sttCell);
-            row.appendChild(idCell);
             row.appendChild(nameCell);
             row.appendChild(locationCell);
             row.appendChild(actionCell);
@@ -43,7 +45,8 @@ fetch('show_theater.php')
         });
         const deleteButtons = document.querySelectorAll('.delete-button');
         deleteButtons.forEach(button => {
-            button.addEventListener('click', function() {
+            button.style.color = 'red'; 
+            button.addEventListener('click', function () {
                 const theaterID = this.getAttribute('data-theaterID');
                 if (confirm(`Are you sure you want to delete theater ID ${theaterID}?`)) {
                     fetch('delete_theater.php', {
@@ -53,17 +56,17 @@ fetch('show_theater.php')
                         },
                         body: 'theaterID=' + encodeURIComponent(theaterID)
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            window.location.reload(); // Reload the page to update the theater list
-                        } else {
-                            alert('Error: ' + data.message);
-                        }
-                    })
-                    .catch(error => {
-                        alert('An error occurred: ' + error);
-                    });
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                window.location.reload(); // Reload the page to update the theater list
+                            } else {
+                                alert('Error: ' + data.message);
+                            }
+                        })
+                        .catch(error => {
+                            alert('An error occurred: ' + error);
+                        });
                 }
             });
         });

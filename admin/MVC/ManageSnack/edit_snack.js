@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Kiểm tra nếu giá trị không hợp lệ
         if (isNaN(price) || price < 0) {
-            alert("Giá phải là một số dương.");
+            alert("Số tiền phải là một số dương.");
             return;
         }
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    window.location.href = "show_snack.html"; // Redirect to a snack listing page
+                    window.location.href = "add_snack.html"; // Redirect to a snack listing page
                 } else {
                     alert("Cập nhật thông tin đồ ăn nhẹ thất bại: " + data.message);
                 }

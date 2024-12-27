@@ -41,11 +41,10 @@
 			</div>
 		</div>
 	</nav>
-    <!-- Main Content -->
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card" style="width: 400px; background-color: #4a4648; border-color: #e8dccc;">
             <div class="card-body">
-                <form id="formLogin" method="post" action="../../BE/Common/login.php">
+                <form id="formLogin" method="post" action="../../BE/Common/login.php" >
                     <h3 class="text-center" style="color:white">Đăng nhập</h3>
                     <div class="mb-3">
                         <label for="email" class="form-label" style="color:white">Email</label>
@@ -73,8 +72,12 @@
                         <div id="passwordErr" style="color: red; display: none">Mật khẩu không được để trống</div>
                     </div>
                     <div>
-                        <button type="submit" style="width: 100%" class="btn btn-danger">Đăng nhập</button>
+                        <button type="submit" id ='loginBtn' style="width: 100%" class="btn btn-danger">Đăng nhập</button>
                     </div>
+                    <p class="text-center mt-2" style="color:white">
+                        <a href="./forgot-password.html" id="forgotPasswordLink">Quên mật khẩu?</a>
+                    </p>
+             
                     <p class="text-center mt-2" style="color:white">
                         Bạn chưa có tài khoản? <a href="Register.html">Đăng ký</a>
                     </p>
@@ -108,6 +111,7 @@
     <!--Script-->
     <script src="../js/Common/login.js"></script>
     <script src="../js/Common/checkLoggedIn.js"></script>
+    <script src="../js/Common/forgot_password.js"></script>
 </body>
 
 </html>

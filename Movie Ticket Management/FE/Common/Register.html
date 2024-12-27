@@ -47,6 +47,7 @@
             <div class="card-body">
                 <!-- Registration Form -->
                 <form id="registerForm">
+                    <h3 class="text-center" style="color:white">Đăng ký</h3>
                     <div class="mb-3">
                         <label for="userName" class="form-label" style="color:white">Tên đăng nhập</label>
                         <input
@@ -92,9 +93,29 @@
                         <div id="repassErr" class="text-danger"></div>
                     </div>
                     <div>
-                        <button type="button" id="registerBtn" style="width: 100%" class="btn btn-danger">Đăng ký</button>
+                        <button type="button" id="registerBtn" style="width: 100%" class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#optSection">Đăng ký</button>
+                <!-- OTP Section -->
+                    <div class="modal fade" id="optSection" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="otpModalLabel">Xác minh OTP</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="otp" class="form-label">Mã OTP</label>
+                                        <input type="text" class="form-control" id="otp" name="otp" placeholder="Nhập mã OTP">
+                                        <div id="otpErr" class="text-danger"></div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button type="button" id="verifyOtpBtn" class="btn btn-success">Xác minh OTP</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-center mt-2" style="color:white">
+                    <p class="text-center mt-3">
                         Bạn đã có tài khoản? <a href="login.html">Đăng nhập</a>
                     </p>
                 </form>
