@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Kiểm tra nếu giá trị không hợp lệ
         if (isNaN(price) || price < 0) {
-            alert("Giá phải là một số dương.");
+            alert("Số tiền phải là một số dương.");
             return;
         }
 
