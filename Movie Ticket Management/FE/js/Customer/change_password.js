@@ -18,7 +18,7 @@ function changePassword(event) {
         newPassword: newPassword
     };
 
-    fetch('change_password.php', {
+    fetch('../../BE/Customer/change_password.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

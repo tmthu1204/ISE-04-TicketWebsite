@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-require_once 'database.php';
+require_once '../Common/config.php';
+require_once '../Common/database.php';
 
 $db = new Database();
 

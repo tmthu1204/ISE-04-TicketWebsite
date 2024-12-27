@@ -1,6 +1,7 @@
 <?php
 session_start();
-include 'database.php';  // Bao gồm tệp cấu hình, nơi DB_HOST, DB_USER, DB_PASS, DB_NAME được định nghĩa
+require_once '../Common/config.php';
+require_once '../Common/database.php';
 
 // Tạo đối tượng kết nối với cơ sở dữ liệu
 $db = new Database();
@@ -60,7 +61,7 @@ if ($result) {
             $response[] = [
                 "theaterName" => $row['theaterName'],
                 "movieTitle" => $row['movieTitle'],
-                "seatsBooked" => json_decode($row['seatsBooked'], true),
+                "seatsBooked" => $row['seatsBooked'],
                 "paymentInfo" => json_decode($row['paymentInfo'], true),
                 "snackDetails" => $snackNames,
                 "total" => $row['snackAmount'] + $row['ticketAmount']

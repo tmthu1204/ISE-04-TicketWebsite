@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("history.php")
+    fetch("../../BE/Customer/history.php")
         .then((response) => response.json())
         .then((data) => {
+            console.log(JSON.stringify(data));
             const table = document.querySelector("#ticket-history .table");
 
             // Tạo tiêu đề bảng với các cột của paymentInfo là các cột riêng

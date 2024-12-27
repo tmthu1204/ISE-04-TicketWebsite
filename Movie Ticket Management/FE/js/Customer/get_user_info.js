@@ -1,7 +1,7 @@
 // Lấy thông tin người dùng từ API
 function getUserInfo() {
     // Giả sử API trả về thông tin người dùng dưới dạng JSON
-    fetch('get_user_info.php?action=getUserInfo', {
+    fetch('../../BE/Customer/get_user_info.php?action=getUserInfo', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

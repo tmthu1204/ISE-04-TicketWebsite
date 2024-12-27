@@ -1,5 +1,6 @@
 <?php
-include "database.php";
+require_once '../Common/config.php';
+require_once '../Common/database.php';
 header('Content-Type: application/json');
 
 $db = new Database();
