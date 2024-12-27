@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('movieForm'); // ID của form
     const submitButton = document.getElementById('submitBtn'); // ID của nút submit
-
+    
     // Xử lý sự kiện khi người dùng submit form
     form.addEventListener('submit', function (event) {
         event.preventDefault(); // Ngừng hành động mặc định (khi submit form)
