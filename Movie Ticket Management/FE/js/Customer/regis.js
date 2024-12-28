@@ -1,5 +1,6 @@
 // Handle registration and OTP verification
 document.getElementById("registerBtn").addEventListener("click", function () {
+    const otpModal = new bootstrap.Modal(document.getElementById("optSection"));
     const formData = new FormData(document.getElementById("registerForm"));
     const errorFields = {
         username: "userNameErr",
@@ -25,6 +26,9 @@ document.getElementById("registerBtn").addEventListener("click", function () {
         .then((data) => {
             console.log(JSON.stringify(data)); // Log data for debugging
             if (data.success) {
+                const otpModal = new bootstrap.Modal(document.getElementById("optSection"));
+                otpModal.show();
+                alert(data.message);
                 // If registration is successful
                 alert(data.message); // Show success message
             } else {

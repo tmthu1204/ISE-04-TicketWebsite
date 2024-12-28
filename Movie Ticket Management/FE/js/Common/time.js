@@ -160,13 +160,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Event: Showtime selected
-    showtimesContainer.addEventListener("click", event => {
+    showtimesContainer.addEventListener("click", async event => {
         if (event.target.classList.contains("showtime-btn")) {
-            const showtimeID = event.target.dataset.showtimeId;
-            const availableSeats = event.target.dataset.availableSeats;
-
-            // Redirect to seat-selection-user.html with parameters
-            window.location.href = `seat-selection-user.html?showtimeID=${showtimeID}&theaterID=${selectedTheaterID}&movieID=${movieID}&selectedDate=${selectedDate}&availableSeats=${availableSeats}`;
+            // Check if user is logged in
+            const loginStatus = await isUserLoggedIn();
+            
+            if (loginStatus.loggedIn) {
+                // If user is logged in, proceed to seat-selection-user.html
+                window.location.href = `../Customer/seat-selection-user.html?showtimeID=${event.target.dataset.showtimeId}`;
+            } else {
+                // If user is not logged in, alert and redirect to login page
+                alert("Bạn cần đăng nhập trước khi chọn ghế!");
+                window.location.href = "../../FE/Common/login.html";
+            }
         }
     });
 });
