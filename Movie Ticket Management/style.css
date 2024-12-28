@@ -706,7 +706,7 @@ footer {
     font-size: 0.7rem;
     position: relative;
     overflow: hidden;
-    height: 540px;
+    height: 800px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

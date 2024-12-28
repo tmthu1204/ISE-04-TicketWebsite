@@ -18,7 +18,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(45deg, #e8dccc, #373234);">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="./admin-dashboard.html">
                 <img src="../images/logo.png"
                 alt="Cinema Logo" style="height: 60px;">
             </a>
@@ -39,9 +39,19 @@
             </div>
         </div>
     </nav>
-    <div class="text-center mb-4">
-        <span class="badge text-ligt" style="font-size:35px; margin-top:40px">Quản lý phim</span>
+
+    <div class="breadcrumb-nav" style="margin-left:80px; margin-top:40px;font-size:18px;">
+        <a href="./admin-dashboard.html" class="text-white text-decoration-none">
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <i class="fa-solid fa-arrow-right mx-2"></i>
+        <a href="./add_movie.html" class="text-white text-decoration-none">Quản lý phim</a>
     </div>
+
+    <div class="text-center mb-4">
+        <span class="badge text-ligt" style="font-size:35px; margin-top:20px">Quản lý phim</span>
+    </div>
+
     <!-- Modal -->
     <!-- Add Movie Modal -->
     <div class="modal fade" id="addMovieModal" tabindex="-1">
@@ -123,13 +133,13 @@
     </div>
     <!-- Control Icons -->
     <div class="d-flex gap-3 mt-4">
-        <button class="btn btn-link text-white mt-5" style="margin-left:740px; margin-bottom:30px;">
+        <button class="btn btn-link text-white mt-5" style="margin-left:70px; margin-bottom:30px;">
             <i class="fa-solid fa-circle-plus fa-2x " data-bs-toggle="modal" data-bs-target="#addMovieModal"></i>
         </button>
     </div>
     </div>
     <!--Footer-->
-    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:70px;">
+    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:30px;">
         <div class="footer-top">
             <li><a href=""></a>Liên hệ</li>
             <li><a href=""></a>Tuyển dụng</li>

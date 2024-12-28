@@ -1,3 +1,26 @@
+<!-- <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Theater</title>
+</head>
+<body>
+    <h1>Chỉnh sửa thông tin rạp</h1>
+    <form id="editTheaterForm" method="POST">
+        <label for="name">Tên rạp:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="location">Địa điểm:</label>
+        <input type="text" id="location" name="location" ><br>
+
+        <input type="hidden" id="theaterID" name="theaterID">
+        <button type="submit">Lưu thay đổi</button>
+    </form>
+
+    <script src="edit_theater.js"></script>
+</body>
+</html> -->
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -11,7 +34,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -19,8 +42,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark"
         style="background: linear-gradient(45deg, #e8dccc, #373234); margin-bottom:-60px;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./admin-dashboard.html">
-                <img src="../images/logo.png"
+            <a class="navbar-brand" href="../admin-dashboard.html">
+               <img src="/Movie Ticket Management/FE/Customer/images/png-clipart-red-river-theatres-cinema-film-logo-reel-miscellaneous-angle-removebg-preview.png"
                     alt="Cinema Logo" style="height: 60px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -30,19 +53,22 @@
                 style="background: linear-gradient(45deg, #e8dccc, #373234); min-height: 60px;">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item text-center">
-                        <a class="nav-link" style="color: #000000">Xin chào Admin</a>
+                        <a class="nav-link" style="color: #000000">Xin chào Admin - Tùng</a>
                     </li>
                     <li class="nav-item text-center">
-                        <a class="nav-link" href="javascript:void(0);" id="logoutButton" style="color: #000000">Đăng xuất</a>
+                        <a class="nav-link" href="login-admin.html" style="color: #000000">Đăng xuất</a>
                     </li>
                 </ul>
-                
+                <form class="d-flex ms-3">
+                    <input class="form-control me-2" type="search" placeholder="Nhập tên phim" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Tìm kiếm</button>
+                </form>
             </div>
         </div>
     </nav>
 
-    <div class="breadcrumb-nav" style="margin-left:80px; margin-top:100px;font-size:18px;">
-        <a href="./admin-dashboard.html" class="text-white text-decoration-none">
+    <div class="breadcrumb-nav" style="margin-left:80px; margin-top:80px;font-size:18px;">
+        <a href="../admin-dashboard.html" class="text-white text-decoration-none">
             <i class="fa-solid fa-house"></i>
         </a>
         <i class="fa-solid fa-arrow-right mx-2"></i>
@@ -50,8 +76,8 @@
         <i class="fa-solid fa-arrow-right mx-2"></i>
         <a href="./edit_theater.html" class="text-white text-decoration-none">Chỉnh sửa rạp</a>
     </div>
-
-    <h1 style="text-align: center; color: white;margin-top:60px;">Chỉnh sửa rạp</h1>
+    
+    <h1 style="text-align: center; color: white; margin-top:140px;">Chỉnh sửa rạp</h1>
     <div class="edit-card" style="height:200px; margin-bottom: 350px;">
         <form id="editTheaterForm" method="POST" style="text-align: center;">
             <label for="name" style="margin-top:30px;margin-bottom:20px; color:black; font-size:16px;"><strong>Tên
@@ -66,7 +92,7 @@
         </form>
     </div>
     <!--Footer-->
-    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);margin-top:-40px;">
+    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);">
         <div class="footer-top">
             <li><a href=""></a>Liên hệ</li>
             <li><a href=""></a>Tuyển dụng</li>
@@ -88,8 +114,7 @@
     <div class="footer-bottom">
         ©Selenia All rights reserved
     </div>
-    <script src="../js/Admin/edit_theater.js"></script>
-    <script src="../js/Common/logout.js"></script>
+    <script src="edit_theater.js"></script>
 </body>
 
 </html>

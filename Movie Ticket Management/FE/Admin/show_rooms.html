@@ -18,7 +18,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(45deg, #e8dccc, #373234);">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="./admin-dashboard.html">
                 <img src="../images/logo.png"
                     alt="Cinema Logo" style="height: 60px;">
             </a>
@@ -40,15 +40,25 @@
         </div>
     </nav>
 
+    <div class="breadcrumb-nav" style="margin-left:80px; margin-top:40px;font-size:18px;">
+        <a href="./admin-dashboard.html" class="text-white text-decoration-none">
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <i class="fa-solid fa-arrow-right mx-2"></i>
+        <a href="./TheaterList.html" class="text-white text-decoration-none">Quản lý phòng chiếu</a>
+        <i class="fa-solid fa-arrow-right mx-2"></i>
+        <a href="#" class="text-white text-decoration-none">Danh sách phòng</a>
+    </div>
+
     <!-- Danh sách rạp -->
     <div class="container mt-4">
-        <h1 class="text-center mb-4" style="margin-top:100px">Danh sách phòng</h1>
+        <h1 class="text-center mb-4" style="margin-top:20px">Danh sách phòng</h1>
         <div id="room-list"></div>
         <button class="btn btn-primary" id="add-room" style="display: flex; justify-content: center; align-items: center; margin:0 auto">Thêm phòng</button>
     </div>
 
     <!--Footer-->
-    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:430px;">
+    <div class="footer" style="background: linear-gradient(45deg, #e8dccc, #373234);  margin-top:250px;">
         <div class="footer-top">
             <li><a href=""></a>Liên hệ</li>
             <li><a href=""></a>Tuyển dụng</li>
