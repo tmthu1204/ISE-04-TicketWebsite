@@ -6,33 +6,35 @@ require_once '../Common/database.php';
 // Initialize Database instance
 $db = new Database();
 
-// Get the transactionID from the request
-$transactionID = isset($_GET['transactionID']) ? intval($_GET['transactionID']) : 0;
+// Get the necessary information from the sessionStorage
+$showtimeID = isset($_GET['showtimeID']) ? intval($_GET['showtimeID']) : 0;
+$selectedSeats = isset($_GET['selectedSeats']) ? json_decode($_GET['selectedSeats'], true) : [];
+$ticketAmount = isset($_GET['ticketAmount']) ? floatval($_GET['ticketAmount']) : 0;
+$selectedSnacks = isset($_GET['selectedSnacks']) ? json_decode($_GET['selectedSnacks'], true) : [];
+$snackAmount = isset($_GET['snackAmount']) ? floatval($_GET['snackAmount']) : 0;
 
-if ($transactionID === 0) {
-    echo json_encode(['error' => 'Transaction ID is required.']);
+if ($showtimeID === 0 || empty($selectedSeats)) {
+    echo json_encode(['error' => 'Missing required information.']);
     exit;
 }
 
-// Query to get transaction details
-$transactionQuery = "
+// Query to get showtime and movie details
+$showtimeQuery = "
     SELECT 
-        t.seatsBooked, t.snack, t.snackAmount, t.ticketAmount, 
-        t.showtimeID, s.movieID, s.theaterID, s.roomID, s.startTime,
+        s.showtimeID, s.movieID, s.theaterID, s.roomID, s.startTime, 
         m.title, m.description, m.duration
-    FROM transaction t 
-    INNER JOIN showtime s ON t.showtimeID = s.showtimeID
+    FROM showtime s 
     INNER JOIN movie m ON s.movieID = m.movieID
-    WHERE t.transactionID = ?
+    WHERE s.showtimeID = ?
 ";
 
-$stmt = $db->link->prepare($transactionQuery);
-$stmt->bind_param('i', $transactionID);
+$stmt = $db->link->prepare($showtimeQuery);
+$stmt->bind_param('i', $showtimeID);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    echo json_encode(['error' => 'Transaction not found.']);
+    echo json_encode(['error' => 'Showtime not found.']);
     exit;
 }
 
@@ -59,7 +61,7 @@ $theaterResult = $stmt_theater->get_result();
 $theaterName = $theaterResult->fetch_assoc()['name'] ?? 'Unknown Theater';
 
 // Decode the snack data (which is a JSON object)
-$snackData = json_decode($row['snack'], true);
+$snackData = $selectedSnacks;  // Directly using selected snacks from sessionStorage
 
 // Prepare the snack query to fetch names based on snack IDs
 $snackIDs = array_keys($snackData); // Get snack IDs
@@ -82,17 +84,9 @@ foreach ($snackData as $snackID => $quantity) {
     }
 }
 
-// Raw seatsBooked (as a string, no decoding)
-$seatsBookedRaw = $row['seatsBooked'];  // Get seatsBooked as a raw string
-
-// If seatsBooked contains an array-like string (e.g., "[\"R5C2\"]"), strip escape characters
-$seatsBookedFormatted = trim($seatsBookedRaw, '["\ \"]'); // Remove surrounding brackets and extra spaces
-
-// Replace the escaped quotes with normal quotes if necessary
-$seatsBookedFormatted = str_replace('\\"', '', $seatsBookedFormatted);
-
-// If there are multiple seats, split them by commas (optional)
-$seatsBookedFormatted = str_replace(',', ', ', $seatsBookedFormatted);
+// Raw seatsBooked (from sessionStorage as a string)
+$seatsBookedRaw = json_encode($selectedSeats);  // Chuyển mảng thành JSON
+$seatsBookedFormatted = preg_replace('/["\[\]]/', '', $seatsBookedRaw);
 
 // If seatsBooked is empty, set to 'N/A'
 if (empty($seatsBookedFormatted)) {
@@ -111,7 +105,7 @@ $response = [
     ],
     "seatsBooked" => $seatsBookedFormatted,  // Seats without decoding
     "snack" => $snackDetails, // Snacks as a formatted array
-    "totalAmount" => $row['snackAmount'] + $row['ticketAmount']
+    "totalAmount" => $snackAmount + $ticketAmount
 ];
 
 // Send the JSON response

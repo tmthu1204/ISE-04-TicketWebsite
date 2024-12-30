@@ -428,3 +428,7 @@ POST Data: {"transactionID":"119","seats":["R4C1"],"ticketAmount":"100000","snac
 Selected Seats: ["R4C1"]
 Selected Snacks: []
 Ticket Amount: 100000
+POST Data: {"transactionID":"121","seats":["R1C5"],"ticketAmount":"100000","snacks":"[]"}
+Selected Seats: ["R1C5"]
+Selected Snacks: []
+Ticket Amount: 100000

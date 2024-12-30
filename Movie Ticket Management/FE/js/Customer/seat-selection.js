@@ -1,18 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Retrieve URL parameters
     const urlParams = new URLSearchParams(window.location.search);
-    const transactionID = urlParams.get('transactionID');
-    const selectedSeats = urlParams.get('selectedSeats');
     const showtimeID = urlParams.get('showtimeID');
-
-    console.log('Transaction ID:', transactionID);
-    console.log('Selected Seats:', selectedSeats);
 
     if (!showtimeID) {
         alert('Invalid showtime ID');
         return;
     }
 
+    // Save showtimeID in sessionStorage
+    sessionStorage.setItem('showtimeID', showtimeID);
+
+    // Load seat data
     loadSeatData(showtimeID);
 
     // Event listener for the "Tiếp tục" button
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (continueButton) {
         continueButton.addEventListener('click', handleContinueClick);
     }
-    
 
     /** Load seat data */
     function loadSeatData(showtimeID) {
@@ -75,74 +73,26 @@ document.addEventListener("DOMContentLoaded", function () {
     /** Get seat status class */
     function getSeatClass(seatStatus) {
         switch (seatStatus) {
-            case "0": return 'available'; // Available for selection
-            case "1": return 'reserved'; // Selected by another user
-            case "-1": return 'unavailable'; // Permanently unavailable
-            default: return 'unavailable'; // Fallback for unknown states
+            case "0": return 'available';
+            case "1": return 'reserved';
+            case "-1": return 'unavailable';
+            default: return 'unavailable';
         }
     }
-    
 
     /** Add event listeners for seat selection and deselection */
     function addSeatSelectionListeners() {
         document.querySelectorAll('.seat.available').forEach(seat => {
-            if (!seat.classList.contains('reserved') && !seat.classList.contains('unavailable')){
             seat.addEventListener('click', function () {
                 const row = parseInt(this.getAttribute('data-seat-row'));
                 const col = parseInt(this.getAttribute('data-seat-col'));
 
                 // Toggle seat selection
                 const isSelected = this.classList.toggle('selected');
-                const seatStatus = isSelected ? "1" : "0"; // "1" for selected, "0" for deselected
-
-                // Update the seat status on the server
-                updateSeatStatus(row, col, seatStatus);
-
-                // Update the selected seats and price
                 updateSelectedSeats();
             });
-            }
         });
     }
-
-    /** Update seat status on the server */
-    function updateSeatStatus(row, col, status) {
-        const showtimeID = sessionStorage.getItem('showtimeID') || urlParams.get('showtimeID');
-        console.log('Retrieved showtimeID:', showtimeID);
-
-        if (!showtimeID) {
-            alert('Invalid showtime ID.');
-            return;
-        }
-
-
-        fetch('../../BE/Customer/update_seat.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                showtimeID,
-                row,
-                col,
-                status
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (!data.success) {
-                    alert(`Failed to update seat status: ${data.error}`);
-                } else {
-                    console.log(
-                        `Seat [Row ${row + 1}, Col ${col + 1}] updated to ${status === "1" ? "selected" : "available"}`
-                    );
-                }
-            })
-            .catch(error => {
-                console.error('Error updating seat status:', error);
-                alert('Error updating seat status.');
-            });
-    }
-
-
 
     /** Update selected seats */
     function updateSelectedSeats() {
@@ -165,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById('totalPrice').innerText = totalPrice + ' VND';
         document.getElementById('confirmButton').disabled = selectedSeatsCount === 0;
+        sessionStorage.setItem('ticketAmount', totalPrice);
     }
 
     /** Handle "Tiếp tục" button click */
@@ -174,21 +125,26 @@ document.addEventListener("DOMContentLoaded", function () {
             alert('Vui lòng chọn ít nhất một ghế!');
             return;
         }
-    
-        const ticketAmount = selectedSeats.length * 100000; // Price per seat
-        const selectedSnacks = []; // Update to include actual snack selections
-        const snackAmount = selectedSnacks.reduce((total, snack) => total + snack.price * snack.quantity, 0);
-    
-        // Store the data in sessionStorage for use in payment.html
-        sessionStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
-        sessionStorage.setItem('selectedSnacks', JSON.stringify(selectedSnacks));
-        sessionStorage.setItem('ticketAmount', ticketAmount);
-        sessionStorage.setItem('snackAmount', snackAmount);
-    
-        // Redirect to payment.html
-        window.location.href = `payment.html?showtimeID=${showtimeID}`;
-    }
 
+        //const customerID = sessionStorage.getItem('customerID');
+        const showtimeID = sessionStorage.getItem('showtimeID');
+        const ticketAmount = sessionStorage.getItem('ticketAmount');
+
+        //console.log("customerID:", customerID);
+        console.log("showtimeID:", showtimeID);
+        console.log("selectedSeats:", selectedSeats);
+
+        if (!showtimeID || !ticketAmount) {
+            alert('Thông tin không hợp lệ. Vui lòng kiểm tra lại!');
+            return;
+        }
+
+        console.log('Selected seats:', selectedSeats);
+        console.log('Ticket amount:', ticketAmount);
+
+        // Proceed to the snack selection page
+        window.location.href = `snack.html`;
+    }
 
     /** Format date and time */
     function formatDateTime(dateTime) {

@@ -5,26 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let total = 0;
     const selectedSnacks = {}; // Store selected snack quantities as an object
-
-    // Get transactionID from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const transactionID = urlParams.get('transactionID');
-
-    if (!transactionID) {
-        alert('Transaction ID not found.');
-        return;
-    }
-
-    // Display initial ticketAmount (optional for the frontend)
-    console.log('Transaction ID:', transactionID);
+    let snackData = []; // To store the fetched snack data from the backend
 
     // Fetch snack data from backend
     fetch("../../BE/Customer/snack.php")
         .then(response => response.json())
         .then(data => {
-            console.log("Fetched data:", data); // Debugging
-            if (data.length > 0) {
-                data.forEach(snack => {
+            snackData = data; // Store the fetched data
+            console.log("Fetched snack data:", snackData); // Debugging
+            if (snackData.length > 0) {
+                snackData.forEach(snack => {
                     const snackItem = document.createElement("div");
                     snackItem.className = "d-flex justify-content-between align-items-center mb-4";
 
@@ -39,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             <button class="btn btn-outline-light btn-lg" onclick="updateQuantity('${snack.snackID}', 1, ${snack.price})">+</button>
                         </div>
                     `;
-
                     snackList.appendChild(snackItem);
                 });
             }
@@ -75,46 +64,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Enable/disable checkout button
         checkoutButton.disabled = total === 0;
+
+        // Save snack data to sessionStorage immediately
+        sessionStorage.setItem('selectedSnacks', JSON.stringify(selectedSnacks));
+
+        // Calculate snackAmount (total price for selected snacks) and save it in sessionStorage
+        const snackAmount = Object.keys(selectedSnacks).reduce((sum, snackID) => {
+            const snack = snackData.find(s => s.snackID === snackID);
+            return sum + selectedSnacks[snackID] * snack.price; // Calculate total price
+        }, 0);
+        sessionStorage.setItem('snackAmount', snackAmount);
     };
 
-    const pricePerSeat = 100000;
     // Checkout functionality
     checkoutButton.addEventListener("click", function () {
         const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats') || '[]');
+        const showtimeID = sessionStorage.getItem('showtimeID');
+        const ticketAmount = parseInt(sessionStorage.getItem('ticketAmount')) || 0;
 
-        // Prepare the selected snacks data to send to the backend
-        const selectedSnackItems = selectedSnacks; // The object with snack IDs and quantities
-
-        // Prepare data to send to the backend
-        if (!transactionID) {
-            alert('Transaction ID is missing.');
+        if (!showtimeID || selectedSeats.length === 0) {
+            alert('Dữ liệu không đầy đủ. Vui lòng kiểm tra lại.');
             return;
         }
 
-        // When preparing the data for POST request in snack.js (checkoutButton)
-        const params = new URLSearchParams();
-        params.append('transactionID', transactionID);
-        params.append('seats', JSON.stringify(selectedSeats));
-        params.append('snacks', JSON.stringify(selectedSnackItems)); // Send the selected snacks object as JSON
-        params.append('ticketAmount', selectedSeats.length * pricePerSeat); // Ensure ticketAmount is included
+        // Calculate snackAmount
+        const snackAmount = Object.keys(selectedSnacks).reduce((total, snackID) => {
+            const snack = snackData.find(s => s.snackID === snackID);
+            return total + selectedSnacks[snackID] * snack.price;
+        }, 0);
 
-        fetch('../../BE/Customer/update_transaction.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: params
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = `payment.html?transactionID=${transactionID}`;
-            } else {
-                alert('Error updating transaction: ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Error during checkout:', error);
-            alert('An error occurred during checkout.');
-        });
+        // Store all required data in sessionStorage
+        sessionStorage.setItem('selectedSnacks', JSON.stringify(selectedSnacks));
+        sessionStorage.setItem('snackAmount', snackAmount);
 
+        // Redirect to payment page
+        window.location.href = `payment.html`;
     });
+
 });

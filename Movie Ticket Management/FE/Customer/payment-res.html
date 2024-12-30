@@ -16,8 +16,8 @@
     <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(45deg, #e8dccc, #373234);">
     <div class="container-fluid">
-      <a class="navbar-brand" href="./Homepage-user.html">
-       <img src="../Customer/images/png-clipart-red-river-theatres-cinema-film-logo-reel-miscellaneous-angle-removebg-preview.png"
+      <a class="navbar-brand" href="#">
+        <img src="../images/png-clipart-red-river-theatres-cinema-film-logo-reel-miscellaneous-angle-removebg-preview.png"
              alt="Cinema Logo" style="height: 60px;">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -46,7 +46,10 @@
             </ul>
           </li>
         </ul>
-        
+        <form class="d-flex ms-3">
+          <input class="form-control me-2" type="search" placeholder="Nhập tên phim" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">Tìm kiếm</button>
+        </form>
       </div>
     </div>
   </nav>
@@ -59,26 +62,26 @@
             <div class="row">
                 <div class="col-md-7">
                     <div class="d-flex gap-4">
-                      <img id="moviePoster" src="" alt="Movie Poster" style="width: 300px; height: auto; margin-bottom:10px;">
-                      <div>
-                          <h2 id="movieTitle" style="font-size: 2rem;"></h2>
-                          <ul class="list-unstyled" style="font-size: 1.25rem;">
-                              <li id="movieTheater"></li>
-                              <li id="showtimeRoom"></li>
-                              <li id="showtimeTime"></li>
-                              <li id="seatList"></li>
-                              <li id="snackList"></li>
-                          </ul>
-                          <h3 id="totalAmount" style="font-size: 1.5rem; font-weight: bold;"></h3>
-                      </div>
+                        <img src="../images/cu-li.webp" alt="CU LI KHÔNG BAO GIỜ KHÓC (T16)" style="width: 300px; height: auto; margin-bottom:10px;">
+                        <div>
+                            <h2 style="font-size: 2rem;">CU LI KHÔNG BAO GIỜ KHÓC (T16)</h2>
+                            <ul class="list-unstyled">
+                                <li>Thứ năm, 10 Thg 10, 2024</li>
+                                <li>15:45 ~ 17:15</li>
+                                <li>Rạp Hai Bà Trưng</li>
+                                <li>Seat: E10</li>
+                                <li>1 nước uống</li>
+                            </ul>
+                            <h3 style="font-size: 1.5rem; font-weight: bold;">Tổng Thanh Toán: 195.000đ</h3>
+                        </div>
                     </div>
                 </div>
-                <!-- <div class="col-md-4 text-center">
+                <div class="col-md-4 text-center">
                     <div class="qr-code mb-3 mt-4">
                         <img src="../images/qrcode.png" alt="QR Code" style="width: 200px; height: 200px;">
                     </div>
                     <p>Mã vé: <span class="ticket-code">Z8URTKMM</span></p>
-                </div> -->
+                </div>
             </div>
         </div>
 
@@ -113,5 +116,4 @@
 </body>
   <script src="../js/Common/logout.js"></script>
   <script src="../js/Common/checkLoggedIn.js"></script>
-  <script src="../js/Customer/payment_res.js"></script>
 </html>
